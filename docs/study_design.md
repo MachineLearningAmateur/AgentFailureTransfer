@@ -57,7 +57,8 @@ experiment inside *this* repository, never a change to a source.
 ## Phase status
 
 **Phase 1A — reproduction: COMPLETE.** **Phase 1B — robustness: COMPLETE.**
-**Phase 2 — external-taxonomy control: NOT STARTED.**
+**Phase 2 — ODC external-taxonomy control: SETUP** — the protocol is drafted and pre-registered,
+no review has been run, no reviewer bundle has been generated, and no Phase 2 result exists.
 
 ## Pipeline: import → validate → reproduce → robustness
 
@@ -237,6 +238,71 @@ agreement is 0, so κ = (0 − 0)/(1 − 0) = **0.0** — a genuine value, not a
 An implementation that emits `nan` for a two-case subgroup will not reproduce it. The
 implementation is cross-checked in the tests against `sklearn.metrics.cohen_kappa_score` on toy
 inputs and on 200 random non-degenerate inputs.
+
+## Phase 2: external-taxonomy control
+
+**Status: SETUP.** Protocol drafted; no review run. Everything below describes a design, not a
+result. The full pre-registered protocol is in
+[`../experiments/phase2_odc_control/protocol/phase2_protocol.md`](../experiments/phase2_odc_control/protocol/phase2_protocol.md).
+
+Phase 1 measured taxonomy transfer with one instrument: `aidev_failure_taxonomy_v1`, derived from
+real coding-agent repair attempts. Several of its labels describe an agent's process, and a
+SWE-smith case has no process attached. So the Phase 1 result is consistent with two
+explanations — the instrument is wrong for these cases, or these cases are hard to classify
+reproducibly under any defect taxonomy — and Phase 1 cannot separate them.
+
+Phase 2 re-measures the same cases with a second instrument, chosen so that it could not have
+been shaped by the Phase 1 result: the **Defect Type** dimension of IBM's Orthogonal Defect
+Classification (Chillarege et al., *IEEE TSE* 18(11), 1992, DOI `10.1109/32.177364`). Only that
+dimension is used; defect trigger, development activity, impact, source, age and the other ODC
+process attributes are excluded. The eight canonical defect types are joined by one study-level
+sentinel, `UNCLASSIFIABLE`, which is explicitly **not** an ODC type and exists so that forced
+classification cannot inflate apparent coverage. Selection rationale and limits:
+[`../experiments/phase2_odc_control/protocol/external_taxonomy_selection.md`](../experiments/phase2_odc_control/protocol/external_taxonomy_selection.md).
+
+### The design is a same-cases paired comparison
+
+```text
+same 100 cases
+same evidence
+same two reviewer families
+same blind independence
+different taxonomy
+```
+
+The same frozen `SWESMITH_001`–`SWESMITH_100` evidence is used; nothing is resampled, rebuilt or
+edited, and the packets are verified against the frozen snapshot and review manifests on import.
+Reviewers see the same evidence Phase 1 reviewers saw — case ID, code context, `BUG_DIFF`,
+specification, failing-test evidence, `REFERENCE_REPAIR` — and nothing else. Phase 1 labels,
+agreement status, AIDev categories and every field of the hidden generation crosswalk are
+withheld, physically: each reviewer works from an isolated bundle generated outside this
+repository, and the bundle creator refuses to export a contaminated one.
+
+Because both taxonomies are applied to the same cases by the same reviewer families, the
+comparison is **paired** and is analysed as such: per-case agreement indicators under each
+taxonomy, a two-sided McNemar test on the discordant counts, and a paired case-level bootstrap
+(seed 20260906, 10,000 replicates, percentile intervals, undefined κ replicates counted and
+excluded rather than zeroed — the same rule Phase 1B uses). An unpaired test would be the wrong
+test here. The Phase 1 values are loaded from the frozen Phase 1 artifacts, never hard-coded.
+
+The generation-family and procedural-vs-nonprocedural analyses reuse Phase 1B's frozen groupings
+and are run **only after both ODC reviews are sealed**, exactly as RQ2's crosswalk join was.
+
+### Workflow states
+
+`SETUP` → `FROZEN_PRE_REVIEW` → `CLAUDE_COMPLETE` / `CODEX_COMPLETE` (independent, either order)
+→ `BOTH_COMPLETE` → `ANALYZED`.
+
+Bundles may not be generated before `FROZEN_PRE_REVIEW`, no review may start without explicit
+authorization, and the analysis refuses to run before `BOTH_COMPLETE`. The freeze records SHA-256
+for every protocol-critical artifact — protocol, rubric, schema, manifests, all 100 packet files
+and both reviewer prompts — and the tag `phase2-odc-pre-review-frozen` is created only at freeze
+time and never moved.
+
+**No Phase 1 reviewer classification is modified by any of this.** Phase 2 produces new labels
+under a new taxonomy; the Phase 1 labels stay sealed and are read-only inputs to the paired
+comparison. Nothing in the design claims ODC is ground truth, and a higher agreement figure
+would not be evidence of realism; see [`threats_to_validity.md`](threats_to_validity.md).
 
 ## SWE-smith sampling design
 

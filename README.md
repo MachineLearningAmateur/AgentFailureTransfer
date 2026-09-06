@@ -32,8 +32,17 @@ coding-agent repair attempts transfer to synthetic SWE-smith training bugs?
 **RQ2 — Generation mechanism.** How does taxonomy transfer vary with synthetic
 bug-generation mechanism?
 
-A potential RQ3 is recorded in [`docs/research_questions.md`](docs/research_questions.md) and
-is explicitly **future work, not yet tested**.
+**RQ3 — External-taxonomy control.** Does an independent mechanism-neutral software-defect
+taxonomy yield higher inter-reviewer reproducibility on the same SWE-smith cases than the
+AIDev-derived agent-failure taxonomy?
+
+**RQ4 — Generation mechanism under the external taxonomy.** Under the external taxonomy, does
+reviewer agreement still vary by SWE-smith generation mechanism, particularly procedural versus
+nonprocedural generation?
+
+RQ1 and RQ2 are answered by Phase 1. RQ3 and RQ4 belong to the Phase 2 ODC control, whose
+protocol is drafted and pre-registered and whose review has **not been run**. All four are set
+out in [`docs/research_questions.md`](docs/research_questions.md).
 
 ## Findings so far
 
@@ -63,8 +72,21 @@ SWE-smith than on AIDev, and particularly weak for procedural mutations. Three c
 with that sentence: agreement measures reproducibility between two LLM reviewers, not
 correctness; the AIDev family-level number is partly in-sample; and the Fisher/permutation
 tests are exploratory association tests, not causal evidence about the generation mechanism.
-Whether the transfer failure is specific to this agent-process taxonomy (RQ3) is untested and is
-the subject of the not-yet-started Phase 2.
+Whether the transfer failure is specific to this agent-process taxonomy (RQ3) is untested. It is
+the subject of Phase 2, whose protocol is now drafted and whose review has not been run.
+
+### Phase 2 — ODC external-taxonomy control (SETUP)
+
+Phase 2 re-measures the same 100 frozen SWE-smith cases with an independent instrument — the
+Defect Type dimension of IBM's Orthogonal Defect Classification (1992) — so that the taxonomy is
+the only thing that changes: same cases, same evidence, same two reviewer families, same blind
+independence, different taxonomy. It is a measurement control experiment, and it modifies no
+Phase 1 label.
+
+**Its status is SETUP: the protocol, the frozen rubric and the reviewer prompts exist; no review
+has been run, no bundle has been generated, and no Phase 2 result exists.** ODC is not treated as
+ground truth, and a higher agreement figure would not be evidence of realism. See
+[`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md).
 
 ## Quickstart
 
@@ -177,11 +199,11 @@ here is a causal claim about the generation mechanism.
 docs/         study design, research questions, provenance, threats to validity
 sources/      the two source manifests: pinned commits + SHA-256 for every imported file
 data/         the imported frozen artifacts (aidev/, swesmith/) and derived/ reconstructions
-scripts/      import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py
+scripts/      Phase 1: import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py; Phase 2: import_phase2_packets.py, freeze_phase2.py, make_phase2_review_bundle.py, check_phase2_ready.py, validate_phase2_review.py, analyze_phase2_odc.py
 src/          the small library the scripts share (hashing, manifests, reviews, taxonomy, agreement, stats)
 analysis/     recomputed outputs: taxonomy_transfer/ (incl. phase1b_robustness/), generation_method/ (statistical_tests/, figures/ hold placeholders only)
-experiments/  external_taxonomy_control/ — placeholder, nothing run
-tests/        127 tests: manifest schema, hash verification, kappa, agreement, headline regression, Phase 1B robustness, hygiene
+experiments/  phase2_odc_control/ — Phase 2 ODC control: protocol, frozen rubric, reviewer prompts (SETUP, no review run); external_taxonomy_control/ — the original placeholder
+tests/        313 tests: manifest schema, hash verification, kappa, agreement, headline regression, Phase 1B robustness, hygiene, and the Phase 2 tooling on toy records (taxonomy, schema, validator, bundle leakage, freeze, state machine, analysis)
 paper/        placeholder
 ```
 
@@ -191,7 +213,7 @@ paper/        placeholder
 | --- | --- | --- |
 | Phase 1A — reproduction | **COMPLETE** | import, hash verification, 43 validation checks, independent recomputation of every headline number |
 | Phase 1B — robustness | **COMPLETE** | denominator sensitivity, Wilson and bootstrap intervals, procedural-vs-nonprocedural exploratory tests |
-| Phase 2 — external taxonomy control | **NOT STARTED** | nothing has been designed, run or written |
+| Phase 2 — ODC external-taxonomy control | **SETUP** | protocol, frozen ODC Defect Type rubric and reviewer prompts drafted and pre-registered; no review run, no bundle generated, no result |
 
 Both source studies are imported and hash-verified, all 43 validation checks pass, every
 expected agreement count and κ reproduces within the checkpoint tolerance, the Phase 1B
@@ -200,13 +222,14 @@ passes. That is the whole of the current claim.
 
 ### Not yet tested
 
-Nothing scientific beyond the reproduction and the robustness analysis has been done. In
-particular this repository does **not** yet:
+No scientific result beyond the reproduction and the robustness analysis exists. Phase 2 is
+designed but unrun, so in particular this repository does **not** yet:
 
 - create a taxonomy v2;
 - adjudicate the Claude/Codex disagreements;
 - label any new cases;
-- run an external taxonomy;
+- run an external taxonomy — the Phase 2 ODC control is designed and pre-registered, but no
+  reviewer has classified a single case under it and no Phase 2 number exists;
 - run BugPilot taxonomy classification;
 - perform any confirmatory significance test (Phase 1B's Fisher and permutation tests are
   exploratory association tests on one contrast, with no multiplicity correction);
@@ -215,11 +238,12 @@ particular this repository does **not** yet:
 - make causal claims;
 - compare family-frequency distributions as though the current taxonomy were mechanism-neutral.
 
-The point of Phase 1 is a clean, verifiable foundation before any second experiment is added.
+The point of Phase 1 is a clean, verifiable foundation before any second experiment is run.
 
 ## Further reading
 
-- [`docs/research_questions.md`](docs/research_questions.md) — RQ1, RQ2, and the future RQ3
+- [`docs/research_questions.md`](docs/research_questions.md) — RQ1 and RQ2, and the Phase 2 RQ3 and RQ4
+- [`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md) — the Phase 2 ODC control (SETUP)
 - [`docs/study_design.md`](docs/study_design.md) — three-repo architecture, pipeline, identity model, sampling design
 - [`docs/provenance.md`](docs/provenance.md) — pinned commits and the SHA-256 of every imported file
 - [`docs/threats_to_validity.md`](docs/threats_to_validity.md) — what these numbers do not support

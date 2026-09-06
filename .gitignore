@@ -16,3 +16,15 @@ dist/
 !data/aidev/**
 !data/swesmith/**
 !sources/*.json
+
+# Phase 2 reviewer bundles are exported OUTSIDE the repository; if one is ever
+# written here by mistake it must not be committed. The directory's README is
+# documentation and is kept.
+experiments/phase2_odc_control/bundles/*
+!experiments/phase2_odc_control/bundles/README.md
+
+# Dry-run / rehearsal output. Toy Phase 2 runs live in a scratch directory;
+# these patterns exist so a stray one in the tree is never committed.
+dryrun/
+*_dryrun/
+.import_staging/

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/MachineLearningAmateur/AgentFailureTransfer/schemas/odc_review_result.schema.json",
+  "title": "Phase 2 ODC review result",
+  "description": "One reviewer's record for one frozen SWE-smith case, under the ODC Defect Type dimension only. This file is the documented contract. It is enforced in code by agentfailuretransfer.phase2.review_records, which implements the same checks without adding a jsonschema dependency; a test asserts that the code's enum lists are exactly the enums below, so the two cannot drift apart. Codex writes one such record per case as JSON, Claude as YAML; the semantics are identical.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "odc_defect_type",
+    "taxonomy_fit",
+    "pattern_confidence",
+    "supporting_evidence_ids",
+    "reasoning_summary"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "The neutral frozen case id, SWESMITH_001 through SWESMITH_100. It must equal the record's file name stem.",
+      "pattern": "^SWESMITH_(0(0[1-9]|[1-9][0-9])|100)$"
+    },
+    "odc_defect_type": {
+      "type": "string",
+      "description": "The single ODC Defect Type that best describes the semantics of the correction required to repair the observed defect. UNCLASSIFIABLE is a study-level sentinel, not an ODC defect type.",
+      "enum": [
+        "FUNCTION",
+        "INTERFACE",
+        "CHECKING",
+        "ASSIGNMENT",
+        "TIMING_SERIALIZATION",
+        "BUILD_PACKAGE_MERGE",
+        "DOCUMENTATION",
+        "ALGORITHM",
+        "UNCLASSIFIABLE"
+      ]
+    },
+    "taxonomy_fit": {
+      "type": "string",
+      "description": "DIRECT: one ODC type clearly fits. AMBIGUOUS: more than one is plausible and the reviewer selected the best primary type. OUT_OF_SCOPE: none of the eight can be defensibly assigned.",
+      "enum": ["DIRECT", "AMBIGUOUS", "OUT_OF_SCOPE"]
+    },
+    "pattern_confidence": {
+      "type": "string",
+      "description": "Descriptive only. It is never used as an inclusion criterion.",
+      "enum": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "supporting_evidence_ids": {
+      "type": "array",
+      "description": "Evidence ids cited from this case's frozen packet, for example BUG_DIFF or CODE_CONTEXT_01. Every id must appear in that packet's evidence_ids.",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reasoning_summary": {
+      "type": "string",
+      "description": "Short, evidence-based justification of the chosen defect type. Classify the software defect and the semantics of its correction; do not reason about what the synthetic bug generator intended.",
+      "minLength": 10,
+      "maxLength": 2000
+    }
+  },
+  "allOf": [
+    {
+      "description": "The sentinel implies the out-of-scope fit.",
+      "if": {
+        "properties": { "odc_defect_type": { "const": "UNCLASSIFIABLE" } },
+        "required": ["odc_defect_type"]
+      },
+      "then": {
+        "properties": { "taxonomy_fit": { "const": "OUT_OF_SCOPE" } },
+        "required": ["taxonomy_fit"]
+      }
+    },
+    {
+      "description": "The out-of-scope fit implies the sentinel.",
+      "if": {
+        "properties": { "taxonomy_fit": { "const": "OUT_OF_SCOPE" } },
+        "required": ["taxonomy_fit"]
+      },
+      "then": {
+        "properties": { "odc_defect_type": { "const": "UNCLASSIFIABLE" } },
+        "required": ["odc_defect_type"]
+      }
+    }
+  ]
+}

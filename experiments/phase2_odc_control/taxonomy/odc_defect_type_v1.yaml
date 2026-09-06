@@ -1,0 +1,123 @@
+# Frozen ODC Defect Type rubric, Phase 2 external-taxonomy control.
+#
+# Source: Chillarege, Bhandari, Chaar, Halliday, Moebus, Ray, Wong.
+# "Orthogonal Defect Classification - A Concept for In-Process Measurements."
+# IEEE Transactions on Software Engineering 18(11):943-956, 1992. DOI 10.1109/32.177364
+#
+# Only the Defect Type dimension is used. The eight `defect_types` are the canonical
+# ODC defect types, paraphrased. `sentinel` is a study-level addition and is NOT an
+# ODC defect type. `tie_break_guidance` is this study's operationalisation of the
+# published types, not a modification of ODC. See odc_defect_type_v1.md for prose.
+taxonomy_id: odc_defect_type_v1
+dimension: defect_type
+source:
+  citation: >-
+    Ram Chillarege, Inderpal S. Bhandari, Jarir K. Chaar, Michael J. Halliday,
+    Diane S. Moebus, Bonnie K. Ray, and Man-Yuen Wong. "Orthogonal Defect
+    Classification - A Concept for In-Process Measurements." IEEE Transactions
+    on Software Engineering, 18(11):943-956, 1992.
+  doi: 10.1109/32.177364
+  url: https://research.ibm.com/publications/orthogonal-defect-classificationa-concept-for-in-process-measurements
+  year: 1992
+dimensions_excluded:
+  - defect_trigger
+  - development_activity
+  - impact
+  - source
+  - age
+operational_question: What kind of software correction is required to repair the observed defect?
+defect_types:
+  - id: FUNCTION
+    canonical: true
+    definition: >-
+      A defect affecting a significant capability, feature, or high-level behavior whose
+      correction requires a substantial design-level functional change rather than only a
+      local implementation repair.
+  - id: INTERFACE
+    canonical: true
+    definition: >-
+      A defect in interaction between modules, components, APIs, users, external systems,
+      calls, parameters, control structures between components, or other software boundaries.
+  - id: CHECKING
+    canonical: true
+    definition: >-
+      A defect in validation or checking of data/values before or during use, including
+      missing or incorrect guards, validation conditions, range checks, or related checking logic.
+  - id: ASSIGNMENT
+    canonical: true
+    definition: >-
+      A defect involving an incorrect, missing, or inappropriate value assignment or
+      initialization, generally localized to a small amount of code.
+  - id: TIMING_SERIALIZATION
+    canonical: true
+    definition: >-
+      A defect involving timing, ordering, synchronization, concurrency, serialization, or
+      management of shared/real-time resources.
+  - id: BUILD_PACKAGE_MERGE
+    canonical: true
+    definition: >-
+      A defect involving build systems, packaging, library/version management, merging,
+      configuration of shipped components, or change-management integration.
+  - id: DOCUMENTATION
+    canonical: true
+    definition: >-
+      A defect whose primary correction is to documentation or maintenance/publication
+      material rather than executable program behavior.
+  - id: ALGORITHM
+    canonical: true
+    definition: >-
+      A correctness or efficiency defect in an algorithm or local data structure whose
+      correction can be made by changing the implementation without requiring a major
+      formal design change.
+sentinel:
+  id: UNCLASSIFIABLE
+  canonical: false
+  note: >-
+    Study-level sentinel, not an ODC defect type. Use only when none of the eight ODC
+    Defect Types can defensibly describe the observed defect from the provided evidence.
+    Requires taxonomy_fit OUT_OF_SCOPE. It is data about taxonomy applicability, not
+    reviewer failure.
+taxonomy_fit:
+  - id: DIRECT
+    definition: One ODC type clearly fits.
+  - id: AMBIGUOUS
+    definition: More than one ODC type is plausible, but the reviewer selects the best primary type.
+  - id: OUT_OF_SCOPE
+    definition: None of the eight types can be defensibly assigned; odc_defect_type must be UNCLASSIFIABLE.
+pattern_confidence:
+  - HIGH
+  - MEDIUM
+  - LOW
+tie_break_guidance:
+  note: >-
+    Pre-registered operationalisation of the published ODC types for this study. Not a
+    modification of ODC. Frozen before any reviewer sees a Phase 2 packet; not to be
+    amended after review begins without a formally recorded protocol amendment.
+  rules:
+    - order: 1
+      prefer: BUILD_PACKAGE_MERGE
+      when: the defect is fundamentally about build/version/package/merge state
+    - order: 2
+      prefer: TIMING_SERIALIZATION
+      when: the defect is fundamentally about timing, concurrency, synchronization, or shared-resource ordering
+    - order: 3
+      prefer: INTERFACE
+      when: the defect is fundamentally about communication across a software boundary/API/component interface
+    - order: 4
+      prefer: ASSIGNMENT
+      when: the direct correction is a missing or incorrect assignment/initialization
+    - order: 5
+      prefer: CHECKING
+      when: the direct correction is validation/checking/guard logic
+    - order: 6
+      prefer: ALGORITHM
+      when: the defect requires a local algorithm/data-structure implementation correction
+    - order: 7
+      prefer: FUNCTION
+      when: reserved for significant capability or design-level functional defects rather than ordinary local implementation mistakes
+    - order: 8
+      prefer: DOCUMENTATION
+      when: documentation itself is the primary defective artifact
+    - order: 9
+      prefer: UNCLASSIFIABLE
+      when: none of the eight types can be defended

@@ -153,9 +153,61 @@ this repository computes every κ with one hand-rolled implementation (see
 differences from a number quoted in either source study's own prose can therefore originate in
 that unification rather than in the data.
 
+## The Phase 2 ODC control: what a second taxonomy can and cannot settle
+
+Phase 2 is in SETUP — the protocol is drafted and no review has been run — so nothing below is a
+caveat about a result. These are the limits the design carries in advance, recorded now so that
+they cannot be softened once numbers exist.
+
+**ODC is not ground truth.** Orthogonal Defect Classification is an independent, pre-existing,
+mechanism-neutral scheme, which is what a control requires. It is not a correct answer key for
+these cases. No case in either corpus has a ground-truth defect type, no adjudication is planned,
+and the Phase 2 endpoints are agreement statistics: they measure how reproducibly two reviewers
+apply one instrument, not whether either reviewer was right. A high ODC κ could equally be two
+reviewers sharing a misreading of a category.
+
+**Higher agreement would not mean greater realism.** Reproducibility of classification and
+fidelity to real coding-agent failures are different properties. If ODC agreement comes out well
+above the Phase 1 figure, that is evidence about the instruments, not evidence that SWE-smith
+bugs resemble real agent failures — and if it comes out no better, that is not evidence that
+SWE-smith is "bad". The pre-registered interpretation matrix in the Phase 2 protocol states each
+reading conditionally and blocks both of those inferences explicitly.
+
+**Only one ODC dimension is used.** Defect Type only. Defect trigger, development activity,
+impact, source, age and the other ODC process attributes are excluded, deliberately, because they
+would reintroduce the process information the control is meant to remove. Phase 2 is therefore
+not a test of ODC as a measurement programme, and no result here supports a claim about ODC as a
+whole.
+
+**`UNCLASSIFIABLE` is a study-level sentinel, not an ODC type.** ODC defines eight defect types;
+the ninth allowed value is ours. It exists so that a reviewer facing a case no ODC type describes
+can say so instead of forcing a fit — which would inflate apparent coverage and quietly raise
+agreement. That makes the sentinel rate part of the finding, but it also means the Phase 2 label
+set is not the published ODC label set, and κ computed over nine values is not κ over eight.
+
+**The tie-break guidance is ours, not ODC's.** The nine numbered rules that resolve two plausible
+categories are this study's operationalisation of the published types. They were frozen before
+any reviewer saw a Phase 2 packet, and written without inspecting any Phase 1 case-level label —
+but they are still a choice we made, and a different ordering could produce different agreement.
+They are documented as an operationalisation everywhere they appear, and they may not be amended
+after review begins except as a formally recorded protocol amendment.
+
+**The reviewer-family caveat carries over from Phase 1 unchanged.** There are still only two
+reviewers and both are LLMs, so there is still no way to estimate rater variance and correlated
+blind spots remain likely; nothing generalises to human labellers. The reviewers are the same two
+families as Phase 1, which is what makes the comparison paired — and which also means any shared
+disposition of these two reviewers is common to both taxonomies rather than controlled by the
+design. And as in Phase 1, the SWE-smith reviewer metadata names no model or provider: "Claude"
+and "Codex" are reviewer identities in this study's sense, not claims about specific models.
+
+**Phase 2 modifies nothing from Phase 1.** The Phase 1 labels are sealed and are read-only
+inputs to the paired comparison; the Phase 2 labels are new labels under a new taxonomy, held in
+their own experiment directory.
+
 ## Scope
 
-Nothing here has been tested for significance, adjudicated, re-labelled, or subjected to a
-second taxonomy. No causal claim is supported. In particular, family-frequency distributions
+Nothing here has been adjudicated or re-labelled, and no Phase 1 number has been subjected to a
+second taxonomy: the Phase 2 ODC control is drafted but unrun, so every figure in `analysis/`
+still rests on the single AIDev-derived taxonomy. No causal claim is supported. In particular, family-frequency distributions
 must not be compared across the two corpora as though the current taxonomy were
 mechanism-neutral — it is not, and that comparison is explicitly out of scope for this phase.

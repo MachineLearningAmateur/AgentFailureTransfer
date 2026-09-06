@@ -1,10 +1,11 @@
 # Research questions
 
-The current scope of this study is RQ1 and RQ2. RQ3 is recorded here so that the boundary of
-the current claim is explicit; it has **not** been tested.
+RQ1 and RQ2 are answered by Phase 1. RQ3 and RQ4 are the two questions of the Phase 2
+external-taxonomy control; its protocol is drafted and pre-registered, and **no Phase 2 review
+has been run**.
 
 Phase status: **Phase 1A (reproduction) — COMPLETE**, **Phase 1B (robustness) — COMPLETE**,
-**Phase 2 (external-taxonomy control) — NOT STARTED**.
+**Phase 2 (ODC external-taxonomy control) — SETUP (protocol drafted; no review run)**.
 
 ## RQ1 — Taxonomy transfer
 
@@ -46,21 +47,53 @@ a risk ratio and an odds ratio with intervals, and an exploratory permutation ch
 agreement was lower among procedurally generated cases. That is an association, not a causal
 claim about the generation mechanism.
 
-## Potential future RQ3 — future work / not yet tested
+## RQ3 — External-taxonomy control
 
-> Is the transfer failure specific to an agent-process taxonomy, or does it
-> persist under a mechanism-neutral bug taxonomy?
+> Does an independent mechanism-neutral software-defect taxonomy yield higher inter-reviewer
+> reproducibility on the same SWE-smith cases than the AIDev-derived agent-failure taxonomy?
 
-**This has not been tested.** Nothing in this repository bears on it. Answering it would
-require running a second, mechanism-neutral taxonomy over the same frozen cases — a new,
-explicitly versioned experiment with its own inputs and its own write-up, which would leave
-the imported reviewer labels untouched. The placeholder directory
-`experiments/external_taxonomy_control/` exists for that work; it is empty, and no external or
-BugPilot taxonomy classification has been run.
+Operationalised as: apply the **Defect Type** dimension of IBM's Orthogonal Defect Classification
+(ODC, 1992) to the same 100 frozen SWE-smith cases, with the same evidence, the same two reviewer
+families and the same blind independence, so that the taxonomy is the only thing that changes;
+then compare per-case agreement indicators between the two taxonomies with a two-sided McNemar
+test and a paired case-level bootstrap. The Phase 1 values enter that comparison by being loaded
+from the frozen Phase 1 artifacts, not by being quoted.
+
+The question exists because Phase 1 cannot distinguish two explanations of its own result:
+that the AIDev-derived taxonomy is the wrong instrument for static synthetic bugs
+(a measurement mismatch), or that SWE-smith bugs are hard to classify reproducibly under any
+defect taxonomy.
+
+**Status: Phase 2 — SETUP (protocol drafted; no review run).** The pre-registered protocol,
+the frozen ODC rubric and the reviewer prompts are in
+[`../experiments/phase2_odc_control/`](../experiments/phase2_odc_control/README.md). Nothing has
+been labelled, no reviewer bundle has been generated, and no result exists. Higher agreement
+under ODC would not mean ODC is correct, and would not mean SWE-smith is realistic; see
+[`threats_to_validity.md`](threats_to_validity.md).
+
+## RQ4 — Generation mechanism under the external taxonomy
+
+> Under the external taxonomy, does reviewer agreement still vary by SWE-smith generation
+> mechanism, particularly procedural versus nonprocedural generation?
+
+Operationalised as: after both ODC reviews are sealed — and only then — join the same hidden
+generation-method crosswalk used for RQ2, and recompute agreement by generation family and for
+the frozen `procedural` vs `nonprocedural` (`llm + mirror + combine`) contrast, with the
+`llm + mirror` sensitivity contrast beside it. RQ2's finding was an association, and so is
+anything RQ4 produces.
+
+**Status: Phase 2 — SETUP (protocol drafted; no review run).**
+
+RQ3 and RQ4 are the only new scientific questions in Phase 2. It is not a coverage study, not a
+taxonomy v2, and not an adjudication.
 
 ## Out of scope for the current phase
 
-No taxonomy v2, no adjudication of the Claude/Codex disagreements, no new labels, no external
-taxonomy, no confirmatory significance testing beyond Phase 1B's exploratory association tests,
-no new synthetic bugs, no model training, no causal claims, and no comparison of
-family-frequency distributions as though the current taxonomy were mechanism-neutral.
+No taxonomy v2, no adjudication of the Claude/Codex disagreements, no relabelling of any Phase 1
+case, no confirmatory significance testing beyond Phase 1B's exploratory association tests, no
+new synthetic bugs, no model training, no causal claims, and no comparison of family-frequency
+distributions as though the current taxonomy were mechanism-neutral.
+
+The Phase 2 ODC control is the one external taxonomy in scope, it is an explicitly versioned
+experiment with its own directory and its own write-up, and it is in SETUP: its labels do not
+exist yet. No BugPilot taxonomy classification is planned.

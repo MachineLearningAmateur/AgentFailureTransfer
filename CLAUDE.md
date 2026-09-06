@@ -39,8 +39,12 @@ uv pip install -e ".[dev]"
 ```
 
 - **Identity is commit SHA + SHA-256**, never a timestamp. `imported_at_utc` is informational.
-- **Scope**: setup and reproduction only. No taxonomy v2, no adjudication, no new labels, no
-  external/BugPilot taxonomy, no significance tests, no new synthetic bugs, no models, no causal
-  claims, no family-frequency comparison. Each of those would be a new versioned experiment.
+- **Scope**: Phase 1 is reproduction only. No taxonomy v2, no adjudication, no relabelling of
+  Phase 1 cases, no BugPilot taxonomy, no confirmatory significance tests, no new synthetic bugs,
+  no models, no causal claims, no family-frequency comparison. The one external taxonomy in scope
+  is the pre-registered Phase 2 ODC control under `experiments/phase2_odc_control/` (state:
+  SETUP). **Never launch a Phase 2 review without explicit authorization**, never inspect Phase 1
+  case-level labels while editing the ODC rubric, and never run a reviewer inside this checkout —
+  bundles are exported outside the repository.
 - **Do not claim specific model identities for the SWE-smith reviewers.** Their metadata names
   none; "Codex" and "Claude" are directory names there.
