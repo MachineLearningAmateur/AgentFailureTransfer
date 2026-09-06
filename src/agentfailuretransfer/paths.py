@@ -18,6 +18,7 @@ DERIVED_DIR = DATA_DIR / "derived"
 ANALYSIS_DIR = REPO_ROOT / "analysis"
 TAXONOMY_TRANSFER_DIR = ANALYSIS_DIR / "taxonomy_transfer"
 GENERATION_METHOD_DIR = ANALYSIS_DIR / "generation_method"
+PHASE1B_DIR = TAXONOMY_TRANSFER_DIR / "phase1b_robustness"
 
 # Imported artifacts referenced by name from more than one place.
 AIDEV_CODEX_RESULTS = AIDEV_DIR / "reviews" / "codex" / "review_results.jsonl"

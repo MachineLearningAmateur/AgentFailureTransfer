@@ -51,6 +51,7 @@ uv pip install -e ".[dev]"
 python scripts/import_sources.py
 python scripts/validate_sources.py
 python scripts/reproduce_headline_results.py
+python scripts/run_phase1b_robustness.py
 
 python -m pytest -q
 ```
@@ -63,7 +64,7 @@ source .venv/bin/activate
 python -m pip install -e ".[dev]"
 ```
 
-### The three steps
+### The four steps
 
 | Command | What it does |
 | --- | --- |
@@ -71,7 +72,10 @@ python -m pip install -e ".[dev]"
 | `python scripts/validate_sources.py` | Runs entirely inside this repo, with no access to the source repos. 43 checks: manifest schema, recomputed SHA-256 for every imported file, taxonomy version, cross-corpus identity of the taxonomy and family mapping, every observed fine label being a known label, reviewer case counts (AIDev 100/100, SWE-smith 100/100), no duplicate case ids, matching case-id sets per corpus, and the 100-row hidden crosswalk. Repairs nothing; exits 1 on any failure. |
 | `python scripts/reproduce_headline_results.py [--check \| --no-check]` | Recomputes every headline number from the imported sealed labels — nothing is read out of a Markdown report. `--check` (the default) asserts the computed values against the expected checkpoint (exact counts must match exactly, kappas within `5e-4`) and additionally diffs against the imported AIDev `agreement_metrics.json`. Those targets are assertions only; no expected number is ever written into an output artifact. Writes `analysis/taxonomy_transfer/headline_results.{json,md}`, `analysis/generation_method/agreement_by_generation.{json,md}`, and the two derived case-id reconstructions under `data/derived/`. |
 
-Once the artifacts are imported, `validate_sources.py`, `reproduce_headline_results.py` and the
+| `python scripts/run_phase1b_robustness.py [--check \| --no-check]` | **Phase 1B.** Re-uses the same sealed labels to test whether the Phase 1A picture survives reasonable alternative analysis choices: the AIDev all-100 denominator sensitivity analysis recomputed with the source study's own semantics, Wilson 95% intervals for every agreement rate, a case-level paired bootstrap of κ (seed 20260906, 10,000 replicates, undefined replicates counted and excluded rather than zeroed), and the procedural-vs-nonprocedural contrast with a two-sided Fisher's exact test, effect sizes with intervals, and an exploratory permutation check. Runs `validate_sources.py` first and stops if it fails. `--check` (the default) asserts the recomputed values against the checkpoint and exits non-zero on a mismatch. Writes only into `analysis/taxonomy_transfer/phase1b_robustness/`; it never touches `data/`, `sources/`, or the Phase 1A outputs, and its output is byte-identical across runs. |
+
+Once the artifacts are imported, `validate_sources.py`, `reproduce_headline_results.py`,
+`run_phase1b_robustness.py` and the
 test suite do not depend on `../AIBugAnalysis` or `../SWE-Smith-Bug-Analysis` continuing to exist.
 
 ## Reproduced results
@@ -112,43 +116,75 @@ number is partly **in-sample**; the SWE-smith family-level number is the out-of-
 application of the same frozen mapping. See
 [`docs/threats_to_validity.md`](docs/threats_to_validity.md).
 
+### Phase 1B robustness
+
+Recomputed by `scripts/run_phase1b_robustness.py`; the full write-up is
+[`analysis/taxonomy_transfer/phase1b_robustness/robustness_report.md`](analysis/taxonomy_transfer/phase1b_robustness/robustness_report.md),
+with the method decisions in `notes.md` beside it.
+
+**Denominator sensitivity.** Analysed over all 100 reviewed AIDev PRs instead of the 49
+both-technical-pattern cases — the source study's own all-100 rule, comparing the raw
+`failure_pattern` strings with `UNASSIGNED` kept as an ordinary label, so the 34
+UNASSIGNED/UNASSIGNED cases count as agreements — AIDev fine agreement is 65/100 (65.0%,
+κ 0.5531), against SWE-smith's 41/100 (41.0%, κ 0.2535). The gap does not depend on the
+denominator choice. The two AIDev analyses answer different questions and both are reported.
+
+**Uncertainty.** Wilson 95% intervals on the raw agreement rates and percentile bootstrap
+intervals on κ (10,000 replicates, seed 20260906): AIDev fine κ 0.5828 [0.4213, 0.7224] and
+all-100 κ 0.5531 [0.4369, 0.6636] against SWE-smith fine κ 0.2535 [0.1588, 0.3540].
+
+**Generation mechanism.** Reviewer agreement was lower among procedurally generated cases:
+6/34 (17.6%, Wilson [8.4%, 33.5%]) against 35/66 (53.0%, [41.2%, 64.6%]) for nonprocedural
+cases — an absolute difference of 35.4 percentage points (Newcombe 95% CI [15.6, 50.2]),
+risk ratio 0.333, Fisher's exact odds ratio 0.190, two-sided p = 0.00063. Dropping the two
+`combine` cases leaves it at 37.0 points. These are **exploratory association tests**; nothing
+here is a causal claim about the generation mechanism.
+
 ## Layout
 
 ```text
 docs/         study design, research questions, provenance, threats to validity
 sources/      the two source manifests: pinned commits + SHA-256 for every imported file
 data/         the imported frozen artifacts (aidev/, swesmith/) and derived/ reconstructions
-scripts/      import_sources.py, validate_sources.py, reproduce_headline_results.py
-src/          the small library the scripts share (hashing, manifests, reviews, taxonomy, agreement)
-analysis/     recomputed outputs: taxonomy_transfer/, generation_method/ (statistical_tests/, figures/ hold placeholders only)
+scripts/      import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py
+src/          the small library the scripts share (hashing, manifests, reviews, taxonomy, agreement, stats)
+analysis/     recomputed outputs: taxonomy_transfer/ (incl. phase1b_robustness/), generation_method/ (statistical_tests/, figures/ hold placeholders only)
 experiments/  external_taxonomy_control/ — placeholder, nothing run
-tests/        80 tests: manifest schema, hash verification, kappa, agreement, headline regression, hygiene
+tests/        127 tests: manifest schema, hash verification, kappa, agreement, headline regression, Phase 1B robustness, hygiene
 paper/        placeholder
 ```
 
 ## Status
 
-**Setup phase. Reproduction is complete.** Both source studies are imported and hash-verified,
-all 43 validation checks pass, every expected agreement count and κ reproduces within the
-checkpoint tolerance, and the test suite passes. That is the whole of the current claim.
+| Phase | State | What it covers |
+| --- | --- | --- |
+| Phase 1A — reproduction | **COMPLETE** | import, hash verification, 43 validation checks, independent recomputation of every headline number |
+| Phase 1B — robustness | **COMPLETE** | denominator sensitivity, Wilson and bootstrap intervals, procedural-vs-nonprocedural exploratory tests |
+| Phase 2 — external taxonomy control | **NOT STARTED** | nothing has been designed, run or written |
+
+Both source studies are imported and hash-verified, all 43 validation checks pass, every
+expected agreement count and κ reproduces within the checkpoint tolerance, the Phase 1B
+robustness analysis reproduces the source study's all-100 value exactly, and the test suite
+passes. That is the whole of the current claim.
 
 ### Not yet tested
 
-Nothing scientific beyond the reproduction has been done. In particular this repository does
-**not** yet:
+Nothing scientific beyond the reproduction and the robustness analysis has been done. In
+particular this repository does **not** yet:
 
 - create a taxonomy v2;
 - adjudicate the Claude/Codex disagreements;
 - label any new cases;
 - run an external taxonomy;
 - run BugPilot taxonomy classification;
-- perform statistical significance tests;
+- perform any confirmatory significance test (Phase 1B's Fisher and permutation tests are
+  exploratory association tests on one contrast, with no multiplicity correction);
 - create new synthetic bugs;
 - train any models;
 - make causal claims;
 - compare family-frequency distributions as though the current taxonomy were mechanism-neutral.
 
-The point of this phase is a clean, verifiable foundation before any second experiment is added.
+The point of Phase 1 is a clean, verifiable foundation before any second experiment is added.
 
 ## Further reading
 

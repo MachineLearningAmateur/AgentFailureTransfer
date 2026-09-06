@@ -1,0 +1,11 @@
+corpus,subset,metric_level,n,agreements,agreement_rate,ci_method,ci_low,ci_high,analysis_population
+AIDev,both-technical-pattern,fine,49,31,0.6326530612,Wilson score interval (95%),0.4926706756,0.7533482703,aidev_primary_fine
+AIDev,both-technical-pattern,family,49,36,0.7346938776,Wilson score interval (95%),0.5973771103,0.8378871787,aidev_primary_family
+AIDev,all-100 sensitivity,fine,100,65,0.6500000000,Wilson score interval (95%),0.5525444330,0.7363575176,aidev_all100_fine
+AIDev,all-100 sensitivity (derived family variant),family_keep_unassigned,100,70,0.7000000000,Wilson score interval (95%),0.6041514537,0.7810511471,aidev_all100_family_derived
+SWE-smith,all frozen cases,fine,100,41,0.4100000000,Wilson score interval (95%),0.3186731302,0.5079856995,swesmith_fine
+SWE-smith,all frozen cases,family,100,41,0.4100000000,Wilson score interval (95%),0.3186731302,0.5079856995,swesmith_family
+SWE-smith,generation family = llm,family,36,20,0.5555555556,Wilson score interval (95%),0.3958106176,0.7045873126,swesmith_llm_family
+SWE-smith,generation family = mirror,family,28,15,0.5357142857,Wilson score interval (95%),0.3581268923,0.7046843002,swesmith_mirror_family
+SWE-smith,generation family = procedural,family,34,6,0.1764705882,Wilson score interval (95%),0.0834896905,0.3351373740,swesmith_procedural_family
+SWE-smith,generation family = combine,family,2,0,0.0000000000,not reported: n = 2 carries no informative interval,,,swesmith_combine_family
