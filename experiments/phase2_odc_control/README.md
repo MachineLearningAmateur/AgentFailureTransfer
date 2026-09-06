@@ -182,7 +182,9 @@ bundle per reviewer has been exported outside this repository:
 ```
 
 Each bundle is self-contained. It needs only Python 3.10+ with `pyyaml`; it does not need this
-repository, `numpy`, or `scipy`. A reviewer session must be **started inside its bundle**, not
+repository, `numpy`, or `scipy`. The system `python3` on this machine is 3.8, so a shared
+interpreter lives beside the bundles at `/home/disgustingtest/review_bundles/.venv` (Python
+3.11 + `pyyaml`, nothing else); the launch commands below activate it. A reviewer session must be **started inside its bundle**, not
 inside this repository — a session that starts here can reach the Phase 1 labels, and the
 reviewer prompt tells it to stop if it finds them. Use a fresh session, never a continuation of
 a Phase 1 or setup session, and do not tell the reviewer anything beyond the block below.
@@ -192,7 +194,7 @@ a Phase 1 or setup session, and do not tell the reviewer anything beyond the blo
 Open the session inside the bundle:
 
 ```bash
-cd /home/disgustingtest/review_bundles/phase2_claude && claude
+cd /home/disgustingtest/review_bundles/phase2_claude && source ../.venv/bin/activate && claude
 ```
 
 Paste:
@@ -236,7 +238,7 @@ Open the session inside the bundle, using whatever launches your Codex or GPT co
 (`codex` shown):
 
 ```bash
-cd /home/disgustingtest/review_bundles/phase2_codex && codex
+cd /home/disgustingtest/review_bundles/phase2_codex && source ../.venv/bin/activate && codex
 ```
 
 Paste:
