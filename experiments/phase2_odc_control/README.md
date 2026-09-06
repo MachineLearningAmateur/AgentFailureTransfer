@@ -298,11 +298,15 @@ Copy each reviewer's sealed output back into this repository, one commit per rev
 ever placing one reviewer's output into the other's bundle:
 
 ```bash
-cp -r ../phase2_review_bundles/phase2_claude/reviews/claude experiments/phase2_odc_control/reviews/
-cp -r ../phase2_review_bundles/phase2_codex/reviews/codex  experiments/phase2_odc_control/reviews/
+python scripts/import_phase2_review.py --reviewer claude
+python scripts/import_phase2_review.py --reviewer codex
 python scripts/check_phase2_ready.py --reviewer claude   # workflow state should read BOTH_COMPLETE
 python scripts/analyze_phase2_odc.py
 ```
+
+The import is not a copy: it verifies the seal against the freeze before writing anything, and
+refuses a review that is unsealed, that was made against a drifted freeze manifest, or that has
+already been imported.
 
 If a bundle must ever be regenerated, it must come from the tagged freeze commit, and a review
 that has already begun against an earlier bundle is void unless every hash matches.

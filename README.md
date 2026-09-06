@@ -202,7 +202,7 @@ here is a causal claim about the generation mechanism.
 docs/         study design, research questions, provenance, threats to validity
 sources/      the two source manifests: pinned commits + SHA-256 for every imported file
 data/         the imported frozen artifacts (aidev/, swesmith/) and derived/ reconstructions
-scripts/      Phase 1: import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py; Phase 2: import_phase2_packets.py, freeze_phase2.py, make_phase2_review_bundle.py, prepare_phase2_bundles.sh, check_phase2_ready.py, validate_phase2_review.py, analyze_phase2_odc.py
+scripts/      Phase 1: import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py; Phase 2: import_phase2_packets.py, freeze_phase2.py, make_phase2_review_bundle.py, prepare_phase2_bundles.sh, check_phase2_ready.py, validate_phase2_review.py, import_phase2_review.py, analyze_phase2_odc.py
 src/          the small library the scripts share (hashing, manifests, reviews, taxonomy, agreement, stats)
 analysis/     recomputed outputs: taxonomy_transfer/ (incl. phase1b_robustness/), generation_method/ (statistical_tests/, figures/ hold placeholders only)
 experiments/  phase2_odc_control/ — Phase 2 ODC control: protocol, frozen rubric, reviewer prompts (FROZEN_PRE_REVIEW, no review run); external_taxonomy_control/ — the original placeholder
