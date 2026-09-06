@@ -1,0 +1,71 @@
+{
+  "n_cases": 100,
+  "outcome": {
+    "exact_agreement": 81,
+    "rate": 0.81,
+    "cohen_kappa": 0.7141137526331628
+  },
+  "technical_defect_binary": {
+    "exact_agreement": 85,
+    "rate": 0.85,
+    "cohen_kappa": 0.691358024691358,
+    "both_yes": 51,
+    "both_no": 34,
+    "disputed": 15
+  },
+  "pattern_both_assigned": {
+    "n": 49,
+    "exact_agreement": 31,
+    "rate": 0.6326530612244898,
+    "cohen_kappa": 0.5827814569536425
+  },
+  "scope_all_cases": {
+    "exact_agreement": 66,
+    "rate": 0.66,
+    "cohen_kappa": 0.489719345640102
+  },
+  "scope_consensus_technical": {
+    "n": 51,
+    "exact_agreement": 32,
+    "rate": 0.6274509803921569,
+    "cohen_kappa": 0.29321663019693656
+  },
+  "verification_all_cases": {
+    "exact_agreement": 59,
+    "rate": 0.59,
+    "cohen_kappa": 0.45326043472462996
+  },
+  "code_state_consensus": {
+    "eligible": 48,
+    "rule": "technical_defect_consensus == BOTH_YES and both scopes in {CODE_STATE, BOTH}"
+  },
+  "excluded_fields": {
+    "evidence_overstated": "The evidence_overstated audit field exhibited systematic reviewer interpretation divergence and was excluded from subsequent analyses.",
+    "confidence_fields": "outcome_confidence, pattern_confidence, and evidence_strength are preserved descriptively only; the two reviewers used the HIGH/MEDIUM/LOW scales differently and the values are not treated as calibrated probabilities."
+  },
+  "pattern_family_both_assigned": {
+    "mapping": "analysis/taxonomy/proposed_pattern_families.yaml",
+    "mapping_status": "FROZEN_TAXONOMY_V1",
+    "n": 49,
+    "exact_agreement": 36,
+    "rate": 0.7346938775510204,
+    "cohen_kappa": 0.6575268817204301,
+    "fine_grained_agreement_for_reference": 31,
+    "disagreements_resolved_by_mapping": 5,
+    "remaining_disagreement_case_ids": [
+      "001",
+      "004",
+      "016",
+      "017",
+      "018",
+      "022",
+      "023",
+      "027",
+      "028",
+      "048",
+      "049",
+      "050",
+      "067"
+    ]
+  }
+}

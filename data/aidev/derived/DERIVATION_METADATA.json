@@ -1,0 +1,22 @@
+{
+  "generated_at_utc": "2026-08-30T02:40:13.638161+00:00",
+  "git_commit": "7e2a866a43050e296360bc801b83544ab8b3318d",
+  "script": "scripts/analyze_dual_reviews.py",
+  "taxonomy_version": "aidev_failure_taxonomy_v1 (frozen 2026-08-29)",
+  "sources": {
+    "codex_review_results_sha256": "bec4769de6d5e3ed8f9dbd0acf51cf83f526c8079c4fe2076db7151c76e1b6b9",
+    "claude_review_results_sha256": "02957aef0de14dbb28e3b9b468693db508281da3a03a2ea175f31171e29cb402",
+    "pr_manifest_sha256": "30318b513846580b450ec42eb1325418df66b6d734244d75d947d903aaf1bf26",
+    "rubric_sha256": "af8f12449c3977b91d867684806e81407ba2fcb1a8cbd0c32d835d1e0b6c2acf",
+    "evidence_snapshot_manifest_sha256": "8cd98c33aa8c822333959ad75fad23210bc20a62d5b37306c53f1941a32fce42",
+    "pattern_family_mapping_sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+    "frozen_taxonomy_sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7"
+  },
+  "datasets": {
+    "aidev_dual_review_joined.parquet": 100,
+    "aidev_consensus_technical_cases.parquet": 51,
+    "aidev_disputed_technical_cases.parquet": 15,
+    "aidev_consensus_code_state_cases.parquet": 48,
+    "aidev_rq1_primary_cases.parquet": 35
+  }
+}

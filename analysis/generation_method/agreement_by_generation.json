@@ -1,0 +1,243 @@
+{
+  "generated_by": "scripts/reproduce_headline_results.py",
+  "taxonomy_version": "aidev_failure_taxonomy_v1",
+  "kappa_note": "hand-rolled, expected agreement over the union of both raters' observed labels; reported at full precision and rounded to 4 dp. Degenerate rule: expected agreement == 1.0 (or n == 0) yields 0.0 unless observed agreement is 1.0, in which case 1.0.",
+  "caveats": [
+    "The broad-family mapping was developed from AIDev disagreement data (analysis/taxonomy/family_mapping_analysis.md in the source study). The AIDev family-level agreement is therefore partly IN-SAMPLE and is not an out-of-sample estimate. The SWE-smith family-level agreement is the out-of-sample application of the same frozen mapping.",
+    "The two populations are NOT structurally comparable. The AIDev metrics are computed on the 49 cases where both reviewers assigned a technical pattern; the SWE-smith metrics are computed on all 100 cases, because the SWE-smith review schema has no UNASSIGNED value.",
+    "Agreement measures reproducibility between two LLM reviewers. It is not a measure of correctness.",
+    "The combine generation family has n = 2 and is not interpretable. Its agreement and kappa are reported only for completeness.",
+    "The per-generation-family kappas reported as the headline are FAMILY-LEVEL. The fine-level values are listed beside them and differ (notably for llm)."
+  ],
+  "corpus": "SWE-smith (synthetic training bugs)",
+  "join_note": "The hidden generation crosswalk was withheld from both reviewers and is joined only after the sealed labels are loaded.",
+  "crosswalk": "data/swesmith/hidden/sample_metadata.csv",
+  "crosswalk_sha256": "0ef1a5720f9f2a24caefb5abf7076fbf636d027a1dfe54d90f3307180fde84a1",
+  "mapping_authority": "materialised method_family column, produced by SWE-Smith-Bug-Analysis@ssr/swesmith.py::method_family()",
+  "published_level": "family_level",
+  "n_cases": 100,
+  "by_generation_family": {
+    "combine": {
+      "n": 2,
+      "case_ids": [
+        "SWESMITH_014",
+        "SWESMITH_039"
+      ],
+      "generation_methods": {
+        "combine_file": 2
+      },
+      "family_level": {
+        "n": 2,
+        "exact_agreements": 0,
+        "agreement_rate": 0.0,
+        "agreement_rate_4dp": 0.0,
+        "cohens_kappa": 0.0,
+        "cohens_kappa_4dp": 0.0
+      },
+      "fine_level": {
+        "n": 2,
+        "exact_agreements": 0,
+        "agreement_rate": 0.0,
+        "agreement_rate_4dp": 0.0,
+        "cohens_kappa": 0.0,
+        "cohens_kappa_4dp": 0.0
+      }
+    },
+    "llm": {
+      "n": 36,
+      "case_ids": [
+        "SWESMITH_004",
+        "SWESMITH_005",
+        "SWESMITH_007",
+        "SWESMITH_008",
+        "SWESMITH_009",
+        "SWESMITH_010",
+        "SWESMITH_015",
+        "SWESMITH_018",
+        "SWESMITH_019",
+        "SWESMITH_021",
+        "SWESMITH_022",
+        "SWESMITH_026",
+        "SWESMITH_031",
+        "SWESMITH_032",
+        "SWESMITH_041",
+        "SWESMITH_043",
+        "SWESMITH_044",
+        "SWESMITH_047",
+        "SWESMITH_048",
+        "SWESMITH_052",
+        "SWESMITH_057",
+        "SWESMITH_060",
+        "SWESMITH_067",
+        "SWESMITH_069",
+        "SWESMITH_070",
+        "SWESMITH_071",
+        "SWESMITH_073",
+        "SWESMITH_075",
+        "SWESMITH_078",
+        "SWESMITH_085",
+        "SWESMITH_086",
+        "SWESMITH_091",
+        "SWESMITH_092",
+        "SWESMITH_097",
+        "SWESMITH_098",
+        "SWESMITH_099"
+      ],
+      "generation_methods": {
+        "lm_rewrite": 36
+      },
+      "family_level": {
+        "n": 36,
+        "exact_agreements": 20,
+        "agreement_rate": 0.5555555555555556,
+        "agreement_rate_4dp": 0.5556,
+        "cohens_kappa": 0.2975609756097562,
+        "cohens_kappa_4dp": 0.2976
+      },
+      "fine_level": {
+        "n": 36,
+        "exact_agreements": 20,
+        "agreement_rate": 0.5555555555555556,
+        "agreement_rate_4dp": 0.5556,
+        "cohens_kappa": 0.33640552995391704,
+        "cohens_kappa_4dp": 0.3364
+      }
+    },
+    "mirror": {
+      "n": 28,
+      "case_ids": [
+        "SWESMITH_003",
+        "SWESMITH_011",
+        "SWESMITH_013",
+        "SWESMITH_017",
+        "SWESMITH_020",
+        "SWESMITH_025",
+        "SWESMITH_029",
+        "SWESMITH_033",
+        "SWESMITH_034",
+        "SWESMITH_036",
+        "SWESMITH_040",
+        "SWESMITH_045",
+        "SWESMITH_046",
+        "SWESMITH_050",
+        "SWESMITH_053",
+        "SWESMITH_056",
+        "SWESMITH_058",
+        "SWESMITH_065",
+        "SWESMITH_068",
+        "SWESMITH_072",
+        "SWESMITH_081",
+        "SWESMITH_082",
+        "SWESMITH_083",
+        "SWESMITH_088",
+        "SWESMITH_093",
+        "SWESMITH_094",
+        "SWESMITH_096",
+        "SWESMITH_100"
+      ],
+      "generation_methods": {
+        "pr_mirror": 28
+      },
+      "family_level": {
+        "n": 28,
+        "exact_agreements": 15,
+        "agreement_rate": 0.5357142857142857,
+        "agreement_rate_4dp": 0.5357,
+        "cohens_kappa": 0.39333333333333326,
+        "cohens_kappa_4dp": 0.3933
+      },
+      "fine_level": {
+        "n": 28,
+        "exact_agreements": 15,
+        "agreement_rate": 0.5357142857142857,
+        "agreement_rate_4dp": 0.5357,
+        "cohens_kappa": 0.39333333333333326,
+        "cohens_kappa_4dp": 0.3933
+      }
+    },
+    "procedural": {
+      "n": 34,
+      "case_ids": [
+        "SWESMITH_001",
+        "SWESMITH_002",
+        "SWESMITH_006",
+        "SWESMITH_012",
+        "SWESMITH_016",
+        "SWESMITH_023",
+        "SWESMITH_024",
+        "SWESMITH_027",
+        "SWESMITH_028",
+        "SWESMITH_030",
+        "SWESMITH_035",
+        "SWESMITH_037",
+        "SWESMITH_038",
+        "SWESMITH_042",
+        "SWESMITH_049",
+        "SWESMITH_051",
+        "SWESMITH_054",
+        "SWESMITH_055",
+        "SWESMITH_059",
+        "SWESMITH_061",
+        "SWESMITH_062",
+        "SWESMITH_063",
+        "SWESMITH_064",
+        "SWESMITH_066",
+        "SWESMITH_074",
+        "SWESMITH_076",
+        "SWESMITH_077",
+        "SWESMITH_079",
+        "SWESMITH_080",
+        "SWESMITH_084",
+        "SWESMITH_087",
+        "SWESMITH_089",
+        "SWESMITH_090",
+        "SWESMITH_095"
+      ],
+      "generation_methods": {
+        "func_pm_ctrl_shuffle": 12,
+        "func_pm_remove_assign": 5,
+        "func_pm_ctrl_invert_if": 5,
+        "func_pm_remove_cond": 3,
+        "func_pm_class_rm_funcs": 2,
+        "func_pm_class_rm_base": 2,
+        "func_pm_remove_wrapper": 1,
+        "func_pm_op_change": 1,
+        "func_pm_op_change_const": 1,
+        "func_pm_op_swap": 1,
+        "func_pm_remove_loop": 1
+      },
+      "family_level": {
+        "n": 34,
+        "exact_agreements": 6,
+        "agreement_rate": 0.17647058823529413,
+        "agreement_rate_4dp": 0.1765,
+        "cohens_kappa": 0.12740604949587536,
+        "cohens_kappa_4dp": 0.1274
+      },
+      "fine_level": {
+        "n": 34,
+        "exact_agreements": 6,
+        "agreement_rate": 0.17647058823529413,
+        "agreement_rate_4dp": 0.1765,
+        "cohens_kappa": 0.12740604949587536,
+        "cohens_kappa_4dp": 0.1274
+      }
+    }
+  },
+  "pooled_family_level": {
+    "n": 100,
+    "exact_agreements": 41,
+    "agreement_rate": 0.41,
+    "agreement_rate_4dp": 0.41,
+    "cohens_kappa": 0.24203494347379234,
+    "cohens_kappa_4dp": 0.242
+  },
+  "pooled_fine_level": {
+    "n": 100,
+    "exact_agreements": 41,
+    "agreement_rate": 0.41,
+    "agreement_rate_4dp": 0.41,
+    "cohens_kappa": 0.25354251012145745,
+    "cohens_kappa_4dp": 0.2535
+  }
+}

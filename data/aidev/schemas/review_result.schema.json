@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/aidev-blind-review/review_result.schema.json",
+  "title": "Independent AIDev review result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "outcome_classification",
+    "outcome_confidence",
+    "failure_pattern",
+    "pattern_confidence",
+    "failure_scope",
+    "verification_level",
+    "evidence_strength",
+    "test_issue_alignment",
+    "human_correction",
+    "evidence_overstated",
+    "supporting_evidence_ids",
+    "reasoning_summary",
+    "proposed_other_pattern"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "pattern": "^(00[1-9]|0[1-9][0-9]|100)$"},
+    "outcome_classification": {
+      "enum": [
+        "TECHNICAL_FAILURE_EVIDENCE",
+        "MERGED_NO_OBSERVED_CORRECTION",
+        "MERGED_AFTER_HUMAN_CORRECTION",
+        "NONTECHNICAL_REJECTION",
+        "UNCLEAR"
+      ]
+    },
+    "outcome_confidence": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+    "failure_pattern": {
+      "enum": [
+        "masked_symptom_instead_of_fixing",
+        "false_premise_about_existing_code",
+        "incomplete_change_propagation",
+        "misdiagnosed_root_cause",
+        "broke_existing_contract_or_behavior",
+        "disproportionate_or_duplicative_solution",
+        "vacuous_verification",
+        "violated_project_constraint_or_convention",
+        "unverified_trial_and_error",
+        "wrong_baseline_or_branch",
+        "OTHER_TECHNICAL_PATTERN",
+        "UNASSIGNED"
+      ]
+    },
+    "pattern_confidence": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+    "failure_scope": {"enum": ["CODE_STATE", "REPAIR_PROCESS", "BOTH", "UNKNOWN"]},
+    "verification_level": {
+      "enum": [
+        "EXECUTION_VERIFIED",
+        "CI_VERIFIED",
+        "HUMAN_CORRECTION_VERIFIED",
+        "REVIEW_EVIDENCE",
+        "LLM_INFERRED",
+        "UNCLEAR_VERIFICATION"
+      ]
+    },
+    "evidence_strength": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+    "test_issue_alignment": {"enum": ["YES", "NO", "UNCLEAR", "NOT_APPLICABLE"]},
+    "human_correction": {"enum": ["YES", "NO", "UNCLEAR", "NOT_APPLICABLE"]},
+    "evidence_overstated": {"enum": ["YES", "NO", "UNCLEAR"]},
+    "supporting_evidence_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+      "uniqueItems": true
+    },
+    "reasoning_summary": {"type": "string", "minLength": 10, "maxLength": 2000},
+    "proposed_other_pattern": {"type": ["string", "null"], "minLength": 3, "maxLength": 300}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"outcome_classification": {"not": {"const": "UNCLEAR"}}}},
+      "then": {"properties": {"supporting_evidence_ids": {"minItems": 1}}}
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome_classification": {
+            "enum": ["TECHNICAL_FAILURE_EVIDENCE", "MERGED_AFTER_HUMAN_CORRECTION"]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "failure_pattern": {"const": "UNASSIGNED"},
+          "failure_scope": {"const": "UNKNOWN"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"failure_pattern": {"const": "OTHER_TECHNICAL_PATTERN"}}},
+      "then": {"properties": {"proposed_other_pattern": {"type": "string"}}},
+      "else": {"properties": {"proposed_other_pattern": {"type": "null"}}}
+    }
+  ]
+}

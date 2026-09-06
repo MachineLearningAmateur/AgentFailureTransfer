@@ -1,0 +1,18 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+.DS_Store
+.env
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+
+# Never ignore the frozen imported study artifacts: they are the
+# reproducibility identity of this repository.
+!data/aidev/**
+!data/swesmith/**
+!sources/*.json

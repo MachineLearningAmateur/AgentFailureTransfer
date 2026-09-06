@@ -1,0 +1,7 @@
+reviewer=claude
+cases=100
+validation=passed
+rubric_sha256=af8f12449c3977b91d867684806e81407ba2fcb1a8cbd0c32d835d1e0b6c2acf
+manifest_sha256=30318b513846580b450ec42eb1325418df66b6d734244d75d947d903aaf1bf26
+evidence_snapshot_manifest_sha256=8cd98c33aa8c822333959ad75fad23210bc20a62d5b37306c53f1941a32fce42
+completed_at=2026-08-28T04:56:52.930224+00:00

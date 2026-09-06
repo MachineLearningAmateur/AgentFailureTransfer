@@ -1,0 +1,198 @@
+{
+  "name": "SWE-Smith-Bug-Analysis",
+  "repository": "https://github.com/MachineLearningAmateur/SWE-Smith-Bug-Analysis",
+  "commit_sha": "0345139bf449f1fe9401f2a708d0d3b5961d14b2",
+  "pinned_commit_sha": "0345139bf449f1fe9401f2a708d0d3b5961d14b2",
+  "commit_matches_pin": true,
+  "source_branch": "main",
+  "source_path_at_import": "/home/disgustingtest/research/SWE-Smith-Bug-Analysis",
+  "source_worktree_clean": true,
+  "role": "synthetic_training_bug_source",
+  "taxonomy_version": "aidev_failure_taxonomy_v1",
+  "corpus": {
+    "reviewed_cases": 100,
+    "population_size": 4207,
+    "note": "All 100 frozen cases enter the agreement computation: the SWE-smith review schema has no UNASSIGNED value, so there is no exclusion rule to apply."
+  },
+  "review_completion": {
+    "codex": {
+      "complete_marker_present": true,
+      "complete_marker_sha256": "1ff0b40cdc7a15e78ca441836787d7892271b1ad108ff33c76944c30725437a5",
+      "reviewed_cases": 100
+    },
+    "claude": {
+      "complete_marker_present": true,
+      "complete_marker_sha256": "a15ffcf36f1165e04f2e47ec18b9ff09d0cf082c06f2081303cd1062d77fea7c",
+      "reviewed_cases": 100
+    }
+  },
+  "taxonomy_sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7",
+  "family_mapping_sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+  "snapshot_sha256": "981694c07ffcc9ee9bcf00527d71a0c94b15884ebfc7d8aa537363b3f646a6de",
+  "review_manifest_sha256": "64e607800de2a08e4321b371d616841bbd4fbe6deaddb1321dfd355333caebfa",
+  "review_result_sha256": {
+    "codex": "2a42458ad4bc3b727ca9c373c6e917ae12dc35a155088ad0d51619724e8912c2",
+    "claude": "433638b95abcc5d1ef31575a62171081bf3468191a6427015ffb66c8b8e1441b"
+  },
+  "reference_scripts": [
+    {
+      "source_path": "scripts/apply_frozen_families.py",
+      "sha256": "56e6c8aa0eda75edb5c06d51cc10c861f760542d5ef5cce779f126ab8c637c31",
+      "bytes": 7723,
+      "imported": false,
+      "note": "pooled fine/family agreement and the hand-rolled kappa"
+    },
+    {
+      "source_path": "scripts/compare_reviews.py",
+      "sha256": "a1ae03a36b67052abcadc9fcf64ad69bbe9ec83c4eec6c41b4ff4374957927f3",
+      "bytes": 8286,
+      "imported": false,
+      "note": "per-generation-family breakdown"
+    },
+    {
+      "source_path": "ssr/swesmith.py",
+      "sha256": "410f02408cc65d9d192a49b0c7da937afbe1fb584de2301ffda7530290756b5f",
+      "bytes": 8818,
+      "imported": false,
+      "note": "authoritative generation_method -> method_family mapping"
+    }
+  ],
+  "excluded_from_import": [
+    "data/review_packets/** (100 packet directories)",
+    "reviews/*/cases/** (verified duplicates of the JSONL)",
+    "data/population/swesmith_training_tasks.csv|.parquet (1.0 MB / 293 KB)",
+    "archive/** (parked work, not part of the current design)",
+    "runs/, tests/, the review-draft PDF",
+    "scripts/** and ssr/** (cited by hash under reference_scripts instead)"
+  ],
+  "imported_at_utc": "2026-09-06T09:21:29.500500+00:00",
+  "identity_note": "Identity is commit_sha + the per-file sha256 values. Timestamps are informational only.",
+  "files": [
+    {
+      "source_path": "reviews/codex/review_results.jsonl",
+      "imported_path": "data/swesmith/reviews/codex/review_results.jsonl",
+      "sha256": "2a42458ad4bc3b727ca9c373c6e917ae12dc35a155088ad0d51619724e8912c2",
+      "bytes": 56108,
+      "note": "sealed Codex fine-grained labels (100 cases)"
+    },
+    {
+      "source_path": "reviews/codex/COMPLETE",
+      "imported_path": "data/swesmith/reviews/codex/COMPLETE",
+      "sha256": "1ff0b40cdc7a15e78ca441836787d7892271b1ad108ff33c76944c30725437a5",
+      "bytes": 226,
+      "note": "Codex seal marker (snapshot manifest hash + taxonomy fingerprint)"
+    },
+    {
+      "source_path": "reviews/codex/review_metadata.json",
+      "imported_path": "data/swesmith/reviews/codex/review_metadata.json",
+      "sha256": "85035173345ef8b5381f3d3133cecff6bf6b617cb515609a133feec9bd38cb62",
+      "bytes": 258,
+      "note": "binds the Codex JSONL by results_sha256"
+    },
+    {
+      "source_path": "reviews/claude/review_results.jsonl",
+      "imported_path": "data/swesmith/reviews/claude/review_results.jsonl",
+      "sha256": "433638b95abcc5d1ef31575a62171081bf3468191a6427015ffb66c8b8e1441b",
+      "bytes": 81062,
+      "note": "sealed Claude fine-grained labels (100 cases)"
+    },
+    {
+      "source_path": "reviews/claude/COMPLETE",
+      "imported_path": "data/swesmith/reviews/claude/COMPLETE",
+      "sha256": "a15ffcf36f1165e04f2e47ec18b9ff09d0cf082c06f2081303cd1062d77fea7c",
+      "bytes": 227,
+      "note": "Claude seal marker"
+    },
+    {
+      "source_path": "reviews/claude/review_metadata.json",
+      "imported_path": "data/swesmith/reviews/claude/review_metadata.json",
+      "sha256": "4fc70f699dd42e45faa26d4047cee31d8f40e63aa810a1bbbaf9386effe5e633",
+      "bytes": 258,
+      "note": "binds the Claude JSONL by results_sha256"
+    },
+    {
+      "source_path": "taxonomy/frozen_failure_taxonomy_v1.md",
+      "imported_path": "data/swesmith/taxonomy/frozen_failure_taxonomy_v1.md",
+      "sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7",
+      "bytes": 9359,
+      "note": "byte-identical copy of the AIDev frozen taxonomy"
+    },
+    {
+      "source_path": "taxonomy/pattern_families.yaml",
+      "imported_path": "data/swesmith/taxonomy/pattern_families.yaml",
+      "sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+      "bytes": 1842,
+      "note": "byte-identical copy of the AIDev family mapping (renamed on import)"
+    },
+    {
+      "source_path": "taxonomy/TAXONOMY_PROVENANCE.json",
+      "imported_path": "data/swesmith/taxonomy/TAXONOMY_PROVENANCE.json",
+      "sha256": "212ac25aafb0b5cb03b09221515e8331eaaecded8cca629f7b2df8774dc3c98c",
+      "bytes": 3232,
+      "note": "records the byte-for-byte taxonomy handoff from AIDev"
+    },
+    {
+      "source_path": "data/hidden/sample_metadata.csv",
+      "imported_path": "data/swesmith/hidden/sample_metadata.csv",
+      "sha256": "0ef1a5720f9f2a24caefb5abf7076fbf636d027a1dfe54d90f3307180fde84a1",
+      "bytes": 25526,
+      "note": "hidden crosswalk: case_id -> generation_method / method_family. Withheld from reviewers; joined only after labels are loaded."
+    },
+    {
+      "source_path": "data/hidden/selection_record.json",
+      "imported_path": "data/swesmith/hidden/selection_record.json",
+      "sha256": "f1519069ab698f6fa8a230e5911180a7a6f5b61098dd56ac9016468196a247ed",
+      "bytes": 18037,
+      "note": "sample selection record (population 4207, 100 selected, 52 repos)"
+    },
+    {
+      "source_path": "data/review_manifest.csv",
+      "imported_path": "data/swesmith/review_manifest.csv",
+      "sha256": "64e607800de2a08e4321b371d616841bbd4fbe6deaddb1321dfd355333caebfa",
+      "bytes": 13554,
+      "note": "the neutral manifest both COMPLETE markers commit to"
+    },
+    {
+      "source_path": "data/review_snapshot_manifest.json",
+      "imported_path": "data/swesmith/review_snapshot_manifest.json",
+      "sha256": "981694c07ffcc9ee9bcf00527d71a0c94b15884ebfc7d8aa537363b3f646a6de",
+      "bytes": 80223,
+      "note": "frozen packet snapshot; completes the seal chain end to end"
+    },
+    {
+      "source_path": "configs/sampling.yaml",
+      "imported_path": "data/swesmith/configs/sampling.yaml",
+      "sha256": "6a735b3d05e8e0f859d3f811d2ffd549d6854d6c836e0c80fa5c21f3dc267397",
+      "bytes": 1890,
+      "note": "seed 20260830, target_n 100, max_per_repo 5, forbidden inputs"
+    },
+    {
+      "source_path": "data/population/POPULATION_PROVENANCE.json",
+      "imported_path": "data/swesmith/population/POPULATION_PROVENANCE.json",
+      "sha256": "b60f339e8fc478d208e114aa79492b29638a05e4ea9756851744f69665d74bd2",
+      "bytes": 2468,
+      "note": "pinned dataset revisions and the 4207-instance population accounting"
+    },
+    {
+      "source_path": "analysis/sample_balance.md",
+      "imported_path": "data/swesmith/analysis/sample_balance.md",
+      "sha256": "a70014fbec00f4f1849a3c675b8ad631e4d7755b38973d6a9d1bfe60b5dadc63",
+      "bytes": 2841,
+      "note": "human-readable sample balance table"
+    },
+    {
+      "source_path": "analysis/aidev_strict_language_profile.json",
+      "imported_path": "data/swesmith/analysis/aidev_strict_language_profile.json",
+      "sha256": "abf979351278b15b5e5034e12fd5ddede762420d7430ed78ceb13522c78ddc0b",
+      "bytes": 3707,
+      "note": "language attribution for the 35 AIDev strict cases (cross-repo artifact)"
+    },
+    {
+      "source_path": "schemas/review_result.schema.json",
+      "imported_path": "data/swesmith/schemas/review_result.schema.json",
+      "sha256": "988c731609152f17530a915962479dae3e44be11268b5537b4e75873f7651be2",
+      "bytes": 4081,
+      "note": "8-field contract; documents why UNASSIGNED is absent here"
+    }
+  ]
+}

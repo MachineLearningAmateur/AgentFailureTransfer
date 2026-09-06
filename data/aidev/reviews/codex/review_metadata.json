@@ -1,0 +1,13 @@
+{
+  "blind_review": true,
+  "evidence_snapshot_manifest_sha256": "8cd98c33aa8c822333959ad75fad23210bc20a62d5b37306c53f1941a32fce42",
+  "manifest_sha256": "30318b513846580b450ec42eb1325418df66b6d734244d75d947d903aaf1bf26",
+  "model": "gpt-5.6-sol",
+  "provider": "OpenAI",
+  "review_completed_at": "2026-08-28T04:48:07.766655+00:00",
+  "review_protocol_version": "1.0",
+  "review_started_at": "2026-08-28T03:57:17.675925+00:00",
+  "reviewer": "codex",
+  "rubric_path": "docs/aidev_review_rubric.md",
+  "rubric_sha256": "af8f12449c3977b91d867684806e81407ba2fcb1a8cbd0c32d835d1e0b6c2acf"
+}

@@ -1,0 +1,208 @@
+{
+  "name": "AIBugAnalysis",
+  "repository": "https://github.com/MachineLearningAmateur/AIBugAnalysis",
+  "commit_sha": "85e4bf9caf0a63436a1a305592d82294536ccd8e",
+  "pinned_commit_sha": "85e4bf9caf0a63436a1a305592d82294536ccd8e",
+  "commit_matches_pin": true,
+  "source_branch": "main",
+  "source_path_at_import": "/home/disgustingtest/research/AIBugAnalysis",
+  "source_worktree_clean": true,
+  "role": "real_agent_failure_source",
+  "taxonomy_version": "aidev_failure_taxonomy_v1",
+  "corpus": {
+    "reviewed_cases": 100,
+    "note": "100 PRs were reviewed by both reviewers. The canonical dual-review agreement population is the 49 cases where BOTH reviewers assigned a technical pattern (failure_pattern != UNASSIGNED)."
+  },
+  "review_completion": {
+    "codex": {
+      "complete_marker_present": true,
+      "complete_marker_sha256": "39109bf52c7a7db3852ae6e9693f4166d7be41ff5652a8a79e0edd4968aacbc2",
+      "reviewed_cases": 100
+    },
+    "claude": {
+      "complete_marker_present": true,
+      "complete_marker_sha256": "8cc5731f4243a050e33f88b7765bdf61393ff84b99cc0a30320b8afb86f88af6",
+      "reviewed_cases": 100
+    }
+  },
+  "taxonomy_sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7",
+  "family_mapping_sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+  "review_result_sha256": {
+    "codex": "bec4769de6d5e3ed8f9dbd0acf51cf83f526c8079c4fe2076db7151c76e1b6b9",
+    "claude": "02957aef0de14dbb28e3b9b468693db508281da3a03a2ea175f31171e29cb402"
+  },
+  "reference_scripts": [
+    {
+      "source_path": "scripts/analyze_dual_reviews.py",
+      "sha256": "19934ffd54cbb1d391d89f7a2cddafe3ab45e9f609c1f7c3fe95444a17932f80",
+      "bytes": 14782,
+      "imported": false,
+      "note": "canonical 49-case inclusion rule and fine kappa"
+    },
+    {
+      "source_path": "scripts/apply_pattern_families.py",
+      "sha256": "cdf519ab26df6565848da42bada31d637a43ab050d8e2c6c11e957de8c8dda0a",
+      "bytes": 5858,
+      "imported": false,
+      "note": "canonical family mapping application and family kappa"
+    },
+    {
+      "source_path": "scripts/build_rq1_aidev_dataset.py",
+      "sha256": "808c53d4a161395d236ea42be5f99d5cc44dda88dded6d47a1c78e87db684f9c",
+      "bytes": 3463,
+      "imported": false,
+      "note": "canonical 35-case strict corpus rule"
+    }
+  ],
+  "excluded_from_import": [
+    "data/evidence_packets/** (100 evidence packets, not needed to recompute labels)",
+    "data/execution_artifacts/** (agent logs)",
+    "reviews/*/cases/** (verified byte-duplicates of the JSONL)",
+    "data/derived/*.parquet except aidev_rq1_primary_cases.parquet",
+    "scripts/** (cited by hash under reference_scripts instead)"
+  ],
+  "imported_at_utc": "2026-09-06T09:21:29.500288+00:00",
+  "identity_note": "Identity is commit_sha + the per-file sha256 values. Timestamps are informational only.",
+  "files": [
+    {
+      "source_path": "reviews/codex/review_results.jsonl",
+      "imported_path": "data/aidev/reviews/codex/review_results.jsonl",
+      "sha256": "bec4769de6d5e3ed8f9dbd0acf51cf83f526c8079c4fe2076db7151c76e1b6b9",
+      "bytes": 82302,
+      "note": "sealed Codex fine-grained labels (100 cases)"
+    },
+    {
+      "source_path": "reviews/codex/COMPLETE",
+      "imported_path": "data/aidev/reviews/codex/COMPLETE",
+      "sha256": "39109bf52c7a7db3852ae6e9693f4166d7be41ff5652a8a79e0edd4968aacbc2",
+      "bytes": 348,
+      "note": "Codex seal marker (rubric + manifest + evidence snapshot hashes)"
+    },
+    {
+      "source_path": "reviews/codex/review_metadata.json",
+      "imported_path": "data/aidev/reviews/codex/review_metadata.json",
+      "sha256": "d4c74b7623c74487bc1799362292e424a4b7d7e59404c0f1105628875241305d",
+      "bytes": 587,
+      "note": "Codex reviewer model identity and protocol version"
+    },
+    {
+      "source_path": "reviews/claude/review_results.jsonl",
+      "imported_path": "data/aidev/reviews/claude/review_results.jsonl",
+      "sha256": "02957aef0de14dbb28e3b9b468693db508281da3a03a2ea175f31171e29cb402",
+      "bytes": 145676,
+      "note": "sealed Claude fine-grained labels (100 cases)"
+    },
+    {
+      "source_path": "reviews/claude/COMPLETE",
+      "imported_path": "data/aidev/reviews/claude/COMPLETE",
+      "sha256": "8cc5731f4243a050e33f88b7765bdf61393ff84b99cc0a30320b8afb86f88af6",
+      "bytes": 349,
+      "note": "Claude seal marker"
+    },
+    {
+      "source_path": "reviews/claude/review_metadata.json",
+      "imported_path": "data/aidev/reviews/claude/review_metadata.json",
+      "sha256": "9bc1c0f038af1a942b3fc204755ca78c6c2d076bc2871cbe64222b7525409c11",
+      "bytes": 597,
+      "note": "Claude reviewer model identity and protocol version"
+    },
+    {
+      "source_path": "analysis/taxonomy/frozen_failure_taxonomy_v1.md",
+      "imported_path": "data/aidev/taxonomy/frozen_failure_taxonomy_v1.md",
+      "sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7",
+      "bytes": 9359,
+      "note": "frozen fine-grained taxonomy of record"
+    },
+    {
+      "source_path": "analysis/taxonomy/proposed_pattern_families.yaml",
+      "imported_path": "data/aidev/taxonomy/proposed_pattern_families.yaml",
+      "sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+      "bytes": 1842,
+      "note": "frozen fine -> broad-family mapping"
+    },
+    {
+      "source_path": "analysis/taxonomy/family_mapping_analysis.md",
+      "imported_path": "data/aidev/taxonomy/family_mapping_analysis.md",
+      "sha256": "744af57ff7952d308da7daf0c1b14495cb27f2cd4dceca9a8326a0477db52578",
+      "bytes": 9314,
+      "note": "how the family mapping was selected from AIDev disagreement data"
+    },
+    {
+      "source_path": "analysis/dual_review/agreement_metrics.json",
+      "imported_path": "data/aidev/dual_review/agreement_metrics.json",
+      "sha256": "dc2c8abe13844d0ddceeacdbd3c8f0d3d548114be44011d07f886ddd6395af67",
+      "bytes": 1975,
+      "note": "published AIDev agreement metrics (diff target for recomputation)"
+    },
+    {
+      "source_path": "analysis/dual_review/calibration_report.md",
+      "imported_path": "data/aidev/dual_review/calibration_report.md",
+      "sha256": "efa79b7649c5b2d11852a21faaec6d23722d859ddf045cbaab20f21e04c25309",
+      "bytes": 7501,
+      "note": "prose of record for 31/49 and 36/49, incl. the in-sample caveat"
+    },
+    {
+      "source_path": "analysis/dual_review/pattern_confusion.csv",
+      "imported_path": "data/aidev/dual_review/pattern_confusion.csv",
+      "sha256": "bbe9d8e666731b67e1b79d6ba291311901b378b488ed76d4c6dacc81bf227166",
+      "bytes": 843,
+      "note": "fine confusion matrix; cells sum to the 49-case population"
+    },
+    {
+      "source_path": "analysis/dual_review/pattern_family_confusion.csv",
+      "imported_path": "data/aidev/dual_review/pattern_family_confusion.csv",
+      "sha256": "daf468dc65e245376b8883f6bc02bc3eeaca4ad167e4d78204e5c18bce2e330a",
+      "bytes": 470,
+      "note": "family confusion matrix; cells sum to the 49-case population"
+    },
+    {
+      "source_path": "analysis/dual_review/pattern_disagreements.csv",
+      "imported_path": "data/aidev/dual_review/pattern_disagreements.csv",
+      "sha256": "fecc19cc46a0591b262f4788014a2cb304158c99dbaa0d10f451bab76a6afea5",
+      "bytes": 29675,
+      "note": "the 18 fine-label disagreements with both reviewers' reasoning"
+    },
+    {
+      "source_path": "analysis/dual_review/pattern_family_disagreements.csv",
+      "imported_path": "data/aidev/dual_review/pattern_family_disagreements.csv",
+      "sha256": "3296c61639ed223563fe0b7f78c522292f64644c024e3183614e62b2d128946b",
+      "bytes": 2092,
+      "note": "the 13 disagreements the family mapping does not absorb"
+    },
+    {
+      "source_path": "data/derived/DERIVATION_METADATA.json",
+      "imported_path": "data/aidev/derived/DERIVATION_METADATA.json",
+      "sha256": "28fd76013cda1468a42a3862c7d650f3942ceb1e2dfae96c6469d17db3df4e0b",
+      "bytes": 1221,
+      "note": "hash bundle tying every sealed input to the source study's derived data"
+    },
+    {
+      "source_path": "data/derived/aidev_rq1_primary_cases.parquet",
+      "imported_path": "data/aidev/derived/aidev_rq1_primary_cases.parquet",
+      "sha256": "49c1ae4bb7cbc7a3d7ec50bf9b7770cb91c89d5d27069e498d89a394405de032",
+      "bytes": 70487,
+      "note": "OPAQUE hashed artifact: pins the 35-case strict corpus identity. Never parsed by this repository (no parquet reader is required)."
+    },
+    {
+      "source_path": "docs/aidev_review_rubric.md",
+      "imported_path": "data/aidev/docs/aidev_review_rubric.md",
+      "sha256": "af8f12449c3977b91d867684806e81407ba2fcb1a8cbd0c32d835d1e0b6c2acf",
+      "bytes": 5729,
+      "note": "the rubric both AIDev reviews were sealed against"
+    },
+    {
+      "source_path": "schemas/review_result.schema.json",
+      "imported_path": "data/aidev/schemas/review_result.schema.json",
+      "sha256": "e2d853d75badc3ed3e5eb4116419b0aa9e922bec4d3a4d6deab39c252d4232f0",
+      "bytes": 3356,
+      "note": "field/enum contract for the AIDev reviewer records"
+    },
+    {
+      "source_path": "data/pr_manifest.csv",
+      "imported_path": "data/aidev/data/pr_manifest.csv",
+      "sha256": "30318b513846580b450ec42eb1325418df66b6d734244d75d947d903aaf1bf26",
+      "bytes": 8717,
+      "note": "case_id -> repo/pr_number/pr_url/source_agent; the source analysis joins onto it one-to-one"
+    }
+  ]
+}
