@@ -35,6 +35,37 @@ bug-generation mechanism?
 A potential RQ3 is recorded in [`docs/research_questions.md`](docs/research_questions.md) and
 is explicitly **future work, not yet tested**.
 
+## Findings so far
+
+**Phase 1A — the source results reproduce exactly.** Every headline number from both source
+studies was recomputed from the sealed reviewer labels alone (never read out of a report) and
+matched to the last digit: AIDev fine-grained agreement 31/49 (63.3%, κ 0.583) and
+broad-family 36/49 (73.5%, κ 0.658); SWE-smith 41/100 (41.0%) at both levels (κ 0.254 fine,
+κ 0.242 family); and the SWE-smith generation-family breakdown llm 20/36, mirror 15/28,
+procedural 6/34, combine 0/2. All 38 imported artifacts hash-match the pinned source commits,
+and the taxonomy and family-mapping files are byte-identical across the two studies.
+
+**Phase 1B — the picture is robust to the obvious analysis choices.**
+
+- *The AIDev-vs-SWE-smith gap is not a denominator artefact.* Re-analysing AIDev over all 100
+  reviewed PRs with the source study's own all-100 rule gives 65/100 (65.0%, κ 0.553) —
+  still far above SWE-smith's 41/100 (41.0%, κ 0.254). The bootstrap κ intervals of the two
+  corpora do not overlap under either AIDev denominator (AIDev fine [0.42, 0.72], all-100
+  [0.44, 0.66]; SWE-smith fine [0.16, 0.35]).
+- *The procedural effect is large and survives uncertainty quantification.* Reviewer agreement
+  was lower among procedurally generated SWE-smith cases: 6/34 (17.6%) against 35/66 (53.0%)
+  for nonprocedural cases — a 35.4-percentage-point difference (Newcombe 95% CI [15.6, 50.2]),
+  risk ratio 0.33, Fisher's exact OR 0.19, two-sided p = 0.0006; dropping `combine` (n = 2)
+  changes nothing material.
+
+Taken together, the evidence is consistent with taxonomy transfer being substantially weaker on
+SWE-smith than on AIDev, and particularly weak for procedural mutations. Three caveats travel
+with that sentence: agreement measures reproducibility between two LLM reviewers, not
+correctness; the AIDev family-level number is partly in-sample; and the Fisher/permutation
+tests are exploratory association tests, not causal evidence about the generation mechanism.
+Whether the transfer failure is specific to this agent-process taxonomy (RQ3) is untested and is
+the subject of the not-yet-started Phase 2.
+
 ## Quickstart
 
 The system `python3` on this machine is 3.8, which is too old — `pyproject.toml` requires
