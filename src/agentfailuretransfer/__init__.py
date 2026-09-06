@@ -18,6 +18,15 @@ from agentfailuretransfer.reviews import (
     load_review_jsonl,
     duplicate_case_ids,
 )
+from agentfailuretransfer.stats import (
+    bootstrap_kappa,
+    cohen_kappa_or_none,
+    odds_ratio_woolf,
+    permutation_difference_test,
+    risk_difference_newcombe,
+    risk_ratio_wald,
+    wilson_interval,
+)
 from agentfailuretransfer.taxonomy import (
     FINE_LABELS,
     UNASSIGNED,
@@ -37,6 +46,13 @@ __all__ = [
     "verify_manifest_hashes",
     "load_review_jsonl",
     "duplicate_case_ids",
+    "bootstrap_kappa",
+    "cohen_kappa_or_none",
+    "odds_ratio_woolf",
+    "permutation_difference_test",
+    "risk_difference_newcombe",
+    "risk_ratio_wald",
+    "wilson_interval",
     "FINE_LABELS",
     "UNASSIGNED",
     "family_for",

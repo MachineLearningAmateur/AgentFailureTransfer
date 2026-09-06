@@ -1,0 +1,805 @@
+{
+  "generated_by": "scripts/run_phase1b_robustness.py",
+  "phase": "1B",
+  "taxonomy_version": "aidev_failure_taxonomy_v1",
+  "source_provenance": {
+    "aidev": {
+      "name": "AIBugAnalysis",
+      "repository": "https://github.com/MachineLearningAmateur/AIBugAnalysis",
+      "commit_sha": "85e4bf9caf0a63436a1a305592d82294536ccd8e",
+      "review_result_sha256": {
+        "claude": "02957aef0de14dbb28e3b9b468693db508281da3a03a2ea175f31171e29cb402",
+        "codex": "bec4769de6d5e3ed8f9dbd0acf51cf83f526c8079c4fe2076db7151c76e1b6b9"
+      }
+    },
+    "swesmith": {
+      "name": "SWE-Smith-Bug-Analysis",
+      "repository": "https://github.com/MachineLearningAmateur/SWE-Smith-Bug-Analysis",
+      "commit_sha": "0345139bf449f1fe9401f2a708d0d3b5961d14b2",
+      "review_result_sha256": {
+        "claude": "433638b95abcc5d1ef31575a62171081bf3468191a6427015ffb66c8b8e1441b",
+        "codex": "2a42458ad4bc3b727ca9c373c6e917ae12dc35a155088ad0d51619724e8912c2"
+      }
+    },
+    "taxonomy_sha256": "ecf76f0d752afd2632d4a2825b648a36cce4c16926782aec18fd4e2637fe4cc7",
+    "family_mapping_sha256": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+    "swesmith_crosswalk_sha256": "0ef1a5720f9f2a24caefb5abf7076fbf636d027a1dfe54d90f3307180fde84a1",
+    "note": "Identity is commit_sha plus per-file sha256. Both source repositories are read-only scientific provenance and were not modified by this analysis."
+  },
+  "aidev_primary": {
+    "fine": {
+      "key": "aidev_primary_fine",
+      "corpus": "AIDev",
+      "subset": "both-technical-pattern",
+      "metric_level": "fine",
+      "definition": "AIDev cases where BOTH reviewers assigned a technical pattern (failure_pattern != \"UNASSIGNED\" on both sides); the source study rule in AIBugAnalysis@scripts/analyze_dual_reviews.py (both_pattern)",
+      "n": 49,
+      "agreements": 31,
+      "agreement_rate": 0.6326530612244898,
+      "cohens_kappa": 0.5827814569536424,
+      "cohens_kappa_4dp": 0.5828,
+      "wilson_ci_low": 0.49267067560792427,
+      "wilson_ci_high": 0.7533482703131686,
+      "ci_method": "Wilson score interval (95%)"
+    },
+    "family": {
+      "key": "aidev_primary_family",
+      "corpus": "AIDev",
+      "subset": "both-technical-pattern",
+      "metric_level": "family",
+      "definition": "AIDev cases where BOTH reviewers assigned a technical pattern (failure_pattern != \"UNASSIGNED\" on both sides); the source study rule in AIBugAnalysis@scripts/analyze_dual_reviews.py (both_pattern)",
+      "n": 49,
+      "agreements": 36,
+      "agreement_rate": 0.7346938775510204,
+      "cohens_kappa": 0.6575268817204302,
+      "cohens_kappa_4dp": 0.6575,
+      "wilson_ci_low": 0.5973771102868921,
+      "wilson_ci_high": 0.8378871786504258,
+      "ci_method": "Wilson score interval (95%)"
+    }
+  },
+  "aidev_all100_sensitivity": {
+    "key": "aidev_all100_fine",
+    "corpus": "AIDev",
+    "subset": "all-100 sensitivity",
+    "metric_level": "fine",
+    "definition": "All 100 reviewed AIDev cases, sorted by case_id, comparing the raw failure_pattern strings with \"UNASSIGNED\" kept as an ordinary label (so UNASSIGNED vs UNASSIGNED counts as an agreement); the source study rule in AIBugAnalysis@scripts/compare_reviews.py (cross_model pattern)",
+    "n": 100,
+    "agreements": 65,
+    "agreement_rate": 0.65,
+    "cohens_kappa": 0.5531154239019408,
+    "cohens_kappa_4dp": 0.5531,
+    "wilson_ci_low": 0.5525444329688796,
+    "wilson_ci_high": 0.7363575175690247,
+    "ci_method": "Wilson score interval (95%)",
+    "unassigned_vs_unassigned_cases": 34,
+    "label_construction": "Raw failure_pattern strings for all 100 reviewed cases sorted by case_id, with \"UNASSIGNED\" kept as an ordinary label. Under the AIDev review schema every non-technical outcome (nontechnical rejection, unclear, merged without correction, or simply no technical pattern) carries \"UNASSIGNED\", so no separate missing-value policy exists or was invented. Source semantics: AIBugAnalysis@scripts/compare_reviews.py (cross_model, field failure_pattern).",
+    "derived_family_variant": {
+      "key": "aidev_all100_family_derived",
+      "corpus": "AIDev",
+      "subset": "all-100 sensitivity (derived family variant)",
+      "metric_level": "family_keep_unassigned",
+      "definition": "DERIVED VARIANT, not a source-study number: all 100 reviewed AIDev cases with non-UNASSIGNED labels mapped through the frozen fine -> family mapping and UNASSIGNED carried through unchanged as its own label. The source study reports no family-level all-100 figure.",
+      "n": 100,
+      "agreements": 70,
+      "agreement_rate": 0.7,
+      "cohens_kappa": 0.6005858074823591,
+      "cohens_kappa_4dp": 0.6006,
+      "wilson_ci_low": 0.6041514536665332,
+      "wilson_ci_high": 0.7810511470506724,
+      "ci_method": "Wilson score interval (95%)"
+    }
+  },
+  "swesmith_primary": {
+    "fine": {
+      "key": "swesmith_fine",
+      "corpus": "SWE-smith",
+      "subset": "all frozen cases",
+      "metric_level": "fine",
+      "definition": "All 100 frozen SWE-smith cases; the SWE-smith review schema has no UNASSIGNED value, so no exclusion rule applies",
+      "n": 100,
+      "agreements": 41,
+      "agreement_rate": 0.41,
+      "cohens_kappa": 0.25354251012145745,
+      "cohens_kappa_4dp": 0.2535,
+      "wilson_ci_low": 0.3186731302113651,
+      "wilson_ci_high": 0.5079856994658921,
+      "ci_method": "Wilson score interval (95%)"
+    },
+    "family": {
+      "key": "swesmith_family",
+      "corpus": "SWE-smith",
+      "subset": "all frozen cases",
+      "metric_level": "family",
+      "definition": "All 100 frozen SWE-smith cases; the SWE-smith review schema has no UNASSIGNED value, so no exclusion rule applies",
+      "n": 100,
+      "agreements": 41,
+      "agreement_rate": 0.41,
+      "cohens_kappa": 0.24203494347379234,
+      "cohens_kappa_4dp": 0.242,
+      "wilson_ci_low": 0.3186731302113651,
+      "wilson_ci_high": 0.5079856994658921,
+      "ci_method": "Wilson score interval (95%)"
+    }
+  },
+  "confidence_intervals": {
+    "method": "Wilson score interval",
+    "confidence": 0.95,
+    "note": "Intervals are for the raw exact-agreement proportion. No interval is reported for the combine family (n = 2).",
+    "rows": [
+      {
+        "key": "aidev_primary_fine",
+        "corpus": "AIDev",
+        "subset": "both-technical-pattern",
+        "metric_level": "fine",
+        "n": 49,
+        "agreements": 31,
+        "agreement_rate": 0.6326530612244898,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.49267067560792427,
+        "ci_high": 0.7533482703131686,
+        "definition": "AIDev cases where BOTH reviewers assigned a technical pattern (failure_pattern != \"UNASSIGNED\" on both sides); the source study rule in AIBugAnalysis@scripts/analyze_dual_reviews.py (both_pattern)"
+      },
+      {
+        "key": "aidev_primary_family",
+        "corpus": "AIDev",
+        "subset": "both-technical-pattern",
+        "metric_level": "family",
+        "n": 49,
+        "agreements": 36,
+        "agreement_rate": 0.7346938775510204,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.5973771102868921,
+        "ci_high": 0.8378871786504258,
+        "definition": "AIDev cases where BOTH reviewers assigned a technical pattern (failure_pattern != \"UNASSIGNED\" on both sides); the source study rule in AIBugAnalysis@scripts/analyze_dual_reviews.py (both_pattern)"
+      },
+      {
+        "key": "aidev_all100_fine",
+        "corpus": "AIDev",
+        "subset": "all-100 sensitivity",
+        "metric_level": "fine",
+        "n": 100,
+        "agreements": 65,
+        "agreement_rate": 0.65,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.5525444329688796,
+        "ci_high": 0.7363575175690247,
+        "definition": "All 100 reviewed AIDev cases, sorted by case_id, comparing the raw failure_pattern strings with \"UNASSIGNED\" kept as an ordinary label (so UNASSIGNED vs UNASSIGNED counts as an agreement); the source study rule in AIBugAnalysis@scripts/compare_reviews.py (cross_model pattern)"
+      },
+      {
+        "key": "aidev_all100_family_derived",
+        "corpus": "AIDev",
+        "subset": "all-100 sensitivity (derived family variant)",
+        "metric_level": "family_keep_unassigned",
+        "n": 100,
+        "agreements": 70,
+        "agreement_rate": 0.7,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.6041514536665332,
+        "ci_high": 0.7810511470506724,
+        "definition": "DERIVED VARIANT, not a source-study number: all 100 reviewed AIDev cases with non-UNASSIGNED labels mapped through the frozen fine -> family mapping and UNASSIGNED carried through unchanged as its own label. The source study reports no family-level all-100 figure."
+      },
+      {
+        "key": "swesmith_fine",
+        "corpus": "SWE-smith",
+        "subset": "all frozen cases",
+        "metric_level": "fine",
+        "n": 100,
+        "agreements": 41,
+        "agreement_rate": 0.41,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.3186731302113651,
+        "ci_high": 0.5079856994658921,
+        "definition": "All 100 frozen SWE-smith cases; the SWE-smith review schema has no UNASSIGNED value, so no exclusion rule applies"
+      },
+      {
+        "key": "swesmith_family",
+        "corpus": "SWE-smith",
+        "subset": "all frozen cases",
+        "metric_level": "family",
+        "n": 100,
+        "agreements": 41,
+        "agreement_rate": 0.41,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.3186731302113651,
+        "ci_high": 0.5079856994658921,
+        "definition": "All 100 frozen SWE-smith cases; the SWE-smith review schema has no UNASSIGNED value, so no exclusion rule applies"
+      },
+      {
+        "key": "swesmith_llm_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = llm",
+        "metric_level": "family",
+        "n": 36,
+        "agreements": 20,
+        "agreement_rate": 0.5555555555555556,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.395810617556973,
+        "ci_high": 0.7045873125991978,
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is llm"
+      },
+      {
+        "key": "swesmith_mirror_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = mirror",
+        "metric_level": "family",
+        "n": 28,
+        "agreements": 15,
+        "agreement_rate": 0.5357142857142857,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.358126892344679,
+        "ci_high": 0.7046843001720462,
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is mirror"
+      },
+      {
+        "key": "swesmith_procedural_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = procedural",
+        "metric_level": "family",
+        "n": 34,
+        "agreements": 6,
+        "agreement_rate": 0.17647058823529413,
+        "ci_method": "Wilson score interval (95%)",
+        "ci_low": 0.0834896904537232,
+        "ci_high": 0.33513737399842747,
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is procedural"
+      },
+      {
+        "key": "swesmith_combine_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = combine",
+        "metric_level": "family",
+        "n": 2,
+        "agreements": 0,
+        "agreement_rate": 0.0,
+        "ci_method": "not reported: n = 2 carries no informative interval",
+        "ci_low": null,
+        "ci_high": null,
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is combine; n = 2, reported for completeness only and not interpretable"
+      }
+    ]
+  },
+  "bootstrap_kappa": {
+    "method": "case-level paired nonparametric bootstrap, percentile interval",
+    "seed": 20260906,
+    "replicates": 10000,
+    "confidence": 0.95,
+    "undefined_replicate_rule": "a replicate whose kappa is undefined (expected agreement exactly 1.0, or n == 0) is counted in undefined_replicates and excluded from the percentile interval; it is never mapped to 0",
+    "stream_rule": "each population draws from numpy.random.default_rng([seed, seed_stream_index]) where seed_stream_index is its position in the fixed population order",
+    "populations": [
+      {
+        "key": "aidev_primary_fine",
+        "corpus": "AIDev",
+        "subset": "both-technical-pattern",
+        "metric_level": "fine",
+        "n": 49,
+        "point_estimate": 0.5827814569536424,
+        "ci_low": 0.42133728870530257,
+        "ci_high": 0.722382878769851,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 0,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.577818600612909,
+        "bootstrap_sd": 0.07733704584225091
+      },
+      {
+        "key": "aidev_primary_family",
+        "corpus": "AIDev",
+        "subset": "both-technical-pattern",
+        "metric_level": "family",
+        "n": 49,
+        "point_estimate": 0.6575268817204302,
+        "ci_low": 0.4914352679012324,
+        "ci_high": 0.8063295724849464,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 1,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.6539013694231129,
+        "bootstrap_sd": 0.08049104847642367
+      },
+      {
+        "key": "aidev_all100_fine",
+        "corpus": "AIDev",
+        "subset": "all-100 sensitivity",
+        "metric_level": "fine",
+        "n": 100,
+        "point_estimate": 0.5531154239019408,
+        "ci_low": 0.43693621635456814,
+        "ci_high": 0.6635745273538934,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 2,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.5512984008243801,
+        "bootstrap_sd": 0.05801596345581309
+      },
+      {
+        "key": "swesmith_fine",
+        "corpus": "SWE-smith",
+        "subset": "all frozen cases",
+        "metric_level": "fine",
+        "n": 100,
+        "point_estimate": 0.25354251012145745,
+        "ci_low": 0.1587677725118483,
+        "ci_high": 0.3539523525412441,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 3,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.2534933827650851,
+        "bootstrap_sd": 0.0500875004811403
+      },
+      {
+        "key": "swesmith_family",
+        "corpus": "SWE-smith",
+        "subset": "all frozen cases",
+        "metric_level": "family",
+        "n": 100,
+        "point_estimate": 0.24203494347379234,
+        "ci_low": 0.1430371770636421,
+        "ci_high": 0.3452926541835799,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 4,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.2412200266221997,
+        "bootstrap_sd": 0.051506813326060746
+      },
+      {
+        "key": "swesmith_llm_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = llm",
+        "metric_level": "family",
+        "n": 36,
+        "point_estimate": 0.2975609756097562,
+        "ci_low": 0.08227114716106608,
+        "ci_high": 0.5244428550812663,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 5,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.2949106051689567,
+        "bootstrap_sd": 0.11198015874981673
+      },
+      {
+        "key": "swesmith_mirror_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = mirror",
+        "metric_level": "family",
+        "n": 28,
+        "point_estimate": 0.39333333333333326,
+        "ci_low": 0.18027734976887522,
+        "ci_high": 0.6056511299784646,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 6,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.3865736701727666,
+        "bootstrap_sd": 0.10836329436703522
+      },
+      {
+        "key": "swesmith_procedural_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = procedural",
+        "metric_level": "family",
+        "n": 34,
+        "point_estimate": 0.12740604949587536,
+        "ci_low": 0.024055705166567087,
+        "ci_high": 0.2385589094449854,
+        "valid_replicates": 10000,
+        "undefined_replicates": 0,
+        "seed": 20260906,
+        "seed_stream_index": 7,
+        "replicates": 10000,
+        "ci_method": "percentile bootstrap (95%)",
+        "bootstrap_mean": 0.1244828170464629,
+        "bootstrap_sd": 0.054952308366214016
+      }
+    ]
+  },
+  "generation_family": {
+    "crosswalk": "data/swesmith/hidden/sample_metadata.csv",
+    "crosswalk_sha256": "0ef1a5720f9f2a24caefb5abf7076fbf636d027a1dfe54d90f3307180fde84a1",
+    "published_level": "family",
+    "families": {
+      "combine": {
+        "key": "swesmith_combine_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = combine",
+        "metric_level": "family",
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is combine; n = 2, reported for completeness only and not interpretable",
+        "n": 2,
+        "agreements": 0,
+        "agreement_rate": 0.0,
+        "cohens_kappa": 0.0,
+        "cohens_kappa_4dp": 0.0,
+        "wilson_ci_low": null,
+        "wilson_ci_high": null,
+        "ci_method": "not reported: n = 2 carries no informative interval"
+      },
+      "llm": {
+        "key": "swesmith_llm_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = llm",
+        "metric_level": "family",
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is llm",
+        "n": 36,
+        "agreements": 20,
+        "agreement_rate": 0.5555555555555556,
+        "cohens_kappa": 0.2975609756097562,
+        "cohens_kappa_4dp": 0.2976,
+        "wilson_ci_low": 0.395810617556973,
+        "wilson_ci_high": 0.7045873125991978,
+        "ci_method": "Wilson score interval (95%)"
+      },
+      "mirror": {
+        "key": "swesmith_mirror_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = mirror",
+        "metric_level": "family",
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is mirror",
+        "n": 28,
+        "agreements": 15,
+        "agreement_rate": 0.5357142857142857,
+        "cohens_kappa": 0.39333333333333326,
+        "cohens_kappa_4dp": 0.3933,
+        "wilson_ci_low": 0.358126892344679,
+        "wilson_ci_high": 0.7046843001720462,
+        "ci_method": "Wilson score interval (95%)"
+      },
+      "procedural": {
+        "key": "swesmith_procedural_family",
+        "corpus": "SWE-smith",
+        "subset": "generation family = procedural",
+        "metric_level": "family",
+        "definition": "SWE-smith cases whose hidden crosswalk method_family is procedural",
+        "n": 34,
+        "agreements": 6,
+        "agreement_rate": 0.17647058823529413,
+        "cohens_kappa": 0.12740604949587536,
+        "cohens_kappa_4dp": 0.1274,
+        "wilson_ci_low": 0.0834896904537232,
+        "wilson_ci_high": 0.33513737399842747,
+        "ci_method": "Wilson score interval (95%)"
+      }
+    }
+  },
+  "procedural_vs_nonprocedural": {
+    "definitions": {
+      "procedural": "method_family == procedural",
+      "nonprocedural": "method_family in {llm, mirror, combine}",
+      "llm_mirror": "method_family in {llm, mirror}"
+    },
+    "primary_level": "family",
+    "comparisons": [
+      {
+        "comparison": "procedural_vs_nonprocedural",
+        "metric_level": "family",
+        "group_a": "procedural",
+        "group_b": "nonprocedural",
+        "group_b_definition": "llm + mirror + combine",
+        "table": {
+          "procedural_agree": 6,
+          "procedural_disagree": 28,
+          "nonprocedural_agree": 35,
+          "nonprocedural_disagree": 31
+        },
+        "table_2x2_row_major": [
+          [
+            6,
+            28
+          ],
+          [
+            35,
+            31
+          ]
+        ],
+        "n_procedural": 34,
+        "n_comparator": 66,
+        "procedural_agreements": 6,
+        "comparator_agreements": 35,
+        "procedural_rate": 0.17647058823529413,
+        "comparator_rate": 0.5303030303030303,
+        "procedural_wilson_ci": [
+          0.0834896904537232,
+          0.33513737399842747
+        ],
+        "comparator_wilson_ci": [
+          0.41157685726598636,
+          0.6456957150362233
+        ],
+        "fisher_exact": {
+          "alternative": "two-sided",
+          "odds_ratio": 0.18979591836734694,
+          "p_value": 0.0006323199514432076,
+          "implementation": "scipy.stats.fisher_exact",
+          "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test"
+        },
+        "risk_difference": {
+          "risk_difference": -0.3538324420677361,
+          "ci_low": -0.5020246113689546,
+          "ci_high": -0.15566318847771488,
+          "ci_method": "Newcombe hybrid score interval (Wilson-based)"
+        },
+        "risk_ratio": {
+          "risk_ratio": 0.3327731092436975,
+          "ci_low": 0.15550292565808327,
+          "ci_high": 0.7121277092831437,
+          "ci_method": "log risk ratio Wald (Katz) interval"
+        },
+        "odds_ratio": {
+          "odds_ratio": 0.18979591836734694,
+          "ci_low": 0.06943622371953645,
+          "ci_high": 0.5187852780474497,
+          "ci_method": "Woolf log odds ratio interval"
+        },
+        "permutation_test": {
+          "observed_difference": -0.3538324420677361,
+          "permutations": 10000,
+          "count_at_least_as_extreme": 11,
+          "p_value_two_sided": 0.0011998800119988001,
+          "p_value_convention": "(1 + #{|permuted difference| >= |observed difference|}) / (1 + permutations)",
+          "permutation_mean_difference": 0.0015909090909090816,
+          "seed": 20260906,
+          "label": "exploratory permutation robustness check",
+          "seed_stream_index": 0
+        }
+      },
+      {
+        "comparison": "procedural_vs_llm_mirror",
+        "metric_level": "family",
+        "group_a": "procedural",
+        "group_b": "llm_mirror",
+        "group_b_definition": "llm + mirror only (the two combine cases are dropped)",
+        "table": {
+          "procedural_agree": 6,
+          "procedural_disagree": 28,
+          "llm_mirror_agree": 35,
+          "llm_mirror_disagree": 29
+        },
+        "table_2x2_row_major": [
+          [
+            6,
+            28
+          ],
+          [
+            35,
+            29
+          ]
+        ],
+        "n_procedural": 34,
+        "n_comparator": 64,
+        "procedural_agreements": 6,
+        "comparator_agreements": 35,
+        "procedural_rate": 0.17647058823529413,
+        "comparator_rate": 0.546875,
+        "procedural_wilson_ci": [
+          0.0834896904537232,
+          0.33513737399842747
+        ],
+        "comparator_wilson_ci": [
+          0.4257359722005412,
+          0.6627055221938833
+        ],
+        "fisher_exact": {
+          "alternative": "two-sided",
+          "odds_ratio": 0.17755102040816326,
+          "p_value": 0.0004979354689799124,
+          "implementation": "scipy.stats.fisher_exact",
+          "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test"
+        },
+        "risk_difference": {
+          "risk_difference": -0.37040441176470584,
+          "ci_low": -0.5189377656754509,
+          "ci_high": -0.17078023246619978,
+          "ci_method": "Newcombe hybrid score interval (Wilson-based)"
+        },
+        "risk_ratio": {
+          "risk_ratio": 0.3226890756302521,
+          "ci_low": 0.15097121688437773,
+          "ci_high": 0.6897224628642546,
+          "ci_method": "log risk ratio Wald (Katz) interval"
+        },
+        "odds_ratio": {
+          "odds_ratio": 0.17755102040816326,
+          "ci_low": 0.06468159949541383,
+          "ci_high": 0.48737763280289925,
+          "ci_method": "Woolf log odds ratio interval"
+        },
+        "permutation_test": {
+          "observed_difference": -0.37040441176470584,
+          "permutations": 10000,
+          "count_at_least_as_extreme": 6,
+          "p_value_two_sided": 0.0006999300069993001,
+          "p_value_convention": "(1 + #{|permuted difference| >= |observed difference|}) / (1 + permutations)",
+          "permutation_mean_difference": 0.0005544117647058775,
+          "seed": 20260906,
+          "label": "exploratory permutation robustness check",
+          "seed_stream_index": 1
+        }
+      },
+      {
+        "comparison": "procedural_vs_nonprocedural",
+        "metric_level": "fine",
+        "group_a": "procedural",
+        "group_b": "nonprocedural",
+        "group_b_definition": "llm + mirror + combine",
+        "table": {
+          "procedural_agree": 6,
+          "procedural_disagree": 28,
+          "nonprocedural_agree": 35,
+          "nonprocedural_disagree": 31
+        },
+        "table_2x2_row_major": [
+          [
+            6,
+            28
+          ],
+          [
+            35,
+            31
+          ]
+        ],
+        "n_procedural": 34,
+        "n_comparator": 66,
+        "procedural_agreements": 6,
+        "comparator_agreements": 35,
+        "procedural_rate": 0.17647058823529413,
+        "comparator_rate": 0.5303030303030303,
+        "procedural_wilson_ci": [
+          0.0834896904537232,
+          0.33513737399842747
+        ],
+        "comparator_wilson_ci": [
+          0.41157685726598636,
+          0.6456957150362233
+        ],
+        "fisher_exact": {
+          "alternative": "two-sided",
+          "odds_ratio": 0.18979591836734694,
+          "p_value": 0.0006323199514432076,
+          "implementation": "scipy.stats.fisher_exact",
+          "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test"
+        },
+        "risk_difference": {
+          "risk_difference": -0.3538324420677361,
+          "ci_low": -0.5020246113689546,
+          "ci_high": -0.15566318847771488,
+          "ci_method": "Newcombe hybrid score interval (Wilson-based)"
+        },
+        "risk_ratio": {
+          "risk_ratio": 0.3327731092436975,
+          "ci_low": 0.15550292565808327,
+          "ci_high": 0.7121277092831437,
+          "ci_method": "log risk ratio Wald (Katz) interval"
+        },
+        "odds_ratio": {
+          "odds_ratio": 0.18979591836734694,
+          "ci_low": 0.06943622371953645,
+          "ci_high": 0.5187852780474497,
+          "ci_method": "Woolf log odds ratio interval"
+        },
+        "permutation_test": {
+          "observed_difference": -0.3538324420677361,
+          "permutations": 10000,
+          "count_at_least_as_extreme": 13,
+          "p_value_two_sided": 0.0013998600139986002,
+          "p_value_convention": "(1 + #{|permuted difference| >= |observed difference|}) / (1 + permutations)",
+          "permutation_mean_difference": 0.001314616755793217,
+          "seed": 20260906,
+          "label": "exploratory permutation robustness check",
+          "seed_stream_index": 2
+        }
+      },
+      {
+        "comparison": "procedural_vs_llm_mirror",
+        "metric_level": "fine",
+        "group_a": "procedural",
+        "group_b": "llm_mirror",
+        "group_b_definition": "llm + mirror only (the two combine cases are dropped)",
+        "table": {
+          "procedural_agree": 6,
+          "procedural_disagree": 28,
+          "llm_mirror_agree": 35,
+          "llm_mirror_disagree": 29
+        },
+        "table_2x2_row_major": [
+          [
+            6,
+            28
+          ],
+          [
+            35,
+            29
+          ]
+        ],
+        "n_procedural": 34,
+        "n_comparator": 64,
+        "procedural_agreements": 6,
+        "comparator_agreements": 35,
+        "procedural_rate": 0.17647058823529413,
+        "comparator_rate": 0.546875,
+        "procedural_wilson_ci": [
+          0.0834896904537232,
+          0.33513737399842747
+        ],
+        "comparator_wilson_ci": [
+          0.4257359722005412,
+          0.6627055221938833
+        ],
+        "fisher_exact": {
+          "alternative": "two-sided",
+          "odds_ratio": 0.17755102040816326,
+          "p_value": 0.0004979354689799124,
+          "implementation": "scipy.stats.fisher_exact",
+          "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test"
+        },
+        "risk_difference": {
+          "risk_difference": -0.37040441176470584,
+          "ci_low": -0.5189377656754509,
+          "ci_high": -0.17078023246619978,
+          "ci_method": "Newcombe hybrid score interval (Wilson-based)"
+        },
+        "risk_ratio": {
+          "risk_ratio": 0.3226890756302521,
+          "ci_low": 0.15097121688437773,
+          "ci_high": 0.6897224628642546,
+          "ci_method": "log risk ratio Wald (Katz) interval"
+        },
+        "odds_ratio": {
+          "odds_ratio": 0.17755102040816326,
+          "ci_low": 0.06468159949541383,
+          "ci_high": 0.48737763280289925,
+          "ci_method": "Woolf log odds ratio interval"
+        },
+        "permutation_test": {
+          "observed_difference": -0.37040441176470584,
+          "permutations": 10000,
+          "count_at_least_as_extreme": 6,
+          "p_value_two_sided": 0.0006999300069993001,
+          "p_value_convention": "(1 + #{|permuted difference| >= |observed difference|}) / (1 + permutations)",
+          "permutation_mean_difference": -0.0006480698529411815,
+          "seed": 20260906,
+          "label": "exploratory permutation robustness check",
+          "seed_stream_index": 3
+        }
+      }
+    ]
+  },
+  "analysis_settings": {
+    "bootstrap_seed": 20260906,
+    "bootstrap_replicates": 10000,
+    "permutation_seed": 20260906,
+    "permutations": 10000,
+    "confidence": 0.95,
+    "proportion_ci_method": "Wilson score interval",
+    "kappa_ci_method": "percentile bootstrap",
+    "risk_difference_ci_method": "Newcombe hybrid score interval (Wilson-based)",
+    "risk_ratio_ci_method": "log risk ratio Wald (Katz) interval",
+    "odds_ratio_ci_method": "Woolf log odds ratio interval",
+    "fisher_alternative": "two-sided",
+    "fisher_implementation": "scipy.stats.fisher_exact",
+    "software": {
+      "python": "3.11.16",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "determinism_note": "No timestamp is written. Populations are iterated in a fixed declared order and every random draw is seeded, so two runs on unchanged data produce byte-identical artifacts on a fixed environment."
+  }
+}

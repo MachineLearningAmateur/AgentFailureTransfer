@@ -1,0 +1,9 @@
+analysis_population,corpus,subset,metric_level,n,point_estimate,ci_low,ci_high,ci_method,valid_replicates,undefined_replicates,replicates,seed,seed_stream_index
+aidev_primary_fine,AIDev,both-technical-pattern,fine,49,0.5827814570,0.4213372887,0.7223828788,percentile bootstrap (95%),10000,0,10000,20260906,0
+aidev_primary_family,AIDev,both-technical-pattern,family,49,0.6575268817,0.4914352679,0.8063295725,percentile bootstrap (95%),10000,0,10000,20260906,1
+aidev_all100_fine,AIDev,all-100 sensitivity,fine,100,0.5531154239,0.4369362164,0.6635745274,percentile bootstrap (95%),10000,0,10000,20260906,2
+swesmith_fine,SWE-smith,all frozen cases,fine,100,0.2535425101,0.1587677725,0.3539523525,percentile bootstrap (95%),10000,0,10000,20260906,3
+swesmith_family,SWE-smith,all frozen cases,family,100,0.2420349435,0.1430371771,0.3452926542,percentile bootstrap (95%),10000,0,10000,20260906,4
+swesmith_llm_family,SWE-smith,generation family = llm,family,36,0.2975609756,0.0822711472,0.5244428551,percentile bootstrap (95%),10000,0,10000,20260906,5
+swesmith_mirror_family,SWE-smith,generation family = mirror,family,28,0.3933333333,0.1802773498,0.6056511300,percentile bootstrap (95%),10000,0,10000,20260906,6
+swesmith_procedural_family,SWE-smith,generation family = procedural,family,34,0.1274060495,0.0240557052,0.2385589094,percentile bootstrap (95%),10000,0,10000,20260906,7

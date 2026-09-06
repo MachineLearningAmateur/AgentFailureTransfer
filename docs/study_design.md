@@ -54,7 +54,12 @@ reference. If a source working tree is dirty, the frozen state is ambiguous and 
 stops rather than guessing. Any future reclassification is a new, explicitly versioned
 experiment inside *this* repository, never a change to a source.
 
-## Pipeline: import → validate → reproduce
+## Phase status
+
+**Phase 1A — reproduction: COMPLETE.** **Phase 1B — robustness: COMPLETE.**
+**Phase 2 — external-taxonomy control: NOT STARTED.**
+
+## Pipeline: import → validate → reproduce → robustness
 
 **1. Import** (`scripts/import_sources.py`). Verifies each source path is a git repository,
 that its working tree is clean, and that its HEAD equals the pinned commit; confirms the
@@ -83,6 +88,19 @@ handling. `--check`, the default, asserts the results against the expected check
 counts must match exactly; κ within `5e-4`) and diffs against the imported AIDev
 `agreement_metrics.json`. Those expectations are assertions only; no expected number is ever
 written into an emitted artifact.
+
+**4. Robustness** (`scripts/run_phase1b_robustness.py`, Phase 1B). Runs step 2 first and stops
+if it fails, then re-uses the same sealed labels — no relabelling, no adjudication, no change
+to the taxonomy or the mapping — to ask whether the Phase 1A picture depends on the denominator
+choice or on a single point estimate. It reconstructs the AIDev all-100 sensitivity population
+with the source study's own semantics (below), computes Wilson 95% intervals for every raw
+agreement rate, bootstraps κ at the case level (seed 20260906, 10,000 replicates, percentile
+interval, undefined replicates counted and excluded rather than mapped to 0), and runs the
+procedural-vs-nonprocedural contrast with a two-sided Fisher's exact test, risk difference,
+risk ratio and odds ratio with intervals, and an exploratory permutation check. `--check`, the
+default, asserts the recomputed values against the checkpoint — including the Phase 1A counts,
+which must be unchanged. It writes only into `analysis/taxonomy_transfer/phase1b_robustness/`,
+emits no timestamp, and is byte-identical across runs.
 
 After step 1, nothing depends on `../AIBugAnalysis` or `../SWE-Smith-Bug-Analysis` continuing to
 exist.
@@ -151,6 +169,23 @@ does not exist and there is nothing to exclude. The source study's
 So "63.3% vs 41.0%" is not a like-for-like contrast. Both population definitions must be stated
 side by side wherever the numbers are.
 
+### The AIDev all-100 sensitivity population (Phase 1B)
+
+Because that mismatch is a property of the schemas rather than a choice, Phase 1B reports a
+third population alongside the two: **all 100 reviewed AIDev cases**, using the source study's
+own rule from `AIBugAnalysis/scripts/compare_reviews.py` (the `cross_model` "pattern" row).
+That rule iterates the 100 cases in `sorted(case_id)` order, compares the two reviewers' raw
+`failure_pattern` strings for exact equality, and keeps `UNASSIGNED` as an **ordinary label**
+rather than as missing data — so a case both reviewers left UNASSIGNED counts as an agreement
+(34 of the 100). Under the AIDev review schema there is no separate policy for nontechnical
+rejection, unclear, or merged-without-correction: all of them simply carry
+`failure_pattern == "UNASSIGNED"`. No missing-value policy was invented here, and the
+recomputation from the imported labels reproduces the source study's committed value exactly.
+
+A family-level all-100 variant is also emitted, mapping non-UNASSIGNED labels through the frozen
+mapping and carrying UNASSIGNED through unchanged. It is **derived**, is labelled as such
+wherever it appears, and is not a source-study number.
+
 ### Fine labels vs broad families
 
 Two levels are reported everywhere, always distinguished:
@@ -188,6 +223,13 @@ Reported at full precision **and** rounded to 4 dp, side by side.
 
 **Degenerate rule.** If `p_e == 1.0`, or `n == 0`, κ is `0.0` — unless observed agreement is
 `1.0`, in which case κ is `1.0`. It never returns `nan` or `None`.
+
+That rule exists so the published source-study tables reproduce, and it is wrong for a
+bootstrap: a degenerate resample carries no information about κ, and folding it in as a hard
+`0.0` would move the percentile interval by an artefact of the rule. So
+`agentfailuretransfer.stats.cohen_kappa_or_none` returns `None` in exactly those cases, the
+Phase 1B bootstrap excludes such replicates from the interval, and it reports how many there
+were. The two implementations agree on every non-degenerate input, and the tests assert it.
 
 Each subgroup κ uses that subgroup's **own** marginals, not the pooled ones. This matters for
 the `combine` family: with n = 2 and disjoint label sets, expected agreement is 0 and observed

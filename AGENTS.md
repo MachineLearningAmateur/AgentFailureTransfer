@@ -45,10 +45,11 @@ export PATH="$HOME/.local/bin:$PATH"
 source .venv/bin/activate
 python scripts/validate_sources.py
 python scripts/reproduce_headline_results.py
+python scripts/run_phase1b_robustness.py
 python -m pytest -q
 ```
 
-All three must pass. Do not commit with a failing check.
+All four must pass. Do not commit with a failing check.
 
 **Expected values are checkpoints, not outputs.** The known agreement counts and κ values
 (AIDev 31/49 and 36/49; SWE-smith 41/100 and 41/100; the per-generation-family breakdown) are
@@ -82,11 +83,16 @@ is never parsed. Do not add a parquet reader to read it.
 
 ## Scope discipline
 
-The current phase is setup and reproduction. Do not, without an explicit new instruction:
+Phases 1A (reproduction) and 1B (robustness) are complete; Phase 2 has not started. Do not,
+without an explicit new instruction:
 
 - create a taxonomy v2, adjudicate disagreements, or label new cases;
 - run an external or BugPilot taxonomy;
-- run statistical significance tests;
+- run statistical significance tests beyond the exploratory association tests
+  Phase 1B was explicitly commissioned to run (`scripts/run_phase1b_robustness.py`:
+  procedural vs nonprocedural Fisher's exact test, effect sizes, and a permutation
+  robustness check, all on the SWE-smith generation families and none of them
+  confirmatory);
 - create new synthetic bugs or train models;
 - make causal claims;
 - compare family-frequency distributions as though the current taxonomy were mechanism-neutral.
