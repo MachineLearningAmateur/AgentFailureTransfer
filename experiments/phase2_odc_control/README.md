@@ -173,28 +173,42 @@ python scripts/analyze_phase2_odc.py
 
 ## Launching a reviewer: copy/paste for a clean session
 
-The protocol is frozen (`FREEZE_MANIFEST.json`, tag `phase2-odc-pre-review-frozen`) and one
-bundle per reviewer has been exported outside this repository:
+The protocol is frozen (`FREEZE_MANIFEST.json`, tag `phase2-odc-pre-review-frozen`). From a
+fresh clone, one command prepares everything a reviewer needs:
 
-```text
-/home/disgustingtest/review_bundles/phase2_claude
-/home/disgustingtest/review_bundles/phase2_codex
+```bash
+git clone https://github.com/MachineLearningAmateur/AgentFailureTransfer.git
+cd AgentFailureTransfer
+bash scripts/prepare_phase2_bundles.sh
 ```
 
-Each bundle is self-contained. It needs only Python 3.10+ with `pyyaml`; it does not need this
-repository, `numpy`, or `scipy`. The system `python3` on this machine is 3.8, so a shared
-interpreter lives beside the bundles at `/home/disgustingtest/review_bundles/.venv` (Python
-3.11 + `pyyaml`, nothing else); the launch commands below activate it. A reviewer session must be **started inside its bundle**, not
-inside this repository — a session that starts here can reach the Phase 1 labels, and the
-reviewer prompt tells it to stop if it finds them. Use a fresh session, never a continuation of
-a Phase 1 or setup session, and do not tell the reviewer anything beyond the block below.
+It builds the repository's Python 3.11 environment (needs `uv` or `python3.11`; the system
+`python3` may be too old), verifies the working tree is clean and every frozen artifact still
+hashes to the freeze manifest, exports one physically isolated bundle per reviewer **outside**
+the clone, gives the bundles their own minimal interpreter, and runs the preflight inside each:
+
+```text
+../phase2_review_bundles/
+├── .venv/            Python 3.11 + pyyaml, nothing else
+├── phase2_claude/    the Claude bundle
+└── phase2_codex/     the Codex bundle
+```
+
+(Pass a different directory as the script's first argument if you want the bundles elsewhere.
+It never overwrites an existing bundle.)
+
+Each bundle is self-contained: it does not need this repository, `numpy`, or `scipy`. A reviewer
+session must be **started inside its bundle**, not inside this repository — a session that starts
+here can reach the Phase 1 labels, and the reviewer prompt tells it to stop if it finds them.
+Use a fresh session, never a continuation of a Phase 1 or setup session, and do not tell the
+reviewer anything beyond the block below.
 
 ### Claude (Opus)
 
 Open the session inside the bundle:
 
 ```bash
-cd /home/disgustingtest/review_bundles/phase2_claude && source ../.venv/bin/activate && claude
+cd ../phase2_review_bundles/phase2_claude && source ../.venv/bin/activate && claude
 ```
 
 Paste:
@@ -238,7 +252,7 @@ Open the session inside the bundle, using whatever launches your Codex or GPT co
 (`codex` shown):
 
 ```bash
-cd /home/disgustingtest/review_bundles/phase2_codex && source ../.venv/bin/activate && codex
+cd ../phase2_review_bundles/phase2_codex && source ../.venv/bin/activate && codex
 ```
 
 Paste:
@@ -284,8 +298,8 @@ Copy each reviewer's sealed output back into this repository, one commit per rev
 ever placing one reviewer's output into the other's bundle:
 
 ```bash
-cp -r /home/disgustingtest/review_bundles/phase2_claude/reviews/claude experiments/phase2_odc_control/reviews/
-cp -r /home/disgustingtest/review_bundles/phase2_codex/reviews/codex  experiments/phase2_odc_control/reviews/
+cp -r ../phase2_review_bundles/phase2_claude/reviews/claude experiments/phase2_odc_control/reviews/
+cp -r ../phase2_review_bundles/phase2_codex/reviews/codex  experiments/phase2_odc_control/reviews/
 python scripts/check_phase2_ready.py --reviewer claude   # workflow state should read BOTH_COMPLETE
 python scripts/analyze_phase2_odc.py
 ```
