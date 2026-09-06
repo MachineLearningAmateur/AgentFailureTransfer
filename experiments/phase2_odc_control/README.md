@@ -292,6 +292,48 @@ a Phase 1 label, generation metadata, or another reviewer's files, stop and tell
 
 The two blocks differ only in reviewer name, output directory and file format.
 
+### Coordinator prompts: setup and close-out, also by paste
+
+The reviewer prompts above deliberately cannot prepare bundles or import results, because a
+reviewer session must never touch this repository. Those two steps run from a session started
+in the repository instead, and they are paste-driven too. Open one with:
+
+```bash
+cd AgentFailureTransfer && claude
+```
+
+**Setup**, before any review. Paste:
+
+```text
+You are the Phase 2 coordinator for this repository, not a reviewer. Do not open any file
+under data/swesmith/reviews/, data/swesmith/hidden/, or experiments/phase2_odc_control/data/review_packets/.
+Run: bash scripts/prepare_phase2_bundles.sh
+If it stops, report the STOP message and do nothing else. If it succeeds, report the two
+launch commands it printed, verbatim, and stop. Do not start a review yourself.
+```
+
+**Close-out**, after both reviewers have reported complete. Paste:
+
+```text
+You are the Phase 2 coordinator for this repository, not a reviewer. Do not open any file
+under data/swesmith/reviews/ or data/swesmith/hidden/, and do not read any per-case review
+record. Run these in order, stopping at the first STOP:
+1. source .venv/bin/activate
+2. python scripts/import_phase2_review.py --reviewer claude
+3. git add experiments/phase2_odc_control/reviews/claude && git commit -m "Import sealed Phase 2 Claude ODC review"
+4. python scripts/import_phase2_review.py --reviewer codex
+5. git add experiments/phase2_odc_control/reviews/codex && git commit -m "Import sealed Phase 2 Codex ODC review"
+6. python scripts/analyze_phase2_odc.py
+7. python -m pytest -q
+8. git add experiments/phase2_odc_control/analysis && git commit -m "Analyze Phase 2 ODC external-taxonomy control"
+Then report the workflow state, the paths of the two reports under
+experiments/phase2_odc_control/analysis/, and the outcome letter and permitted phrasing the
+analysis printed. Do not edit any report, any protocol file, or any review record.
+```
+
+If only one reviewer has finished, run steps 1–3 or 1, 4–5 alone; the analysis refuses until
+both are imported, which is the intended gate.
+
 ### After both reviewers report complete
 
 Copy each reviewer's sealed output back into this repository, one commit per reviewer, without
