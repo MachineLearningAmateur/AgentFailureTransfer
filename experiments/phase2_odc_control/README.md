@@ -170,6 +170,91 @@ paired McNemar comparison against the Phase 1 result, the paired bootstrap (seed
 python scripts/analyze_phase2_odc.py
 ```
 
+## Launching a reviewer: copy/paste for a clean session
+
+Only after the freeze (`FROZEN_PRE_REVIEW`, tag `phase2-odc-pre-review-frozen`) and only with
+explicit authorization. First export the bundle **outside** this repository:
+
+```bash
+python scripts/make_phase2_review_bundle.py --reviewer claude --out /home/disgustingtest/review_bundles/phase2_claude
+python scripts/make_phase2_review_bundle.py --reviewer codex  --out /home/disgustingtest/review_bundles/phase2_codex
+```
+
+Then open a **fresh** session (not a continuation of any Phase 1 or setup session) with its
+working directory set to the bundle, and paste the matching block below. Nothing else is said
+to the reviewer: no Phase 1 result, no generation metadata, no mention of the other reviewer's
+progress.
+
+### Claude (Opus) — paste into a fresh session started in `phase2_claude/`
+
+```text
+You are the Claude reviewer for a blind software-defect classification study. Your working
+directory is a self-contained review bundle. Do not leave it, and do not use web access or any
+external source for anything, including ODC.
+
+Do this, in order:
+1. Read README.md in full. It is your complete instructions.
+2. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
+3. Run: python scripts/check_phase2_ready.py --reviewer claude
+   If it reports any problem, stop and tell me. Do not start.
+4. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
+   data/review_packets/<case_id>/, then write exactly one YAML file
+   reviews/claude/cases/<case_id>.yaml with exactly these six fields:
+   case_id, odc_defect_type, taxonomy_fit, pattern_confidence, supporting_evidence_ids,
+   reasoning_summary. Immediately after writing each file run:
+   python scripts/validate_phase2_review.py --reviewer claude --case <case_id>
+   and fix anything it rejects before moving on. Never batch cases.
+5. When all 100 files exist and validate, run:
+   python scripts/validate_phase2_review.py --reviewer claude --finalize
+6. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
+   agreement, do not compare taxonomies, do not look for any other reviewer's output.
+
+Rules: classify the software defect and the semantics of its correction only. BUG_DIFF
+introduces the bug; REFERENCE_REPAIR reverses it. Do not reason about what the bug generator
+intended. If two ODC types are plausible, apply the frozen tie-break rules in order and record
+taxonomy_fit: AMBIGUOUS. If none is defensible, use UNCLASSIFIABLE with taxonomy_fit:
+OUT_OF_SCOPE. Write only under reviews/claude/. If you find a hidden/ or analysis/ directory,
+a Phase 1 label, generation metadata, or another reviewer's files, stop and tell me.
+```
+
+### GPT / Codex — paste into a fresh session started in `phase2_codex/`
+
+```text
+You are the Codex reviewer for a blind software-defect classification study. Your working
+directory is a self-contained review bundle. Do not leave it, and do not use web access or any
+external source for anything, including ODC.
+
+Do this, in order:
+1. Read README.md in full. It is your complete instructions.
+2. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
+3. Run: python scripts/check_phase2_ready.py --reviewer codex
+   If it reports any problem, stop and tell me. Do not start.
+4. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
+   data/review_packets/<case_id>/, then write exactly one JSON file
+   reviews/codex/cases/<case_id>.json with exactly these six fields:
+   case_id, odc_defect_type, taxonomy_fit, pattern_confidence, supporting_evidence_ids,
+   reasoning_summary. Immediately after writing each file run:
+   python scripts/validate_phase2_review.py --reviewer codex --case <case_id>
+   and fix anything it rejects before moving on. Never batch cases.
+5. When all 100 files exist and validate, run:
+   python scripts/validate_phase2_review.py --reviewer codex --finalize
+6. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
+   agreement, do not compare taxonomies, do not look for any other reviewer's output.
+
+Rules: classify the software defect and the semantics of its correction only. BUG_DIFF
+introduces the bug; REFERENCE_REPAIR reverses it. Do not reason about what the bug generator
+intended. If two ODC types are plausible, apply the frozen tie-break rules in order and record
+taxonomy_fit: AMBIGUOUS. If none is defensible, use UNCLASSIFIABLE with taxonomy_fit:
+OUT_OF_SCOPE. Write only under reviews/codex/. If you find a hidden/ or analysis/ directory,
+a Phase 1 label, generation metadata, or another reviewer's files, stop and tell me.
+```
+
+The two blocks differ only in reviewer name, output directory and file format. The bundle needs
+Python 3.10+ with `pyyaml` importable; nothing else. After both reviewers have finalised, copy
+each `reviews/<reviewer>/` directory back into `experiments/phase2_odc_control/reviews/` in this
+repository (one commit per reviewer, never letting one reviewer's output into the other's
+bundle), then run `python scripts/analyze_phase2_odc.py`.
+
 ## Standing rules
 
 - No Phase 1 reviewer classification is modified. Phase 1 labels are read-only inputs to the

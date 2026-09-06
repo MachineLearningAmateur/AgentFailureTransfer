@@ -86,7 +86,8 @@ Phase 1 label.
 **Its status is SETUP: the protocol, the frozen rubric and the reviewer prompts exist; no review
 has been run, no bundle has been generated, and no Phase 2 result exists.** ODC is not treated as
 ground truth, and a higher agreement figure would not be evidence of realism. See
-[`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md).
+[`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md), which also
+holds the copy/paste launch text for each reviewer's fresh session once the freeze is done.
 
 ## Quickstart
 
