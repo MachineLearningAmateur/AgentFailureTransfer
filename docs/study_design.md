@@ -57,7 +57,7 @@ experiment inside *this* repository, never a change to a source.
 ## Phase status
 
 **Phase 1A — reproduction: COMPLETE.** **Phase 1B — robustness: COMPLETE.**
-**Phase 2 — ODC external-taxonomy control: SETUP** — the protocol is drafted and pre-registered,
+**Phase 2 — ODC external-taxonomy control: FROZEN_PRE_REVIEW** — the protocol is frozen, tagged `phase2-odc-pre-review-frozen` and pre-registered,
 no review has been run, no reviewer bundle has been generated, and no Phase 2 result exists.
 
 ## Pipeline: import → validate → reproduce → robustness
@@ -241,7 +241,7 @@ inputs and on 200 random non-degenerate inputs.
 
 ## Phase 2: external-taxonomy control
 
-**Status: SETUP.** Protocol drafted; no review run. Everything below describes a design, not a
+**Status: FROZEN_PRE_REVIEW.** Protocol frozen and tagged; no review run. Everything below describes a design, not a
 result. The full pre-registered protocol is in
 [`../experiments/phase2_odc_control/protocol/phase2_protocol.md`](../experiments/phase2_odc_control/protocol/phase2_protocol.md).
 

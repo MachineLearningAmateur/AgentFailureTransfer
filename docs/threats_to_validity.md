@@ -155,7 +155,7 @@ that unification rather than in the data.
 
 ## The Phase 2 ODC control: what a second taxonomy can and cannot settle
 
-Phase 2 is in SETUP — the protocol is drafted and no review has been run — so nothing below is a
+Phase 2 is in FROZEN_PRE_REVIEW — the protocol is frozen and tagged and no review has been run — so nothing below is a
 caveat about a result. These are the limits the design carries in advance, recorded now so that
 they cannot be softened once numbers exist.
 

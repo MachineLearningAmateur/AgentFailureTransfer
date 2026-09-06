@@ -5,7 +5,7 @@ external-taxonomy control; its protocol is drafted and pre-registered, and **no 
 has been run**.
 
 Phase status: **Phase 1A (reproduction) — COMPLETE**, **Phase 1B (robustness) — COMPLETE**,
-**Phase 2 (ODC external-taxonomy control) — SETUP (protocol drafted; no review run)**.
+**Phase 2 (ODC external-taxonomy control) — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run)**.
 
 ## RQ1 — Taxonomy transfer
 
@@ -64,7 +64,7 @@ that the AIDev-derived taxonomy is the wrong instrument for static synthetic bug
 (a measurement mismatch), or that SWE-smith bugs are hard to classify reproducibly under any
 defect taxonomy.
 
-**Status: Phase 2 — SETUP (protocol drafted; no review run).** The pre-registered protocol,
+**Status: Phase 2 — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run).** The pre-registered protocol,
 the frozen ODC rubric and the reviewer prompts are in
 [`../experiments/phase2_odc_control/`](../experiments/phase2_odc_control/README.md). Nothing has
 been labelled, no reviewer bundle has been generated, and no result exists. Higher agreement
@@ -82,7 +82,7 @@ the frozen `procedural` vs `nonprocedural` (`llm + mirror + combine`) contrast, 
 `llm + mirror` sensitivity contrast beside it. RQ2's finding was an association, and so is
 anything RQ4 produces.
 
-**Status: Phase 2 — SETUP (protocol drafted; no review run).**
+**Status: Phase 2 — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run).**
 
 RQ3 and RQ4 are the only new scientific questions in Phase 2. It is not a coverage study, not a
 taxonomy v2, and not an adjudication.
@@ -95,5 +95,5 @@ new synthetic bugs, no model training, no causal claims, and no comparison of fa
 distributions as though the current taxonomy were mechanism-neutral.
 
 The Phase 2 ODC control is the one external taxonomy in scope, it is an explicitly versioned
-experiment with its own directory and its own write-up, and it is in SETUP: its labels do not
+experiment with its own directory and its own write-up, and it is in FROZEN_PRE_REVIEW: its labels do not
 exist yet. No BugPilot taxonomy classification is planned.

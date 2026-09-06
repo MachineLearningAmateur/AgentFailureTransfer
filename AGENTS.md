@@ -85,9 +85,10 @@ is never parsed. Do not add a parquet reader to read it.
 
 Phases 1A (reproduction) and 1B (robustness) are complete. **Phase 2 — the ODC
 external-taxonomy control — is now an explicitly versioned experiment under
-`experiments/phase2_odc_control/`, in the `SETUP` state**: its protocol, frozen ODC Defect Type
-rubric and reviewer prompts exist; no review has been run, no reviewer bundle has been
-generated, and no Phase 2 result exists. Its rules are in
+`experiments/phase2_odc_control/`, in the `FROZEN_PRE_REVIEW` state**: its protocol, frozen ODC Defect Type
+rubric and reviewer prompts are hashed into `FREEZE_MANIFEST.json` and tagged
+`phase2-odc-pre-review-frozen`; reviewer bundles are exported outside the repository by
+`scripts/prepare_phase2_bundles.sh`; no review has been run and no Phase 2 result exists. Its rules are in
 `experiments/phase2_odc_control/protocol/phase2_protocol.md` and
 `.../blinding_protocol.md`, and they bind anyone touching that directory:
 

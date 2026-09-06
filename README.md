@@ -75,7 +75,7 @@ tests are exploratory association tests, not causal evidence about the generatio
 Whether the transfer failure is specific to this agent-process taxonomy (RQ3) is untested. It is
 the subject of Phase 2, whose protocol is now drafted and whose review has not been run.
 
-### Phase 2 — ODC external-taxonomy control (SETUP)
+### Phase 2 — ODC external-taxonomy control (FROZEN_PRE_REVIEW)
 
 Phase 2 re-measures the same 100 frozen SWE-smith cases with an independent instrument — the
 Defect Type dimension of IBM's Orthogonal Defect Classification (1992) — so that the taxonomy is
@@ -83,8 +83,10 @@ the only thing that changes: same cases, same evidence, same two reviewer famili
 independence, different taxonomy. It is a measurement control experiment, and it modifies no
 Phase 1 label.
 
-**Its status is SETUP: the protocol, the frozen rubric and the reviewer prompts exist; no review
-has been run, no bundle has been generated, and no Phase 2 result exists.** ODC is not treated as
+**Its status is FROZEN_PRE_REVIEW: the protocol, rubric, schema, reviewer prompts and all 100
+packets are hashed into a freeze manifest and tagged `phase2-odc-pre-review-frozen`; anyone with
+a clone can export the two reviewer bundles with one command; no review has been run and no
+Phase 2 result exists.** ODC is not treated as
 ground truth, and a higher agreement figure would not be evidence of realism. See
 [`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md), which also
 holds the copy/paste launch text for each reviewer's fresh session once the freeze is done.
@@ -200,10 +202,10 @@ here is a causal claim about the generation mechanism.
 docs/         study design, research questions, provenance, threats to validity
 sources/      the two source manifests: pinned commits + SHA-256 for every imported file
 data/         the imported frozen artifacts (aidev/, swesmith/) and derived/ reconstructions
-scripts/      Phase 1: import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py; Phase 2: import_phase2_packets.py, freeze_phase2.py, make_phase2_review_bundle.py, check_phase2_ready.py, validate_phase2_review.py, analyze_phase2_odc.py
+scripts/      Phase 1: import_sources.py, validate_sources.py, reproduce_headline_results.py, run_phase1b_robustness.py; Phase 2: import_phase2_packets.py, freeze_phase2.py, make_phase2_review_bundle.py, prepare_phase2_bundles.sh, check_phase2_ready.py, validate_phase2_review.py, analyze_phase2_odc.py
 src/          the small library the scripts share (hashing, manifests, reviews, taxonomy, agreement, stats)
 analysis/     recomputed outputs: taxonomy_transfer/ (incl. phase1b_robustness/), generation_method/ (statistical_tests/, figures/ hold placeholders only)
-experiments/  phase2_odc_control/ — Phase 2 ODC control: protocol, frozen rubric, reviewer prompts (SETUP, no review run); external_taxonomy_control/ — the original placeholder
+experiments/  phase2_odc_control/ — Phase 2 ODC control: protocol, frozen rubric, reviewer prompts (FROZEN_PRE_REVIEW, no review run); external_taxonomy_control/ — the original placeholder
 tests/        313 tests: manifest schema, hash verification, kappa, agreement, headline regression, Phase 1B robustness, hygiene, and the Phase 2 tooling on toy records (taxonomy, schema, validator, bundle leakage, freeze, state machine, analysis)
 paper/        placeholder
 ```
@@ -214,7 +216,7 @@ paper/        placeholder
 | --- | --- | --- |
 | Phase 1A — reproduction | **COMPLETE** | import, hash verification, 43 validation checks, independent recomputation of every headline number |
 | Phase 1B — robustness | **COMPLETE** | denominator sensitivity, Wilson and bootstrap intervals, procedural-vs-nonprocedural exploratory tests |
-| Phase 2 — ODC external-taxonomy control | **SETUP** | protocol, frozen ODC Defect Type rubric and reviewer prompts drafted and pre-registered; no review run, no bundle generated, no result |
+| Phase 2 — ODC external-taxonomy control | **FROZEN_PRE_REVIEW** | protocol, frozen ODC Defect Type rubric, schema, reviewer prompts and packets hashed and tagged; bundles exportable with `scripts/prepare_phase2_bundles.sh`; no review run, no result |
 
 Both source studies are imported and hash-verified, all 43 validation checks pass, every
 expected agreement count and κ reproduces within the checkpoint tolerance, the Phase 1B
@@ -244,7 +246,7 @@ The point of Phase 1 is a clean, verifiable foundation before any second experim
 ## Further reading
 
 - [`docs/research_questions.md`](docs/research_questions.md) — RQ1 and RQ2, and the Phase 2 RQ3 and RQ4
-- [`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md) — the Phase 2 ODC control (SETUP)
+- [`experiments/phase2_odc_control/README.md`](experiments/phase2_odc_control/README.md) — the Phase 2 ODC control (FROZEN_PRE_REVIEW; includes the reviewer launch prompts)
 - [`docs/study_design.md`](docs/study_design.md) — three-repo architecture, pipeline, identity model, sampling design
 - [`docs/provenance.md`](docs/provenance.md) — pinned commits and the SHA-256 of every imported file
 - [`docs/threats_to_validity.md`](docs/threats_to_validity.md) — what these numbers do not support

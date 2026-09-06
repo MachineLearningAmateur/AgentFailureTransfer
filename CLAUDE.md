@@ -43,7 +43,7 @@ uv pip install -e ".[dev]"
   Phase 1 cases, no BugPilot taxonomy, no confirmatory significance tests, no new synthetic bugs,
   no models, no causal claims, no family-frequency comparison. The one external taxonomy in scope
   is the pre-registered Phase 2 ODC control under `experiments/phase2_odc_control/` (state:
-  SETUP). **Never launch a Phase 2 review without explicit authorization**, never inspect Phase 1
+  FROZEN_PRE_REVIEW: protocol frozen and tagged, no review run). **Never launch a Phase 2 review without explicit authorization**, never inspect Phase 1
   case-level labels while editing the ODC rubric, and never run a reviewer inside this checkout —
   bundles are exported outside the repository.
 - **Do not claim specific model identities for the SWE-smith reviewers.** Their metadata names
