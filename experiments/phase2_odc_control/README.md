@@ -1,8 +1,9 @@
 # Phase 2 — ODC external-taxonomy control
 
-**Status: SETUP.** The protocol is drafted and the tooling is built and tested on toy records only. **No Phase 2 review
-has been run**, no reviewer bundle has been generated, and no Phase 2 analysis exists. Neither
-review may be launched without explicit authorization from the study owner.
+**Status: FROZEN_PRE_REVIEW.** The protocol, rubric, schema, reviewer prompts and all 100 packets
+are hashed into `FREEZE_MANIFEST.json` and tagged `phase2-odc-pre-review-frozen`; one bundle per
+reviewer has been exported outside the repository. **No Phase 2 review has been run** and no
+Phase 2 analysis exists. The study owner authorized the reviews on 2026-09-06.
 
 ## What this experiment is
 
@@ -91,8 +92,8 @@ experiments/phase2_odc_control/
 
 | State | Meaning |
 | --- | --- |
-| `SETUP` | protocol, rubric, schema, scripts and tests being written — **current state** |
-| `FROZEN_PRE_REVIEW` | every protocol-critical artifact hashed into the freeze manifest; pre-review commit made and tagged `phase2-odc-pre-review-frozen` |
+| `SETUP` | protocol, rubric, schema, scripts and tests being written |
+| `FROZEN_PRE_REVIEW` | every protocol-critical artifact hashed into the freeze manifest; pre-review commit made and tagged `phase2-odc-pre-review-frozen` — **current state** |
 | `CLAUDE_COMPLETE` | Claude's 100 records validate, are finalised and are sealed |
 | `CODEX_COMPLETE` | Codex's 100 records validate, are finalised and are sealed |
 | `BOTH_COMPLETE` | both `COMPLETE` markers exist |
@@ -172,41 +173,53 @@ python scripts/analyze_phase2_odc.py
 
 ## Launching a reviewer: copy/paste for a clean session
 
-Only after the freeze (`FROZEN_PRE_REVIEW`, tag `phase2-odc-pre-review-frozen`) and only with
-explicit authorization. First export the bundle **outside** this repository:
-
-```bash
-python scripts/make_phase2_review_bundle.py --reviewer claude --out /home/disgustingtest/review_bundles/phase2_claude
-python scripts/make_phase2_review_bundle.py --reviewer codex  --out /home/disgustingtest/review_bundles/phase2_codex
-```
-
-Then open a **fresh** session (not a continuation of any Phase 1 or setup session) with its
-working directory set to the bundle, and paste the matching block below. Nothing else is said
-to the reviewer: no Phase 1 result, no generation metadata, no mention of the other reviewer's
-progress.
-
-### Claude (Opus) — paste into a fresh session started in `phase2_claude/`
+The protocol is frozen (`FREEZE_MANIFEST.json`, tag `phase2-odc-pre-review-frozen`) and one
+bundle per reviewer has been exported outside this repository:
 
 ```text
-You are the Claude reviewer for a blind software-defect classification study. Your working
-directory is a self-contained review bundle. Do not leave it, and do not use web access or any
-external source for anything, including ODC.
+/home/disgustingtest/review_bundles/phase2_claude
+/home/disgustingtest/review_bundles/phase2_codex
+```
+
+Each bundle is self-contained. It needs only Python 3.10+ with `pyyaml`; it does not need this
+repository, `numpy`, or `scipy`. A reviewer session must be **started inside its bundle**, not
+inside this repository — a session that starts here can reach the Phase 1 labels, and the
+reviewer prompt tells it to stop if it finds them. Use a fresh session, never a continuation of
+a Phase 1 or setup session, and do not tell the reviewer anything beyond the block below.
+
+### Claude (Opus)
+
+Open the session inside the bundle:
+
+```bash
+cd /home/disgustingtest/review_bundles/phase2_claude && claude
+```
+
+Paste:
+
+```text
+You are the Claude reviewer for a blind software-defect classification study. Your current
+working directory is a self-contained review bundle. Do not leave it, do not read anything
+outside it, and do not use web access or any external source for anything, including ODC.
 
 Do this, in order:
-1. Read README.md in full. It is your complete instructions.
-2. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
-3. Run: python scripts/check_phase2_ready.py --reviewer claude
+1. Confirm BUNDLE_MANIFEST.json and FREEZE_MANIFEST.json exist in the current directory and
+   that there is no .git directory. If not, you are not in a bundle: stop and tell me.
+2. Read README.md in full. It is your complete instructions.
+3. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
+4. Run: python scripts/check_phase2_ready.py --reviewer claude
    If it reports any problem, stop and tell me. Do not start.
-4. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
+5. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
    data/review_packets/<case_id>/, then write exactly one YAML file
    reviews/claude/cases/<case_id>.yaml with exactly these six fields:
    case_id, odc_defect_type, taxonomy_fit, pattern_confidence, supporting_evidence_ids,
    reasoning_summary. Immediately after writing each file run:
    python scripts/validate_phase2_review.py --reviewer claude --case <case_id>
-   and fix anything it rejects before moving on. Never batch cases.
-5. When all 100 files exist and validate, run:
+   and fix anything it rejects before moving on. Never batch cases. Do not stop to ask me
+   anything between cases; work through all 100.
+6. When all 100 files exist and validate, run:
    python scripts/validate_phase2_review.py --reviewer claude --finalize
-6. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
+7. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
    agreement, do not compare taxonomies, do not look for any other reviewer's output.
 
 Rules: classify the software defect and the semantics of its correction only. BUG_DIFF
@@ -217,28 +230,40 @@ OUT_OF_SCOPE. Write only under reviews/claude/. If you find a hidden/ or analysi
 a Phase 1 label, generation metadata, or another reviewer's files, stop and tell me.
 ```
 
-### GPT / Codex — paste into a fresh session started in `phase2_codex/`
+### GPT / Codex
+
+Open the session inside the bundle, using whatever launches your Codex or GPT coding session
+(`codex` shown):
+
+```bash
+cd /home/disgustingtest/review_bundles/phase2_codex && codex
+```
+
+Paste:
 
 ```text
-You are the Codex reviewer for a blind software-defect classification study. Your working
-directory is a self-contained review bundle. Do not leave it, and do not use web access or any
-external source for anything, including ODC.
+You are the Codex reviewer for a blind software-defect classification study. Your current
+working directory is a self-contained review bundle. Do not leave it, do not read anything
+outside it, and do not use web access or any external source for anything, including ODC.
 
 Do this, in order:
-1. Read README.md in full. It is your complete instructions.
-2. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
-3. Run: python scripts/check_phase2_ready.py --reviewer codex
+1. Confirm BUNDLE_MANIFEST.json and FREEZE_MANIFEST.json exist in the current directory and
+   that there is no .git directory. If not, you are not in a bundle: stop and tell me.
+2. Read README.md in full. It is your complete instructions.
+3. Read taxonomy/odc_defect_type_v1.md in full before classifying anything.
+4. Run: python scripts/check_phase2_ready.py --reviewer codex
    If it reports any problem, stop and tell me. Do not start.
-4. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
+5. Review all 100 cases, SWESMITH_001 to SWESMITH_100, one at a time. For each case read only
    data/review_packets/<case_id>/, then write exactly one JSON file
    reviews/codex/cases/<case_id>.json with exactly these six fields:
    case_id, odc_defect_type, taxonomy_fit, pattern_confidence, supporting_evidence_ids,
    reasoning_summary. Immediately after writing each file run:
    python scripts/validate_phase2_review.py --reviewer codex --case <case_id>
-   and fix anything it rejects before moving on. Never batch cases.
-5. When all 100 files exist and validate, run:
+   and fix anything it rejects before moving on. Never batch cases. Do not stop to ask me
+   anything between cases; work through all 100.
+6. When all 100 files exist and validate, run:
    python scripts/validate_phase2_review.py --reviewer codex --finalize
-6. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
+7. Stop. Report that the review is complete and the hashes the preflight printed. Do not compute
    agreement, do not compare taxonomies, do not look for any other reviewer's output.
 
 Rules: classify the software defect and the semantics of its correction only. BUG_DIFF
@@ -249,11 +274,22 @@ OUT_OF_SCOPE. Write only under reviews/codex/. If you find a hidden/ or analysis
 a Phase 1 label, generation metadata, or another reviewer's files, stop and tell me.
 ```
 
-The two blocks differ only in reviewer name, output directory and file format. The bundle needs
-Python 3.10+ with `pyyaml` importable; nothing else. After both reviewers have finalised, copy
-each `reviews/<reviewer>/` directory back into `experiments/phase2_odc_control/reviews/` in this
-repository (one commit per reviewer, never letting one reviewer's output into the other's
-bundle), then run `python scripts/analyze_phase2_odc.py`.
+The two blocks differ only in reviewer name, output directory and file format.
+
+### After both reviewers report complete
+
+Copy each reviewer's sealed output back into this repository, one commit per reviewer, without
+ever placing one reviewer's output into the other's bundle:
+
+```bash
+cp -r /home/disgustingtest/review_bundles/phase2_claude/reviews/claude experiments/phase2_odc_control/reviews/
+cp -r /home/disgustingtest/review_bundles/phase2_codex/reviews/codex  experiments/phase2_odc_control/reviews/
+python scripts/check_phase2_ready.py --reviewer claude   # workflow state should read BOTH_COMPLETE
+python scripts/analyze_phase2_odc.py
+```
+
+If a bundle must ever be regenerated, it must come from the tagged freeze commit, and a review
+that has already begun against an earlier bundle is void unless every hash matches.
 
 ## Standing rules
 
