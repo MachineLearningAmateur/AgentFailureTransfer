@@ -1,0 +1,14 @@
+case_id: SWESMITH_062
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff replaces three "- 1" offsets with "- 0" in the tokenizer's delimited-text scan:
+  the advance past a multi-character delimiter, the start index recorded before advancing, and
+  the end bound of the slice appended to text. The reference repair restores each offset. Because
+  one of them sits in an assignment, ASSIGNMENT is arguable, but the defect is index arithmetic in
+  the scanning loop, so rule 6 selects ALGORITHM.

@@ -1,0 +1,20 @@
+case_id: SWESMITH_088
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - CODE_CONTEXT_01
+  - CODE_CONTEXT_02
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff replaces the NUMERIC_VALIDATOR_LOOKUP table exported by _validators.py with a
+  private _CONSTRAINT_TO_VALIDATOR_LOOKUP plus a get_constraint_validator accessor, drops the
+  Decimal import and the decimal digit validators, and rewrites _known_annotated_metadata.py to
+  import the new accessor and call add_js_update_schema and NUMERIC_CONSTRAINTS in place of the
+  inline metadata update. The whole suite then fails at collection, as the specification reports.
+  The reference repair restores the exported table, the decimal validators and the original
+  consumer code. The removed decimal validators make FUNCTION arguable, but the correction is the
+  names one module exports and the other imports, so rule 3 selects INTERFACE.

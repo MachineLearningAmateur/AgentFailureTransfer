@@ -1,0 +1,15 @@
+case_id: SWESMITH_028
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff reorders get_route_path so that the "if not path.startswith(root_path)" test comes
+  first, ahead of "path = scope['path']" and "root_path = scope.get('root_path', '')", leaving
+  both names unbound at their first use. The reference repair restores the bindings to the top of
+  the function ahead of every guard. The correction is the placement of the two local
+  initializations, and the 322 failing tests follow from every routed request passing through
+  this helper.

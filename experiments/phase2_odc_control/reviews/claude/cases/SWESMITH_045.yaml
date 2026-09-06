@@ -1,0 +1,20 @@
+case_id: SWESMITH_045
+odc_defect_type: BUILD_PACKAGE_MERGE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - CODE_CONTEXT_01
+  - CODE_CONTEXT_02
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites the package's component inventory: several hundred entries are dropped
+  from the generated LEXERS registry in _mapping.py, the pygments/lexers/lean.py module is
+  deleted, and a superseded LeanLexer is reinstated inside theorem.py, whose imports do not
+  include "include", so importing it raises the NameError the specification reports and 5060
+  tests fail at collection. The reference repair restores the registry entries and the lean
+  module and removes the resurrected class. The scale of the loss makes FUNCTION arguable, but
+  the correction is to which modules the package ships and how they are registered, so rule 1
+  selects BUILD_PACKAGE_MERGE.

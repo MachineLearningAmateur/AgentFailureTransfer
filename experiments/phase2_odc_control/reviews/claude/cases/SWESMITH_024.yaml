@@ -1,0 +1,14 @@
+case_id: SWESMITH_024
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff moves "direct_url = self.direct_url" in editable_project_location to the end of
+  the property, below the "if direct_url and direct_url.is_local_editable()" branch that reads
+  it, so the name is unbound at its first use. The reference repair restores the binding to the
+  top. The correction is the placement of one local initialization relative to its consumer;
+  the surrounding egg-link and url_to_path logic is otherwise unchanged.

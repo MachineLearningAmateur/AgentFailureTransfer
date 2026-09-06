@@ -1,0 +1,16 @@
+case_id: SWESMITH_077
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff strips the state updates out of _path_to_elements while leaving every branch
+  condition intact: the "path = path[4:]" trim and the brackets and inside_quotes initializations
+  are gone, the inside_quotes toggle and the "elem = ''" resets are removed, three "elem += char"
+  accumulations become pass, and "prev_char = char" is dropped. The reference repair restores
+  each of them. The breadth of a broken parser makes ALGORITHM arguable, but every removed
+  statement is an assignment or initialization and the control flow is untouched, so rule 4
+  selects ASSIGNMENT.

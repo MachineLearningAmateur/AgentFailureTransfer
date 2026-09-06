@@ -1,0 +1,16 @@
+case_id: SWESMITH_089
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff removes the trailing step of the slice builder, which appended
+  slice(source_idx, len(raw_source_string)) whenever the last patch ended before the end of the
+  source, so the returned buffer no longer covers the tail of the file. The reference repair
+  restores that step. The restored code is introduced by a bounds comparison, which makes CHECKING
+  arguable, but it completes the slice enumeration rather than validating anything, so rule 6
+  selects ALGORITHM.

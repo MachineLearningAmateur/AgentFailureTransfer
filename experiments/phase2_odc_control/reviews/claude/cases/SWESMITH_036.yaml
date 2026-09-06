@@ -1,0 +1,17 @@
+case_id: SWESMITH_036
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff drops "or local == '_ignore_'" from the skip condition in infer_enum_class, so
+  _ignore_ is inferred as an ordinary member, and separately removes the _value_ and _name_
+  property definitions from the synthesized member template. The reference repair restores both.
+  The missing sunder properties make FUNCTION arguable for that half, but the correction includes
+  guard logic that selects which locals are processed, and rule 5 precedes rule 7 in the frozen
+  order.

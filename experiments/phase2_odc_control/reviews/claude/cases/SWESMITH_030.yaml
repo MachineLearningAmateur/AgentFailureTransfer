@@ -1,0 +1,16 @@
+case_id: SWESMITH_030
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff removes two assignments from parse_implicit_response: the binding
+  "fragment = urlparse.urlparse(uri).fragment", which the very next parse_qsl call consumes, and
+  the "params[key] = int(params[key])" cast that turns expires_in into an integer, replaced by a
+  bare pass. The reference repair restores both. The correction is missing value assignments,
+  which is what the implicit-response and token-response parsing tests check.

@@ -1,0 +1,15 @@
+case_id: SWESMITH_083
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff removes the single line that rebinds verify from
+  config.get("tools.files.download:verify", default=verify), while the neighbouring retry and
+  retry_wait config lookups are left in place, so the configured SSL verification setting never
+  reaches the downloader. The reference repair restores that one assignment. The correction is a
+  missing value assignment, which is exactly what the verify-conf test exercises.

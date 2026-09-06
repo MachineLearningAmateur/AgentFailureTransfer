@@ -1,0 +1,14 @@
+case_id: SWESMITH_087
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff moves "message_bytes = data[start:end]" to the end of
+  MultiPartParser.on_part_data, below the size check, the data.extend call and the file-part
+  append that all read it, leaving the name unbound at every use. The reference repair puts the
+  binding back at the top of the method. The correction is the placement of one local
+  initialization, and every multipart parsing test depends on it.

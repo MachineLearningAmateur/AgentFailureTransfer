@@ -1,0 +1,16 @@
+case_id: SWESMITH_090
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff deletes the whole keyword-matching loop from the tokenizer's keyword scan: the
+  trie walk over in_trie, the recording of word on TrieResult.EXISTS, the character accumulation
+  with whitespace collapsing, and the size and single_token bookkeeping. Nothing remains to
+  identify a keyword before the "if word" branch. The reference repair restores the loop
+  unchanged. The correction is a local traversal over the keyword trie, with no guard, binding or
+  interface change involved.

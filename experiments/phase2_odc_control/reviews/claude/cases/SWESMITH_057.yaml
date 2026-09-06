@@ -1,0 +1,17 @@
+case_id: SWESMITH_057
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_05
+reasoning_summary: >-
+  The bug diff rewrites Plane._getrange to yield integer grid indices computed from
+  "(x0 - self.x0) // gridsize" instead of the grid coordinates that drange produced, so the keys
+  it emits no longer address the buckets the plane stores objects under, and it also drops the
+  early return for boxes disjoint from the plane. The reference repair restores the drange
+  enumeration and the guard. The removed early return makes CHECKING arguable, but the defect is
+  the key space of a spatial index enumeration, so rule 6 selects ALGORITHM.

@@ -1,0 +1,18 @@
+case_id: SWESMITH_037
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_03
+  - TEST_FAILURE_05
+reasoning_summary: >-
+  The bug diff replaces the whole body of the "_VALIDATORS" loop in find_validators with pass, so
+  the registry is walked but never consulted and every type falls through to the
+  arbitrary-types branch or the "no validator found" RuntimeError. The reference repair restores
+  the issubclass match, the IfConfig handling, the yields and the TypeError translation. Because
+  the restored code contains type tests, CHECKING is arguable, but what is missing is the whole
+  lookup and dispatch procedure inside one function rather than a single guard, so rule 6 selects
+  ALGORITHM.

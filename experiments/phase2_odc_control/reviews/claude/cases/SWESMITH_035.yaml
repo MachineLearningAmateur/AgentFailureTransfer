@@ -1,0 +1,13 @@
+case_id: SWESMITH_035
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff swaps the scale values between two branches of the epoch-extraction logic, giving
+  EPOCH_NANOSECOND a scale of None and the fallback else branch 10**9. The branch conditions
+  themselves are untouched, and the reference repair swaps the two assignments back. The
+  correction is the value bound in each branch, which the Snowflake timestamp test exercises.

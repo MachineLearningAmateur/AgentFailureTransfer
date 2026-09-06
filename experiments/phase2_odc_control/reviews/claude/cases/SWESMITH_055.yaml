@@ -1,0 +1,15 @@
+case_id: SWESMITH_055
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff removes the "num1 = float(num1)" coercion from _get_numbers_distance while leaving
+  the identical coercion for num2 in place, so the first operand keeps its original numeric type
+  through the subsequent division. The reference repair restores it. The correction is a missing
+  value conversion assigned back to the operand, not a change to any condition, and the two
+  failing cases are the numeric distance comparisons that depend on it.

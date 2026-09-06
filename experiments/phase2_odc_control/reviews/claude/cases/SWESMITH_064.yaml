@@ -1,0 +1,14 @@
+case_id: SWESMITH_064
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff moves "off = self.off" in the CT_Transform2D.y getter below the "if off is None"
+  test that reads it, leaving the name unbound at its first use. The reference repair puts the
+  binding back above the guard. The correction is the placement of one local initialization; the
+  breadth of the failing shape and connector tests follows from every position read going through
+  this property.

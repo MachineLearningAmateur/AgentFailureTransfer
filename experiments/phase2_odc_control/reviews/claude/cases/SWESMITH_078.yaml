@@ -1,0 +1,17 @@
+case_id: SWESMITH_078
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites X509Extension.__str__ so the rendered text is prefixed with "critical,"
+  whenever get_critical() is true, which is why str() of a critical basicConstraints extension no
+  longer equals "CA:FALSE" as the specification expects; it also replaces the
+  _openssl_assert on X509V3_EXT_print with a placeholder string. The reference repair restores the
+  original text production and the assertion. The dropped assert makes CHECKING arguable, but
+  what the failing test exercises is the representation the method builds, so rule 6 selects
+  ALGORITHM.

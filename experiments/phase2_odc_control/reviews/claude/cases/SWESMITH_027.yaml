@@ -1,0 +1,14 @@
+case_id: SWESMITH_027
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes "y = (longitude_1 - longitude_2) * coef" from geo.distance while the very
+  next statement still computes sqrt(x * x + y * y), leaving y unbound. The reference repair
+  restores that single line. The correction is one missing value assignment, and the breadth of
+  the 30 failing tests follows from every distance-dependent computation in the module going
+  through this function.

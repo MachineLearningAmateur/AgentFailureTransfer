@@ -1,0 +1,15 @@
+case_id: SWESMITH_079
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff hoists "return self._apply(var_func, name='var', numeric_only=numeric_only)" to the
+  first statement of ExponentialMovingWindow.var, above the times check, the window_func setup and
+  the def that binds var_func, so the name is unbound when the return evaluates it and the rest of
+  the method is unreachable. The reference repair moves the return back to the end. Treating the
+  reordering as control flow makes ALGORITHM arguable, but the operative correction is binding
+  var_func before it is used, so rule 4 selects ASSIGNMENT.

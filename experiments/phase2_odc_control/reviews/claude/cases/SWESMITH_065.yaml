@@ -1,0 +1,19 @@
+case_id: SWESMITH_065
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - CODE_CONTEXT_03
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites the exported UID surface of uid.py: HTJ2K, JPEG XL and the MPEG frame-level
+  constants are deleted, JPEGLossless is renamed JPEGLosslessP14, and a deprecating __getattr__
+  shim is added, while the gdcm and pylibjpeg handlers are repointed at the renamed name. Names
+  still referenced elsewhere are then undefined, giving the import-time NameError on
+  HTJ2KLossless that the specification reports. The reference repair restores the constants and
+  the handler references. Rule 1 was considered since the shim reads as an older API generation,
+  but no packaged file or build input changed; the defect is the module's exported names and the
+  dependents that import them, so rule 3 selects INTERFACE.

@@ -1,0 +1,17 @@
+case_id: SWESMITH_048
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff deletes from seed_instance the first-call creation of a per-instance
+  random_module.Random and the "self._is_seeded = True" flag, so the generator keeps seeding the
+  shared module-level random and every instance ends up on the same state, as the specification
+  describes. The reference repair restores both. The deleted block is introduced by an
+  "if self.__random == random" test, which makes CHECKING arguable, but the guard exists only to
+  perform the initialization, so rule 4 selects ASSIGNMENT.

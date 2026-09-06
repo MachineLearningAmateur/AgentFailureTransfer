@@ -1,0 +1,15 @@
+case_id: SWESMITH_093
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff removes the loop in _resolve_refs_in_parameter_or_header that walked each media
+  type under a parameter's "content" and called _resolve_schema on it, so a schema named inside
+  parameter content is left as a bare string instead of becoming a $ref, exactly as the
+  specification shows. The reference repair restores the three lines. The correction is a missing
+  descent step in the reference-resolution traversal.

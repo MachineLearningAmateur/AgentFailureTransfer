@@ -1,0 +1,17 @@
+case_id: SWESMITH_094
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_03
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff drops the default_kwargs dict and passes read_only, data_only and keep_links to
+  openpyxl's load_workbook as fixed keyword arguments with **engine_kwargs splatted alongside, so
+  a user value for any of those three can no longer take effect. The reference repair restores the
+  "default_kwargs | engine_kwargs" merge that gives caller-supplied kwargs precedence. Reading the
+  merge as a value computation makes ASSIGNMENT or ALGORITHM arguable, but the defect is which
+  parameters reach the external library call, so rule 3 selects INTERFACE.

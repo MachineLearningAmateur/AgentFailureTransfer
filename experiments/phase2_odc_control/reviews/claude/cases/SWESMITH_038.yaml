@@ -1,0 +1,15 @@
+case_id: SWESMITH_038
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff swaps the two branch bodies in _extract_metrics while leaving the
+  "if m not in (None, {})" test unchanged, so a successfully parsed metric is logged as
+  unsupported and never stored, and only empty results are written into ret. The reference repair
+  puts "ret[key] = m" back on the true branch. The correction is the placement of the
+  accumulating assignment, not the condition, and every metrics show test depends on it.

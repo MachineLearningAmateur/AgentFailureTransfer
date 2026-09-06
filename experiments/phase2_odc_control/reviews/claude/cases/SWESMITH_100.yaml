@@ -1,0 +1,17 @@
+case_id: SWESMITH_100
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff drops the "or not os.path.exists(frame.f_code.co_filename)" clause from the frame
+  walk in find_dotenv, so frames whose reported filename has no counterpart on disk, as with
+  modules imported from a zip archive, are no longer skipped and the search starts from a path
+  that does not exist. The reference repair restores that clause. Because the weakened predicate
+  is a loop condition, ALGORITHM is arguable, but the missing clause is an existence test on a
+  value before it is used, so rule 5 selects CHECKING.

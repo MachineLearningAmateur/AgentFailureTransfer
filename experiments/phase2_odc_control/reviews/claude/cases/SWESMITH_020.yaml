@@ -1,0 +1,20 @@
+case_id: SWESMITH_020
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff deletes the "-f/--force" subparser argument from remote_add and replaces
+  "remotes.add(r, force=args.force, index=args.index)" with a bare add followed by a separate
+  move call; the only change in remotes.py is a trailing newline, so the duplicate-URL checking
+  code itself is untouched and merely never receives force. The reference repair restores the
+  option and the parameterized call. The defect is the command-line surface exposed to the user
+  and the arguments crossing from the CLI into the remotes API, matching the duplicate-name,
+  duplicate-url and insert tests.

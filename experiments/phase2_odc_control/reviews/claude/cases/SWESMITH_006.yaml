@@ -1,0 +1,14 @@
+case_id: SWESMITH_006
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff drops the SyntaxRule base class from _ArglistRule, so a class still registered
+  through ErrorFinder.register_rule no longer inherits the rule contract the normalizer
+  framework instantiates and calls. The reference repair restores the base class alone. The
+  breakage is conformance to a component boundary rather than any computation inside the class,
+  and its breadth is visible in the 122 failing tests including collection of parso itself.

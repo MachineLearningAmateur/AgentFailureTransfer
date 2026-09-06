@@ -1,0 +1,15 @@
+case_id: SWESMITH_095
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff moves "rels_of_reltype = self._rels_by_reltype[reltype]" to the last line of
+  part_with_reltype, below the return, so the name is unbound at the two length checks and at the
+  return itself; the docstring is also displaced into the body and the two guards swapped, though
+  those guards are mutually exclusive so their order is immaterial. The reference repair puts the
+  binding back above its uses. The correction is the placement of one local initialization.

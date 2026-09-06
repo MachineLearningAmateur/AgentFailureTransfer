@@ -1,0 +1,18 @@
+case_id: SWESMITH_096
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - CODE_CONTEXT_06
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff strips imported names across the EC2 modules while leaving their uses in place:
+  TypeVar is dropped from the typing import in utils.py, Optional from hosts.py, the typing
+  imports from fleets.py and flow_logs.py, and SpotInstanceRequest from the spot_requests import
+  in fleets.py. Loading the package then raises the "name 'TypeVar' is not defined" NameError the
+  specification quotes. The reference repair restores each import and the annotations that use
+  them. Reading the imports as missing module-level bindings makes ASSIGNMENT arguable, but the
+  correction is what these modules import from others, so rule 3 selects INTERFACE.

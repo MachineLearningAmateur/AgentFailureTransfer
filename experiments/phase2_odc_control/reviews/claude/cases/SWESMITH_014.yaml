@@ -1,0 +1,20 @@
+case_id: SWESMITH_014
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_04
+  - TEST_FAILURE_06
+  - TEST_FAILURE_11
+reasoning_summary: >-
+  The bug diff inverts or narrows a cluster of predicates in cli.py: the except clause drops from
+  OSError to FileNotFoundError, "if v is not None" becomes "is None", "if success" becomes
+  "if not success", "if not commandline" becomes "if commandline", and the run override filter
+  is negated, with the exit codes flipped alongside. The reference repair restores each
+  condition. The sorted-to-reversed swap and the "not quote" argument make ALGORITHM and
+  INTERFACE arguable for individual lines, but the corrections are dominantly guard and
+  condition logic, so rule 5 selects CHECKING.

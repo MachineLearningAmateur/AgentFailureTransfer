@@ -1,0 +1,18 @@
+case_id: SWESMITH_052
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_05
+reasoning_summary: >-
+  The bug diff replaces the body of _decode_data_sequence, which read the Basic Offset Table and
+  each fragment through _read_item inside a DicomBytesIO context, with a hand-rolled tag and
+  length walk over the stream. The hand-rolled walk loses the item framing the helper provides
+  and ends up on a misaligned tag, producing the "Unexpected tag ... fragment items" ValueError
+  the specification quotes. The reference repair restores the _read_item loop. The raise comes
+  from a tag test, which makes CHECKING arguable, but the condition only fires because the
+  parsing procedure itself is wrong, so rule 6 selects ALGORITHM.

@@ -1,0 +1,16 @@
+case_id: SWESMITH_099
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes every parameter check from date_of_birth: the integer type tests for
+  minimum_age and maximum_age, the two non-negative range checks, and the
+  minimum_age <= maximum_age ordering check. The reference repair restores all five. The same
+  edit also rewrites the date range computation, which makes ALGORITHM arguable, but the
+  specification and the single failing test_value_errors case are entirely about the missing
+  ValueErrors, so rule 5 selects CHECKING.

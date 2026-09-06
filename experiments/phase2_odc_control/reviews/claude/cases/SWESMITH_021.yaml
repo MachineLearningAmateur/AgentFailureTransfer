@@ -1,0 +1,17 @@
+case_id: SWESMITH_021
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff changes the Maintainability Index formula in mi_compute: the comments term becomes
+  sin(sqrt(2.4 * comments / 100)) instead of sin(sqrt(2.46 * radians(comments))), and the final
+  "nn_mi * 100 / 171.0" normalization is dropped in favour of a bare clamp. The reference repair
+  restores the original expression. Both failing tests assert exact MI values and the
+  specification names the comments scaling factor, so the correction is to the computation itself
+  within one function.

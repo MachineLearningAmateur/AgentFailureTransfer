@@ -1,0 +1,20 @@
+case_id: SWESMITH_013
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff deletes the Group NamedTuple, stores groups as bare dicts, and removes the
+  describe_group operation from both the backend model and the response handler, so the
+  DescribeGroup action no longer exists and list_groups serialization breaks where responses.py
+  still calls g._asdict(). The reference repair reinstates the type and both halves of the
+  operation. The models-to-responses contract breakage makes INTERFACE plausible, but that is
+  downstream of removing a whole capability and its data abstraction across two modules, so
+  rule 7 selects FUNCTION.

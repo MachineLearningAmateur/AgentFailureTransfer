@@ -1,0 +1,17 @@
+case_id: SWESMITH_067
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff replaces StyleGuide.excluded's local helper, which ran expand_paths over a path and
+  tested both the bare filename and the parent-joined path, with a single delegation to
+  self._file_checker_manager.is_path_excluded on the joined path only. The bare filename is then
+  never tested on its own, which is the parent-handling failure the specification describes. The
+  reference repair restores the helper and the two-way disjunction. Delegating to another
+  component's method makes INTERFACE arguable, but the correction restores this method's own
+  exclusion logic, so rule 6 selects ALGORITHM.

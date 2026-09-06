@@ -1,0 +1,18 @@
+case_id: SWESMITH_054
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - CODE_CONTEXT_01
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes classify, provide_overview_context_and_uptodate and
+  get_other_language_variants from ClassifyAuthors, which the code context shows is a
+  nikola.plugin_categories.Taxonomy subclass; those methods are the overrides the taxonomy
+  machinery calls, so the plugin no longer satisfies the protocol its host invokes. The reference
+  repair reinstates all three. Reading the loss as a missing author-pages capability supports
+  FUNCTION, but the removed members are the plugin's side of a component contract, so rule 3
+  selects INTERFACE.

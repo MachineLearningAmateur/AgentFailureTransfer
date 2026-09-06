@@ -1,0 +1,17 @@
+case_id: SWESMITH_092
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff replaces PDFStructElement.to_dict's asdict serialization and breadth-first prune
+  over the whole element tree with a hand-built dict holding only children plus optional role_map
+  and class_map, pruned at the top level only. Every other field is dropped and nested elements
+  keep their empty values, which is the missing and incorrect attribute behaviour the
+  specification describes. The reference repair restores the asdict call and the deque-driven
+  traversal. The correction is the serialization and traversal inside one method.

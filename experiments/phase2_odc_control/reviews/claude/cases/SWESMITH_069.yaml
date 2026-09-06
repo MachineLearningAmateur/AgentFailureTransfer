@@ -1,0 +1,16 @@
+case_id: SWESMITH_069
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites WSGIHeaderDict.__getitem__ to fetch through self.raw and return
+  value.decode('latin1') for bytes, dropping the "encode('latin1').decode('utf8')" round trip that
+  recovers UTF-8 header text from the WSGI latin-1 representation, which produces the mojibake the
+  specification shows. The reference repair restores the original body. Reading the lost step as
+  an inappropriate value conversion supports ASSIGNMENT, but the whole lookup and decoding
+  procedure in the method was replaced, so rule 6 selects ALGORITHM.

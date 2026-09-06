@@ -1,0 +1,15 @@
+case_id: SWESMITH_063
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff swaps the two bodies of the "if py311_or_above" branch, leaving the condition
+  intact: on 3.11 and above frame_summary is now rebuilt without the end_lineno, colno and
+  end_colno adjustments, while the enhanced construction is assigned on the older-Python path.
+  The reference repair returns each construction to its own branch. Rule 1 was considered because
+  the branch keys off an interpreter version, but no build or packaging state is involved; each
+  branch assigns frame_summary the wrong value, so rule 4 selects ASSIGNMENT.

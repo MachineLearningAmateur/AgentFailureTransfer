@@ -1,0 +1,17 @@
+case_id: SWESMITH_003
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff weakens the skip condition in attr_attributes_transform from
+  "elif not use_bare_annotations: continue" to an unconditional "else: continue", so bare
+  annotated class attributes are always discarded, matching the specification and the failing
+  attrs annotation test. The reference repair restores that condition along with the
+  NEW_ATTRS_NAMES set and the use_bare_annotations predicate it reads. The deleted definitions
+  make ASSIGNMENT plausible under rule 4, but they exist only to feed the guard, and the
+  operative correction is the branch condition, so rule 5 selects CHECKING.

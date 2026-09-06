@@ -1,0 +1,16 @@
+case_id: SWESMITH_040
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff removes two entries from the tool-to-distribution mapping initialized in
+  _SystemPackageManagerTool: "nobara" from the dnf list and "endeavouros" from the pacman list.
+  The reference repair adds them back; no lookup or matching logic is touched. Rule 1 was
+  considered because the subject matter is package managers, but the defect is in this product's
+  own data table rather than in build, version or packaging state of the software under review,
+  so rule 4 selects ASSIGNMENT for the missing initialized values.

@@ -1,0 +1,14 @@
+case_id: SWESMITH_042
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff removes three assignments from describe_node: the class-suffix append becomes a
+  bare pass, the "uid = uids.get(node)" binding is deleted so uid is unbound at the
+  "if uid is None" test, and the "{%02d}" suffix append is dropped. The reference repair restores
+  all three. The surrounding conditions are untouched, so the correction is missing value
+  assignments within one function.

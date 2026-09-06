@@ -1,0 +1,16 @@
+case_id: SWESMITH_009
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff drops "bin_op = aug_opnode.op.strip('=')" from _get_aug_flow and reuses the
+  augmented operator for the plain binary fallbacks, so _bin_op receives "+=" where "+" is
+  required. The four type-relationship branches keep their original method ordering, so this
+  derived value is the only semantic change, and the reference repair restores exactly that
+  initialization and its use. The correction is a missing local value derivation, matching the
+  augmented-assignment inference failures in the tests and specification.

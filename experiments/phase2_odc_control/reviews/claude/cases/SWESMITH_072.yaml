@@ -1,0 +1,15 @@
+case_id: SWESMITH_072
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff inserts an extra validation into the TupleExpr lvalue branch that reports
+  "can't assign to ()" whenever the tuple has no items, so an empty-tuple target emits a spurious
+  diagnostic ahead of the iterable error that is the correct one. The reference repair deletes
+  that condition and leaves the analyze_tuple_or_list_lvalue call as the only action. The
+  correction is removing an incorrect validation condition.

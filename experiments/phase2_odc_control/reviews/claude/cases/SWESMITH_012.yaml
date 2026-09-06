@@ -1,0 +1,16 @@
+case_id: SWESMITH_012
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff hoists "self.change_time = change_time" in _NodeCacheItem.__init__ above the
+  "if change_time is None: change_time = time.time()" default, so the attribute is stored as
+  None while self.last_used still receives the substituted timestamp. The reference repair moves
+  the assignment back below the default. The correction is a single attribute initialized with
+  the wrong value, which is what the cache timestamp tests exercise.

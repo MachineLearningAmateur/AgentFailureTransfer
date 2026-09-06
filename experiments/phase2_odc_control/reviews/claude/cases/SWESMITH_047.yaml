@@ -1,0 +1,18 @@
+case_id: SWESMITH_047
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff rewrites get_expected_length and drops the final YBR_FULL_422 adjustment
+  "length = length // 3 * 2", so the subsampled packing of that photometric interpretation is no
+  longer accounted for; it also replaces get_nr_frames with inline frame handling. Every failing
+  test is a test_length_ybr_422 parameterization, and the reference repair restores the
+  adjustment. Because the missing step is a conditional assignment, CHECKING and ASSIGNMENT are
+  arguable, but what is absent is a term of the length calculation itself, so rule 6 selects
+  ALGORITHM.

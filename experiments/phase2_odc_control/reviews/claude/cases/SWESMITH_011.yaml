@@ -1,0 +1,18 @@
+case_id: SWESMITH_011
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff narrows the route dispatch test in get_endpoints from
+  "isinstance(route, (Mount, Host))" to Mount only, dropping the Host import and the empty
+  path-prefix branch, so Host sub-routes are silently skipped during schema generation as the
+  specification and the failing schema tests describe. The reference repair widens the test back
+  and restores the branch. The restored "path = ''" assignment makes ASSIGNMENT arguable, but it
+  is unreachable until the type test admits Host, so rule 5 selects CHECKING.

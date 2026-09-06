@@ -1,0 +1,15 @@
+case_id: SWESMITH_082
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes IoTDataPlaneResponse.setup_class, whose only purpose was to call the base
+  class with use_raw_body=True; without it the request body is handled with the base default and
+  a non-UTF-8 payload raises UnicodeDecodeError as the specification shows. The reference repair
+  restores the override verbatim. The correction is the argument this handler passes across the
+  boundary to its base class rather than any computation of its own.

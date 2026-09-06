@@ -1,0 +1,19 @@
+case_id: SWESMITH_008
+odc_defect_type: TIMING_SERIALIZATION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff rewrites HTTP1Connection.finish and loses the branch that sets
+  _disconnect_on_finish when the response finishes while _read_finished is still false, along
+  with stream.set_nodelay. The reference repair restores that sequencing. The observable defect
+  in the specification and in the early-return and client-close tests is a client that hangs
+  indefinitely because connection teardown is never ordered against the still-incomplete body
+  read, which is coordination over a shared connection rather than a wrong computation; the
+  restored flag also makes ASSIGNMENT arguable, so rule 2 decides.

@@ -1,0 +1,17 @@
+case_id: SWESMITH_046
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff removes the GetAdministratorAccount operation across all three layers: the
+  admin_accounts store and get_administrator_account method in models.py, the response handler in
+  responses.py, and the "/detector/<id>/administrator" route in urls.py. Nothing is left
+  mismatched; the capability simply does not exist, which is what the specification and both
+  failing tests report. The deleted route is API surface, which makes INTERFACE arguable, but a
+  whole operation is absent rather than miswired, so rule 7 selects FUNCTION.

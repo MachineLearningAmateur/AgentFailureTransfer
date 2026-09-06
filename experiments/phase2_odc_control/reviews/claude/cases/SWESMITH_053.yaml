@@ -1,0 +1,17 @@
+case_id: SWESMITH_053
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff repoints backends.py at "from dask.compatibility import entry_points" in place of
+  "from dask._compatibility import importlib_metadata", so the module fails to import at all with
+  the ImportError the specification quotes and nothing in the file is reachable. It also reorders
+  CreationDispatch.__init__ so entrypoint_class follows name and becomes optional. The reference
+  repair restores the import and the signature. Rule 1 was considered because a missing module
+  can look like a version mismatch, but no packaged component changed; the defect is this
+  module's dependency and call contracts, so rule 3 selects INTERFACE.

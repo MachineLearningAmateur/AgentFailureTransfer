@@ -1,0 +1,18 @@
+case_id: SWESMITH_034
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff deletes inspect and inspect_err from both Ok and Err, so the side-effect
+  inspection feature of the Result type does not exist at all and calls raise AttributeError as
+  the specification shows. The reference repair reinstates all four methods with their original
+  bodies. Because the absent code is public API surface, INTERFACE is arguable, but nothing is
+  mismatched or miscomputed and an entire documented capability is missing, so rule 7 selects
+  FUNCTION.

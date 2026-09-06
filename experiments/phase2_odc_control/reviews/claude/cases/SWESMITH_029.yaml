@@ -1,0 +1,19 @@
+case_id: SWESMITH_029
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff removes describe_account_assignment_creation_status and
+  describe_account_assignment_deletion_status from both the backend model and the response
+  handler, drops the deleted_account_assignments store and the removal bookkeeping in
+  delete_account_assignment, and strips include_request_id from AccountAssignment.to_json,
+  substituting a freshly generated uuid in responses.py. The reference repair reinstates all of
+  it. The lost RequestId field makes INTERFACE arguable, but two complete API operations and
+  their backing state are absent, so rule 7 selects FUNCTION.

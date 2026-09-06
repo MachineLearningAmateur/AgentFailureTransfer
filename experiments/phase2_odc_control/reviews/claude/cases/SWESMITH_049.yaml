@@ -1,0 +1,14 @@
+case_id: SWESMITH_049
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff drops the Import base class from ImportFrom, so the node class no longer inherits
+  the Import and PythonBaseNode contract that the parser and normalizers rely on when handling
+  import_from nodes. The reference repair restores the base class and nothing else. The defect is
+  conformance to a class contract rather than any computation in the body, and the failing tests
+  span parsing, diff-parsing and normalizer checks that all traverse import nodes.

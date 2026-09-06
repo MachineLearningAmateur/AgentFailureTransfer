@@ -1,0 +1,16 @@
+case_id: SWESMITH_070
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff reduces time_difference to "total_seconds(self.time - track_point.time)", removing
+  the ordering that subtracted the earlier time from the later one, so the result is signed and
+  goes negative when the argument precedes self, as the specification demonstrates. The reference
+  repair restores the magnitude computation. The None guard is merely reordered and equivalent,
+  so the correction is the value the function computes.

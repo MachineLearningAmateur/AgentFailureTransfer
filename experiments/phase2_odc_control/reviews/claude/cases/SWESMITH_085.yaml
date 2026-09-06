@@ -1,0 +1,18 @@
+case_id: SWESMITH_085
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff reduces duration_isoformat to a bare "return strftime(tduration, format)",
+  discarding the sign determination that prefixed "-" when a Duration has negative years, months
+  or tdelta, or when a timedelta is negative. Negative durations therefore format without their
+  sign, which is what the specification and the failing negative-duration cases show. The
+  reference repair restores the block. The restored code assigns ret from a condition, so
+  ASSIGNMENT and CHECKING are arguable, but the missing piece is a term of the formatted result,
+  so rule 6 selects ALGORITHM.

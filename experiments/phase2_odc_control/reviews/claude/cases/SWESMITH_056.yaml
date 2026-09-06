@@ -1,0 +1,17 @@
+case_id: SWESMITH_056
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff stops removing "label_size" from kwargs in plot_resources, so an attribute the
+  Bokeh figure does not accept is forwarded and raises the AttributeError quoted in the
+  specification, and it also writes f.plot_height where the current API exposes f.height. The
+  reference repair restores the pop and the height attribute along with the version warnings.
+  Rule 1 was considered because the surrounding code branches on BOKEH_VERSION, but nothing about
+  this package's build or dependency state changed; the correction is what this module passes to
+  and reads from an external library's API, so rule 3 selects INTERFACE.

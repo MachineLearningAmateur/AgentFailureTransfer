@@ -1,0 +1,15 @@
+case_id: SWESMITH_075
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff replaces the loop in _get_css_classes that walks a token type up to its nearest
+  STANDARD_TYPES ancestor, prepending each ancestor's class, with a single-level lookup, so a
+  custom type such as Name.Blubb yields only its own class instead of the "n n-Blubb" hierarchy
+  the specification expects. The reference repair restores the ancestor walk. The correction is
+  the traversal inside one method, with no guard, binding or boundary change.

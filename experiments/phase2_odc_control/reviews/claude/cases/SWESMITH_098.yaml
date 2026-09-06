@@ -1,0 +1,18 @@
+case_id: SWESMITH_098
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff attaches the generated help text to new_func instead of to the returned decorator
+  and changes both the default doc_description and the sentence template, so pass_meta_key's
+  decorator carries no such __doc__; it also replaces ctx.invoke(f, obj, ...) with a direct call.
+  The reference repair restores the assignment to decorator.__doc__ with the original text and the
+  ctx.invoke call. Rule 8 was considered but the defective artifact is the code that sets the
+  attribute, not a documentation file, and rule 3 does not dominate because the invoke change is
+  not what the failing test exercises; the correction is an attribute assigned on the wrong
+  object with the wrong value, so rule 4 selects ASSIGNMENT.

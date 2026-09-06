@@ -1,0 +1,16 @@
+case_id: SWESMITH_060
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff narrows Path.__eq__ to an "if not isinstance(other, Path): return False" gate,
+  dropping the "elif type(other) is TType" case that compared self.path_t.__ops__ against
+  other.__ops__, so a Path never equals an equivalent TType. The reference repair restores that
+  branch. Reading __eq__ as comparison logic makes ALGORITHM arguable, but the correction is the
+  type test that decides which operands are accepted and how they are compared, so rule 5 selects
+  CHECKING.

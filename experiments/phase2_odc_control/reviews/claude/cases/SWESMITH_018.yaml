@@ -1,0 +1,17 @@
+case_id: SWESMITH_018
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff deletes the input normalization "string = string.replace('\\', '/')" from matches
+  and swaps re.match for re.search. Both failing cases are backslash paths, so the missing
+  normalization assignment is the operative loss, and the reference repair restores it together
+  with anchored matching. Rule 1 was considered because the function lives in build_helpers, but
+  the correction is to path-matching logic rather than to build or package state; the re.search
+  swap makes ALGORITHM plausible, so rule 4 selects ASSIGNMENT.

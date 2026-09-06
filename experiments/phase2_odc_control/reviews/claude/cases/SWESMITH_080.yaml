@@ -1,0 +1,15 @@
+case_id: SWESMITH_080
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff swaps the two returns of the Finnish business-id check digit while leaving the
+  "sum_ % 11 == 0" test unchanged, so a zero remainder yields str(11 - 0) and every other
+  remainder yields "0", inverting the checksum rule. The reference repair swaps them back.
+  Because the swapped values are returned rather than assigned, rule 4 does not apply and the
+  correction is to the check-digit computation, so rule 6 selects ALGORITHM; a reviewer reading
+  the returned constants as values would find ASSIGNMENT plausible.

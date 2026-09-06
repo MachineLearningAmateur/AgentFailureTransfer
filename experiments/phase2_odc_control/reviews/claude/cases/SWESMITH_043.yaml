@@ -1,0 +1,14 @@
+case_id: SWESMITH_043
+odc_defect_type: TIMING_SERIALIZATION
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+reasoning_summary: >-
+  The bug diff moves "self._cv.notify_all()" in BufferedPipe.close to after "self._event.set()",
+  changing the order in which waiters on the condition variable and waiters on the event are
+  released while the lock is held. The reference repair moves the notify_all back ahead of the
+  event set. The correction is purely the ordering of a synchronization notification, which the
+  specification also describes as a race in the notification mechanism.

@@ -1,0 +1,17 @@
+case_id: SWESMITH_023
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff permutes the body of ThaiLocale._format_relative so that "return relative_string"
+  is the first statement, before relative_string is bound from direction.format(humanized),
+  leaving the "now" early return and the seconds space-stripping unreachable behind it. The
+  reference repair restores the original order. The operative correction is that the value must
+  be assigned before it is returned, which the three Thai relative-format tests exercise;
+  reading the whole permuted body as control flow makes ALGORITHM plausible, so rule 4 decides.

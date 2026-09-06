@@ -1,0 +1,18 @@
+case_id: SWESMITH_007
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff rewrites the expansion body of _get_from_environ with an ad-hoc {{...}} regex that
+  drops the _EXPANDED_VAR_PATTERN match, the ":-default" substitution and recursion-guard on
+  default, the search-based general expansion path, and the escaped "\$" unescaping. The
+  reference repair restores that procedure within the same method and signature, and the three
+  failing tests cover exactly the full-expand, default-expand and escaped-expand paths the
+  specification names. The correction is a local implementation fix, not a design change.

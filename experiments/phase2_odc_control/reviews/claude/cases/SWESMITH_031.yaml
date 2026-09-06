@@ -1,0 +1,17 @@
+case_id: SWESMITH_031
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff collapses the parsed pairs into an OrderedDict before interpolation and then feeds
+  values.items() to resolve_variables, whereas the working code passes the raw parse() sequence.
+  Deduplicating first discards the repeated "c" entry and its file position, so a later
+  redefinition can no longer resolve against a variable defined after the earlier one, which is
+  exactly the a/c/d/c case in the specification and the single failing test. The reference repair
+  passes the raw values again. The changed "if self._dict" guard makes CHECKING arguable, but the
+  defect is the data structure handed to the resolution step, so rule 6 selects ALGORITHM.

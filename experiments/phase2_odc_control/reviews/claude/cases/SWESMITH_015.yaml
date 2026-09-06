@@ -1,0 +1,17 @@
+case_id: SWESMITH_015
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes the "for plugin in self.plugins: plugin.init_spec(self)" loop from
+  APISpec.__init__, so registered plugins are never handed the spec through their init_spec hook;
+  the surrounding version-range check is only restated equivalently and self.plugins is still
+  assigned. The reference repair restores that loop. The defect is the missing invocation of the
+  plugin registration hook across the spec-to-plugin boundary, which the failing
+  test_components_can_be_accessed_by_plugin_in_init_spec names directly. Reading the loop as a
+  missing initialization would suggest ASSIGNMENT, so rule 3 decides.

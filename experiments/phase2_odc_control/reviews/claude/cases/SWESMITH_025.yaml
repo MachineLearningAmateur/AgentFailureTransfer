@@ -1,0 +1,15 @@
+case_id: SWESMITH_025
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff weakens the guard in websocket_receive from "message.get('text') is not None" to a
+  bare "'text' in message" in both WebsocketConsumer and AsyncWebsocketConsumer, so a message
+  carrying text=None takes the text branch instead of falling through to bytes. The reference
+  repair restores the None test in both places. The correction is purely the validation condition
+  on the value before use, matching the specification and the none-text test.

@@ -1,0 +1,15 @@
+case_id: SWESMITH_061
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff deletes two bindings from Generator.expressions: the "expressions" local derived
+  from expression.args or sqls, which the immediately following "if not expressions" reads, and
+  the per-item "comments" local that the result f-strings interpolate. Both names are then
+  unbound at their uses. The reference repair restores the two assignments and nothing else.

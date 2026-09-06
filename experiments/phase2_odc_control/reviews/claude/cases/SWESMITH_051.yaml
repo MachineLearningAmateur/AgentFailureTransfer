@@ -1,0 +1,15 @@
+case_id: SWESMITH_051
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff changes the slice bound in extract_shortcodes from "data[i:j + 1]" to
+  "data[i:j - 1]", so the captured shortcode chunk stops two tokens short of its SHORTCODE_END
+  and the stored body is truncated; the surrounding loop, condition and return are unchanged. The
+  reference repair restores the bound. Because the wrong expression sits in an assignment,
+  ASSIGNMENT is arguable, but the defect is a boundary computation in the extraction logic, so
+  rule 6 selects ALGORITHM.

@@ -1,0 +1,16 @@
+case_id: SWESMITH_073
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff changes how Worksheet.batch_update calls the client: the render and input options
+  are split out into a separate "params" argument and the request body is reduced to just the
+  data list, where the working code passed a single body carrying valueInputOption,
+  includeValuesInResponse and the render options alongside the data. The reference repair
+  restores the original body and the single-argument call. The specification reports a TypeError
+  from this call, so the correction is the argument contract with the values_batch_update API.

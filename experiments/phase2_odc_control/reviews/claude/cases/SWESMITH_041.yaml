@@ -1,0 +1,20 @@
+case_id: SWESMITH_041
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff replaces the scan over source_patches that matched each slice by equality with a
+  dictionary keyed on slice objects, and the patch lookup no longer resolves, so every slice
+  falls through to the raw source and patches are never applied. The reference repair restores
+  the equality scan with its for/else fallback. The specification names the lookup mechanism, and
+  the correction changes the local data structure used to match patches to slices, which is
+  ALGORITHM under rule 6; confidence is medium because the packet shows the changed lookup but
+  not the runtime mechanism by which it fails to match.

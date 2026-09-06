@@ -1,0 +1,15 @@
+case_id: SWESMITH_016
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff moves "expr_stmt = containing_leaf.search_ancestor('expr_stmt')" in
+  BackslashNode.__init__ below the "if expr_stmt is not None" branch that reads it, so the local
+  is used before it is bound, and relocates self.parent to the top. The reference repair puts
+  the binding back ahead of its use. The correction is the placement of a local initialization
+  relative to its consumer, which the PEP 8 normalizer tests over backslash continuations
+  exercise.

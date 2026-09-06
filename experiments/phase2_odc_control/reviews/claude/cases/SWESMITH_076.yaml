@@ -1,0 +1,14 @@
+case_id: SWESMITH_076
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff hoists the fallback "return None, additional_prefix, 0" to the first line of
+  _close_fstring_if_necessary, making the loop that scans fstring_stack for a node to close
+  unreachable, so the tokenizer never closes an f-string. Every name it returns is a parameter,
+  so nothing is unbound; what is lost is the search itself. The reference repair moves the
+  fallback back below the loop, which is a control-flow correction inside one function.

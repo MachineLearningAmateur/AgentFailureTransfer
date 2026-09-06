@@ -1,0 +1,17 @@
+case_id: SWESMITH_044
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites tokenFeatures with an entirely different feature computation: the
+  token_clean and token_abbrev normalization regexes are gone, and the original keys such as
+  abbrev, word, trailing.zeros, length, directional and street_name are replaced by a different
+  token.* set derived from the raw token. The reference repair restores the original derivation.
+  Because the emitted feature names are what the downstream tagger consumes, INTERFACE is
+  arguable, and the total loss of parsing makes FUNCTION arguable, but the packet shows one
+  function's computation being replaced in place, so rule 6 selects ALGORITHM.

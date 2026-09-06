@@ -1,0 +1,17 @@
+case_id: SWESMITH_097
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff restructures _container_getitem and loses the "except ValueError" arm that wrapped
+  the subscript operation and re-raised it as AstroidValueError, keeping only an IndexError arm
+  for constant indices and an AstroidTypeError arm around _infer_slice. A zero-step slice
+  therefore lets the interpreter's ValueError escape, which is the single failing test and the
+  behaviour the specification describes. The reference repair restores the ValueError, IndexError
+  and TypeError handlers. The wider rewrite of node construction makes ALGORITHM arguable, but
+  only the exception handling changes observable behaviour, so rule 5 selects CHECKING.

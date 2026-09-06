@@ -1,0 +1,18 @@
+case_id: SWESMITH_074
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff reverses the operands of two "%" formatting expressions, so the message and its
+  argument are swapped when raising FileNotFoundError and the bad-error-data exception, and it
+  changes the fd-closing pairing from "zip([2] + spass_fds, spass_fds + [max_fd])" to
+  "[max_fd] + spass_fds", which makes closerange span the wrong intervals and closes descriptors
+  that were meant to be passed through. The reference repair restores all three expressions. Each
+  correction is a local implementation fix to an expression, with no guard, binding or component
+  boundary involved.

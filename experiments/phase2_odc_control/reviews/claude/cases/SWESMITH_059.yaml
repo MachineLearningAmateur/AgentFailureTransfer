@@ -1,0 +1,16 @@
+case_id: SWESMITH_059
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff swaps the bodies of the "elif not segment.segments" and "else" branches in
+  _iter_templated_patches, leaving both conditions untouched: childless raw segments now run the
+  deep traversal while segments that do have children hit the early return. The reference repair
+  puts each body back on its own branch. Since the effect is that the abort fires under the wrong
+  condition, CHECKING is arguable, but no condition was altered and the correction restores the
+  recursion's control flow, so rule 6 selects ALGORITHM.

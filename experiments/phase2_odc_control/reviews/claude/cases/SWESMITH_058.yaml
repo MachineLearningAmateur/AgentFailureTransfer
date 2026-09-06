@@ -1,0 +1,18 @@
+case_id: SWESMITH_058
+odc_defect_type: INTERFACE
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff moves Literal from the typing import list to typing_extensions and drops the
+  ParamSpec import, so type_adapter.py resolves those names against different modules than the
+  rest of the package; it also removes the module-level P and TypeAdapterT definitions and
+  relocates a _frame_depth decorator. The reference repair restores the original import sources
+  and definitions. The specification attributes the failure to where Literal is imported from,
+  and the dropped module-level bindings make ASSIGNMENT arguable, so rule 3 selects INTERFACE for
+  the module dependency contract.

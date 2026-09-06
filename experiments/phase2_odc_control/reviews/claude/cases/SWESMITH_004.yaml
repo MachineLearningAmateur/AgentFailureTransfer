@@ -1,0 +1,15 @@
+case_id: SWESMITH_004
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff makes fetch_data_files swallow per-file download exceptions into warn_and_log,
+  dropping the error accumulator and the "if error: raise RuntimeError(...)" post-condition.
+  The reference repair restores exactly that accumulation and terminal check, and the
+  specification and failing download-failure test both describe the missing RuntimeError.
+  The correction is checking logic over the outcome of the downloads.

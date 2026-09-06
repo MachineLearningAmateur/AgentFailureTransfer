@@ -1,0 +1,16 @@
+case_id: SWESMITH_033
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff passes a bare "jobs" to self._sync_import where the working code reads
+  kwargs.get("jobs"), so the argument refers to a name the method never binds, and it also
+  deletes the "if no_download: self.ignore_outs()" branch. The reference repair restores both.
+  The operative correction is supplying the argument its value from kwargs, an internal call
+  rather than a component boundary; the removed no_download branch makes CHECKING arguable, so
+  rule 4 selects ASSIGNMENT.

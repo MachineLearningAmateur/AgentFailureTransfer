@@ -1,0 +1,17 @@
+case_id: SWESMITH_091
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff rewrites Scope.scope_ref_count to tally over scope.sources rather than
+  scope.selected_sources, seeds unreferenced scopes with explicit zeros, and returns a plain dict
+  instead of the defaultdict callers rely on, so reference counts no longer reflect how often a
+  CTE is actually selected and eliminate_ctes stops inlining. The reference repair restores the
+  original tally. The specification names the sources versus selected_sources swap, and the
+  correction is the counting logic inside one method.

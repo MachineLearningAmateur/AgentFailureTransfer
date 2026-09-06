@@ -1,0 +1,18 @@
+case_id: SWESMITH_068
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff removes the --test-missing feature of conan create in full: the -tm subparser
+  argument, the BINARY_BUILD import, the incompatibility check against --test-folder="", and the
+  branch that clears test_conanfile_path when the root binary was not built from source. The
+  reference repair restores all four. Rule 3 was considered because the flag is user-facing CLI
+  surface and rule 5 because the deleted skip logic and the raised ConanException are conditions,
+  but nothing is left mismatched and an entire documented option and its effect are gone, so rule
+  7 selects FUNCTION.

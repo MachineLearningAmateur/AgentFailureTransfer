@@ -1,0 +1,18 @@
+case_id: SWESMITH_010
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+  - TEST_FAILURE_03
+reasoning_summary: >-
+  The bug diff removes "if self._selects: self._select_into = True" from QueryBuilder.into, so
+  the flag that makes the builder emit SELECT ... INTO is never set; the reference repair
+  restores it. All three failing tests are SelectIntoTests and the specification names the unset
+  _select_into flag directly. The same edit also drops the AttributeError guard on a repeated
+  into call, which makes CHECKING plausible, but that guard is not what the failing tests
+  exercise, so rule 4 selects ASSIGNMENT.

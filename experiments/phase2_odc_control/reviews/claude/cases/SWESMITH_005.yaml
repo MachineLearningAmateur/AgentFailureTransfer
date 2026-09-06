@@ -1,0 +1,17 @@
+case_id: SWESMITH_005
+odc_defect_type: ALGORITHM
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff replaces the hash-combination scheme in combine_hashes_lists: it sorts the outer
+  item list instead of sorting within each item, drops the "--" element separator and the bytes
+  encoding, folds the prefix into the hashed input, and returns the bare digest instead of
+  prefix + digest. The reference repair restores the original computation. Both failing tests
+  compare against fixed expected digests and the specification reports inconsistent hash output,
+  so the correction is a local implementation fix to the computation itself.

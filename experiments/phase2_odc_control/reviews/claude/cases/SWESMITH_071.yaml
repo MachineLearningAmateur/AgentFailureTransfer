@@ -1,0 +1,17 @@
+case_id: SWESMITH_071
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff rewrites Optional.__init__ so that self.key is set to the raw schema object and is
+  assigned unconditionally, where the working code set "self.key = str(self._schema)" only when a
+  default was supplied; the key that dictionary validation matches against when filling in
+  defaults is therefore wrong, which is the missing-default behaviour in the specification and
+  both failing tests. The reference repair restores that assignment. The same edit drops the
+  TypeError guard on non-comparable schemas, which makes CHECKING arguable, so rule 4 decides.

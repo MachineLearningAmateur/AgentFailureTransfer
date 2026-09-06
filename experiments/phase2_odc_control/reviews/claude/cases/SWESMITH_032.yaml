@@ -1,0 +1,16 @@
+case_id: SWESMITH_032
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff weakens both validations in parse_address: the exactly-one-colon test
+  "len(words) != 2" becomes a mere "':' not in address" with an rsplit, and the port range test
+  "not 0 < port < 2**16" becomes "port < 0 or port > 65535", which admits port zero. The two
+  failing tests are precisely the port-zero and too-many-colons cases, and the reference repair
+  restores both conditions. The correction is validation logic on the input.

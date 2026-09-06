@@ -1,0 +1,14 @@
+case_id: SWESMITH_002
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff strips the whole embed_font branch from to_svg, which is an optional but
+  self-contained SVG export capability, together with the font_style derivation it depends on.
+  The reference repair reinstates both blocks unchanged. The missing font_style assignment alone
+  would suggest ASSIGNMENT under rule 4, but the bulk of the correction restores an absent
+  feature rather than a single value, so rule 7 selects FUNCTION.

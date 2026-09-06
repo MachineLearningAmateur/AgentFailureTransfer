@@ -1,0 +1,16 @@
+case_id: SWESMITH_081
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_02
+reasoning_summary: >-
+  The bug diff deletes the "if len(chunk_size) == 0: raise InvalidChunkSize(chunk_size)"
+  validation from ChunkedReader, so an empty chunk-size field passes the hex-digit test
+  vacuously and reaches int(chunk_size, 16). The reference repair restores exactly that check and
+  nothing else. Both failing cases are malformed chunked requests, so the correction is
+  validation of the input before use.

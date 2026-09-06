@@ -1,0 +1,15 @@
+case_id: SWESMITH_066
+odc_defect_type: ASSIGNMENT
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff hoists "return [k for k, c in seen_keys.items() if c > 1]" to the first line of
+  Request.duplicate_params and pushes the "seen_keys = collections.defaultdict(int)"
+  initialization below it, so the name is unbound when the return evaluates it and the counting
+  loop is unreachable. The reference repair restores the original order. Treating the permuted
+  body as control flow makes ALGORITHM arguable, but the operative correction is binding the
+  accumulator before it is read, so rule 4 selects ASSIGNMENT.

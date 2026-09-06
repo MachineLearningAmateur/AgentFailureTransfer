@@ -1,0 +1,14 @@
+case_id: SWESMITH_001
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff deletes the entire distance method of OptimalStringAlignment, leaving the
+  class body as pass, so the public capability is absent rather than miscomputed. The
+  reference repair reinstates the whole method. ALGORITHM is plausible because the restored
+  body is a dynamic-programming routine, but this is a wholesale capability loss rather than
+  an ordinary local implementation mistake, so rule 7 selects FUNCTION.

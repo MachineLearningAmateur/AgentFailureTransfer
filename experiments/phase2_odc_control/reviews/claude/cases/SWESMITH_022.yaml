@@ -1,0 +1,18 @@
+case_id: SWESMITH_022
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: LOW
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - CODE_CONTEXT_01
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff touches only test.py, replacing the body of test_parse_time with a different set
+  of inputs and stricter expectations, including an assertRaises(ValueError) and exact SimpleTZ
+  results that the unchanged parse_time does not satisfy; no library module is modified and the
+  sole failing test is the rewritten method itself. The reference repair restores the original
+  timestamp list and its "is not None" assertions, so the correction is to assertion and
+  expected-value logic. Rule 5 selects CHECKING over reading the changed expected values as
+  ASSIGNMENT; confidence is low because the defective artifact is the test rather than the
+  library behaviour the specification describes.

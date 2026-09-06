@@ -1,0 +1,18 @@
+case_id: SWESMITH_084
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - TEST_FAILURE_01
+  - TEST_FAILURE_03
+  - TEST_FAILURE_04
+reasoning_summary: >-
+  The bug diff strips most of validate_access_token_request: the transport-security and mandatory
+  parameter checks, the missing resource owner and missing verifier guards, the check_request_token
+  format test, the timestamp and nonce validation, and the validate_client_key and
+  validate_request_token calls with their dummy-credential fallbacks. Only the verifier format
+  test survives, and the docstring is left as a stray expression mid-body. The reference repair
+  restores the validation sequence, and the failing tests name the individual checks, so the
+  correction is validation logic.

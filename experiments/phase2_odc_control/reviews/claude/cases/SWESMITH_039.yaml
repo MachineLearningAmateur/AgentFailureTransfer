@@ -1,0 +1,19 @@
+case_id: SWESMITH_039
+odc_defect_type: ALGORITHM
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+  - TEST_FAILURE_06
+  - TEST_FAILURE_07
+reasoning_summary: >-
+  The bug diff corrupts the byte-level decoding throughout decode.py: songpos and pitchwheel
+  reverse which data byte is shifted and add an off-by-one to MIN_PITCHWHEEL, the channel nibble
+  becomes "status_byte | 0xf0" and later ">> 4", and the payload slice becomes msg_bytes[:-1]
+  instead of [1:]. The reference repair restores each expression. Rule 5 was considered because
+  the sysex end test and the "if check" flag are also inverted, and rule 4 because each wrong
+  expression sits in an assignment, but the defect is systematically wrong bit manipulation
+  across the decode procedure, so rule 6 selects ALGORITHM.

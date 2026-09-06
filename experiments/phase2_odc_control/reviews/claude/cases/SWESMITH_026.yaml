@@ -1,0 +1,15 @@
+case_id: SWESMITH_026
+odc_defect_type: CHECKING
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff replaces the bounds check in millfn, which raised NumOutOfRangeError for
+  "ind > len(mill) - 1", with a silent clamp that returns mill[-1] for any out-of-range index.
+  The reference repair restores the range check and the exception. The correction is validation
+  of an index before use, which is exactly what the specification and test_millfn describe; the
+  incidentally dropped "ind: int = 0" default is secondary.

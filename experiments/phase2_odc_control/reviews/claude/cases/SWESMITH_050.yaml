@@ -1,0 +1,17 @@
+case_id: SWESMITH_050
+odc_defect_type: FUNCTION
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff removes the pkglist capability from the export command: the MultiPackagesList and
+  PackagesList import, the construction of the exported package list, the dict return carrying
+  both pkglist and reference, and the registered "pkglist" formatter, with json_export narrowed
+  to take a bare ref. The reference repair restores all of it. Because the command return value
+  and its formatters were changed in lockstep there is no residual contract mismatch, so
+  INTERFACE is arguable but secondary; an output capability of the command is simply gone, and
+  rule 7 selects FUNCTION.

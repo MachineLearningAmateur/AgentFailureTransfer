@@ -1,0 +1,15 @@
+case_id: SWESMITH_019
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites decorated_main so that _run_hydra is called without the args_parser
+  argument the working code passes, and reads args.config_file in place of
+  args.experimental_rerun. Both are contract mismatches at a call boundary rather than wrong
+  computations inside the function, which fits the breadth of the failure across 105 tests that
+  exercise ordinary runs. The reference repair restores the argument and the original attribute.

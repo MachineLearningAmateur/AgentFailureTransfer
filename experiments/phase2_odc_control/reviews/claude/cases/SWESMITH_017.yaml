@@ -1,0 +1,17 @@
+case_id: SWESMITH_017
+odc_defect_type: INTERFACE
+taxonomy_fit: DIRECT
+pattern_confidence: HIGH
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff makes get_var_names compile the regex and hand a re.Pattern object to
+  Series.str.match, and correspondingly weakens that API's "pat: str" annotation and docstring in
+  the strings accessor. The pyarrow-backed match implementation only accepts a string pattern, so
+  the call raises "expected string or bytes-like object, got 're.Pattern'" as the specification
+  reports. The reference repair passes the regex string again and restores the declared
+  parameter type. The correction is the argument contract between the reshape module and the
+  string accessor API.

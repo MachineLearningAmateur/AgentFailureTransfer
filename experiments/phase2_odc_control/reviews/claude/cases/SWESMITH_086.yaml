@@ -1,0 +1,17 @@
+case_id: SWESMITH_086
+odc_defect_type: CHECKING
+taxonomy_fit: AMBIGUOUS
+pattern_confidence: MEDIUM
+supporting_evidence_ids:
+  - BUG_DIFF
+  - REFERENCE_REPAIR
+  - SPECIFICATION
+  - TEST_FAILURE_01
+reasoning_summary: >-
+  The bug diff rewrites the file-type dispatch in get_dependencies to test FileType.VIRTUAL_ENV,
+  FileType.REQUIREMENTS and FileType.PYTHON instead of VIRTUAL_ENVIRONMENT, REQUIREMENTS_TXT,
+  POETRY_LOCK, PIPENV_LOCK and PYPROJECT_TOML, and drops the "if not f.file_type" early return, so
+  no supported manifest is recognised and scans come back empty. The reference repair restores the
+  original conditions and grouping. Because the names tested belong to another module's FileType
+  enum, INTERFACE is arguable, but no signature or protocol changed and the correction is the
+  dispatch condition set inside one function, so rule 5 selects CHECKING.
