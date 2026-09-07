@@ -1,0 +1,5 @@
+generation_family,n,exact_agreements,agreement_rate,wilson_ci_low,wilson_ci_high,cohens_kappa_or_none,cohens_kappa_defined_rule,claude_fit_DIRECT,claude_fit_AMBIGUOUS,claude_fit_OUT_OF_SCOPE,claude_unclassifiable,codex_fit_DIRECT,codex_fit_AMBIGUOUS,codex_fit_OUT_OF_SCOPE,codex_unclassifiable,note
+llm,36,23,0.6388888889,0.4757507549,0.7752440705,0.5320000000,0.5320000000,15,21,0,0,28,8,0,0,
+mirror,28,11,0.3928571429,0.2356568654,0.5759095570,0.2145214521,0.2145214521,8,20,0,0,21,7,0,0,
+procedural,34,26,0.7647058824,0.6000386208,0.8756301447,0.6304347826,0.6304347826,20,14,0,0,30,4,0,0,
+combine,2,0,0.0000000000,0.0000000000,0.6576197725,0.0000000000,0.0000000000,0,2,0,0,0,2,0,0,no substantive claim: n = 2 carries no informative agreement estimate

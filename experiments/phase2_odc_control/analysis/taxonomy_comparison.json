@@ -1,0 +1,1223 @@
+{
+  "case_id_universe": "STUDY",
+  "generated_by": "scripts/analyze_phase2_odc.py",
+  "generation_family": [
+    {
+      "agreement_rate": 0.6388888888888888,
+      "case_ids": [
+        "SWESMITH_004",
+        "SWESMITH_005",
+        "SWESMITH_007",
+        "SWESMITH_008",
+        "SWESMITH_009",
+        "SWESMITH_010",
+        "SWESMITH_015",
+        "SWESMITH_018",
+        "SWESMITH_019",
+        "SWESMITH_021",
+        "SWESMITH_022",
+        "SWESMITH_026",
+        "SWESMITH_031",
+        "SWESMITH_032",
+        "SWESMITH_041",
+        "SWESMITH_043",
+        "SWESMITH_044",
+        "SWESMITH_047",
+        "SWESMITH_048",
+        "SWESMITH_052",
+        "SWESMITH_057",
+        "SWESMITH_060",
+        "SWESMITH_067",
+        "SWESMITH_069",
+        "SWESMITH_070",
+        "SWESMITH_071",
+        "SWESMITH_073",
+        "SWESMITH_075",
+        "SWESMITH_078",
+        "SWESMITH_085",
+        "SWESMITH_086",
+        "SWESMITH_091",
+        "SWESMITH_092",
+        "SWESMITH_097",
+        "SWESMITH_098",
+        "SWESMITH_099"
+      ],
+      "cohens_kappa_defined_rule": 0.5319999999999999,
+      "cohens_kappa_or_none": 0.5319999999999999,
+      "exact_agreements": 23,
+      "generation_family": "llm",
+      "n": 36,
+      "note": "",
+      "per_reviewer": {
+        "claude": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 21,
+            "DIRECT": 15,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        },
+        "codex": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 8,
+            "DIRECT": 28,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        }
+      },
+      "wilson_ci": [
+        0.4757507548555804,
+        0.7752440705348462
+      ]
+    },
+    {
+      "agreement_rate": 0.39285714285714285,
+      "case_ids": [
+        "SWESMITH_003",
+        "SWESMITH_011",
+        "SWESMITH_013",
+        "SWESMITH_017",
+        "SWESMITH_020",
+        "SWESMITH_025",
+        "SWESMITH_029",
+        "SWESMITH_033",
+        "SWESMITH_034",
+        "SWESMITH_036",
+        "SWESMITH_040",
+        "SWESMITH_045",
+        "SWESMITH_046",
+        "SWESMITH_050",
+        "SWESMITH_053",
+        "SWESMITH_056",
+        "SWESMITH_058",
+        "SWESMITH_065",
+        "SWESMITH_068",
+        "SWESMITH_072",
+        "SWESMITH_081",
+        "SWESMITH_082",
+        "SWESMITH_083",
+        "SWESMITH_088",
+        "SWESMITH_093",
+        "SWESMITH_094",
+        "SWESMITH_096",
+        "SWESMITH_100"
+      ],
+      "cohens_kappa_defined_rule": 0.2145214521452145,
+      "cohens_kappa_or_none": 0.2145214521452145,
+      "exact_agreements": 11,
+      "generation_family": "mirror",
+      "n": 28,
+      "note": "",
+      "per_reviewer": {
+        "claude": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 20,
+            "DIRECT": 8,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        },
+        "codex": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 7,
+            "DIRECT": 21,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        }
+      },
+      "wilson_ci": [
+        0.2356568654157959,
+        0.5759095570340281
+      ]
+    },
+    {
+      "agreement_rate": 0.7647058823529411,
+      "case_ids": [
+        "SWESMITH_001",
+        "SWESMITH_002",
+        "SWESMITH_006",
+        "SWESMITH_012",
+        "SWESMITH_016",
+        "SWESMITH_023",
+        "SWESMITH_024",
+        "SWESMITH_027",
+        "SWESMITH_028",
+        "SWESMITH_030",
+        "SWESMITH_035",
+        "SWESMITH_037",
+        "SWESMITH_038",
+        "SWESMITH_042",
+        "SWESMITH_049",
+        "SWESMITH_051",
+        "SWESMITH_054",
+        "SWESMITH_055",
+        "SWESMITH_059",
+        "SWESMITH_061",
+        "SWESMITH_062",
+        "SWESMITH_063",
+        "SWESMITH_064",
+        "SWESMITH_066",
+        "SWESMITH_074",
+        "SWESMITH_076",
+        "SWESMITH_077",
+        "SWESMITH_079",
+        "SWESMITH_080",
+        "SWESMITH_084",
+        "SWESMITH_087",
+        "SWESMITH_089",
+        "SWESMITH_090",
+        "SWESMITH_095"
+      ],
+      "cohens_kappa_defined_rule": 0.6304347826086956,
+      "cohens_kappa_or_none": 0.6304347826086956,
+      "exact_agreements": 26,
+      "generation_family": "procedural",
+      "n": 34,
+      "note": "",
+      "per_reviewer": {
+        "claude": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 14,
+            "DIRECT": 20,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        },
+        "codex": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 4,
+            "DIRECT": 30,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        }
+      },
+      "wilson_ci": [
+        0.6000386207746361,
+        0.8756301446736042
+      ]
+    },
+    {
+      "agreement_rate": 0.0,
+      "case_ids": [
+        "SWESMITH_014",
+        "SWESMITH_039"
+      ],
+      "cohens_kappa_defined_rule": 0.0,
+      "cohens_kappa_or_none": 0.0,
+      "exact_agreements": 0,
+      "generation_family": "combine",
+      "n": 2,
+      "note": "no substantive claim: n = 2 carries no informative agreement estimate",
+      "per_reviewer": {
+        "claude": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 2,
+            "DIRECT": 0,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        },
+        "codex": {
+          "taxonomy_fit_distribution": {
+            "AMBIGUOUS": 2,
+            "DIRECT": 0,
+            "OUT_OF_SCOPE": 0
+          },
+          "unclassifiable_count": 0
+        }
+      },
+      "wilson_ci": [
+        0.0,
+        0.6576197724933469
+      ]
+    }
+  ],
+  "interpretation": {
+    "conditional_reading": "Read through the pre-registered interpretation matrix and the thresholds stated below, the observed pattern corresponds to Outcome A. The reading is conditional on those thresholds; the numbers are reported in full regardless of it.",
+    "inputs": {
+      "agreement_difference": 0.19,
+      "agreement_difference_ci_excludes_zero": true,
+      "agreement_difference_ci_high": 0.33,
+      "agreement_difference_ci_low": 0.04,
+      "mcnemar_exact_p_value": 0.018337087779101986,
+      "mcnemar_p_below_threshold": true,
+      "odc_agreement_rate": 0.6,
+      "odc_procedural_gap": -0.249554367201426,
+      "phase1_family_agreement_rate": 0.41,
+      "phase1_procedural_gap": 0.3538324420677361
+    },
+    "interpretation": "Phase 1's poor transfer was substantially attributable to a construct mismatch between an agent-process taxonomy and static synthetic bugs.",
+    "not_established": [
+      "that ODC is ground truth",
+      "that higher inter-reviewer agreement means greater real-world realism",
+      "that SWE-smith is good or bad overall",
+      "that procedural mutations cause poor downstream model performance",
+      "that ODC categories are the correct training-data distribution",
+      "that SWE-smith lacks a particular real-agent failure family",
+      "that training utility equals failure realism",
+      "that the AIDev taxonomy is invalid for its original purpose"
+    ],
+    "outcome": "A",
+    "outcome_headline": "ODC agreement much higher; procedural gap narrows substantially",
+    "permitted_procedural_phrasing": "the procedural agreement gap substantially narrowed under ODC.",
+    "procedural_phrasing_caveat": "The ODC procedural gap is not positive: the procedural subset did not show lower agreement than the nonprocedural subset under ODC. Of the two phrasings the protocol permits, only the one above is defensible here; it should be read as 'no procedural deficit remained', not as a claim that a deficit shrank by a measured amount.",
+    "rule_applied": [
+      "Let d = ODC exact agreement rate - Phase 1 family exact agreement rate, and let each taxonomy's procedural gap be its nonprocedural agreement rate minus its procedural agreement rate.",
+      "'Much higher' requires ALL THREE of: d >= 0.15; the paired bootstrap 95% interval for d excluding 0; and the exact two-sided McNemar p-value below 0.05. Any one of them failing is not 'much higher'.",
+      "'Worse' requires ALL THREE of: d <= -0.10; the paired bootstrap 95% interval for d excluding 0; and the exact two-sided McNemar p-value below 0.05.",
+      "Anything else is read as 'near Phase 1 levels' (Outcome C). C is the default: an inconclusive result is never promoted to A, B or D.",
+      "Within 'much higher', the procedural gap decides A from B. The gap counts as substantially narrowed when the ODC gap is below 0.10 AND is at most half the Phase 1 gap; when the Phase 1 gap was already below 0.10 there is no substantial gap to narrow, and an ODC gap below 0.10 counts as narrowed. Otherwise the reading is B.",
+      "The same 'substantially narrowed' test selects which of the two permitted procedural phrasings is used, so the phrasing and the outcome letter can never disagree with each other.",
+      "These thresholds were stated before the data were seen. They encode no preferred outcome: they are symmetric in form, and the inconclusive reading is the default in both directions.",
+      "the ODC gap (-0.2496) counts as substantially narrowed when it is at or below 0.1 and at or below 0.5 x the Phase 1 gap (0.3538)"
+    ],
+    "tests": {
+      "much_higher": true,
+      "procedural_gap_substantially_narrowed": true,
+      "worse": false
+    },
+    "thresholds": {
+      "gap_narrowed_fraction": 0.5,
+      "material_decrease_in_agreement": 0.1,
+      "material_increase_in_agreement": 0.15,
+      "require_bootstrap_ci_to_exclude_zero": true,
+      "require_mcnemar_exact_p_below": 0.05,
+      "small_procedural_gap": 0.1
+    }
+  },
+  "mcnemar": {
+    "primary_family": {
+      "baseline_agreements": 41,
+      "baseline_rate": 0.41,
+      "comparison_agreements": 60,
+      "comparison_rate": 0.6,
+      "continuity_corrected_chi_square": {
+        "degrees_of_freedom": 1,
+        "method": "continuity-corrected McNemar chi-square, (|b - c| - 1)^2 / (b + c)",
+        "p_value_two_sided": 0.019108863644740508,
+        "statistic": 5.491525423728813,
+        "status": "REFERENCE ONLY: a large-sample approximation reported alongside the exact test, which is the pre-registered result"
+      },
+      "discordant_b_phase1_only": 20,
+      "discordant_c_odc_only": 39,
+      "discordant_pairs": 59,
+      "interpretation": "exploratory paired comparison of two measuring instruments on the same cases; not causal evidence and not a confirmatory test",
+      "label": "Phase 1 broad-family agreement vs ODC agreement (primary)",
+      "p_value_method": "exact McNemar (scipy.stats.binomtest, two-sided)",
+      "p_value_note": "two-sided exact binomial test on the discordant pairs under p = 1/2",
+      "p_value_two_sided": 0.018337087779101986,
+      "paired_absolute_difference": 0.19,
+      "table": {
+        "a": 21,
+        "b": 20,
+        "c": 39,
+        "d": 20,
+        "n": 100
+      },
+      "table_layout": "rows = Phase 1 agree / Phase 1 disagree; columns = ODC agree / ODC disagree; a = both agree, b = Phase 1 only, c = ODC only, d = neither"
+    },
+    "secondary_fine": {
+      "baseline_agreements": 41,
+      "baseline_rate": 0.41,
+      "comparison_agreements": 60,
+      "comparison_rate": 0.6,
+      "continuity_corrected_chi_square": {
+        "degrees_of_freedom": 1,
+        "method": "continuity-corrected McNemar chi-square, (|b - c| - 1)^2 / (b + c)",
+        "p_value_two_sided": 0.019108863644740508,
+        "statistic": 5.491525423728813,
+        "status": "REFERENCE ONLY: a large-sample approximation reported alongside the exact test, which is the pre-registered result"
+      },
+      "discordant_b_phase1_only": 20,
+      "discordant_c_odc_only": 39,
+      "discordant_pairs": 59,
+      "interpretation": "exploratory paired comparison of two measuring instruments on the same cases; not causal evidence and not a confirmatory test",
+      "label": "Phase 1 fine-label agreement vs ODC agreement (secondary)",
+      "p_value_method": "exact McNemar (scipy.stats.binomtest, two-sided)",
+      "p_value_note": "two-sided exact binomial test on the discordant pairs under p = 1/2",
+      "p_value_two_sided": 0.018337087779101986,
+      "paired_absolute_difference": 0.19,
+      "table": {
+        "a": 21,
+        "b": 20,
+        "c": 39,
+        "d": 20,
+        "n": 100
+      },
+      "table_layout": "rows = Phase 1 agree / Phase 1 disagree; columns = ODC agree / ODC disagree; a = both agree, b = Phase 1 only, c = ODC only, d = neither"
+    }
+  },
+  "n_cases": 100,
+  "odc_headline": {
+    "agreement_rate": 0.6,
+    "agreement_rate_4dp": 0.6,
+    "ci_method": "Wilson score interval (95%)",
+    "cohens_kappa": 0.5131450827653359,
+    "cohens_kappa_4dp": 0.5131,
+    "cohens_kappa_or_none": 0.5131450827653359,
+    "exact_agreements": 60,
+    "n": 100,
+    "wilson_ci": [
+      0.5020025867910618,
+      0.6905987135675411
+    ]
+  },
+  "paired_bootstrap": {
+    "agreement_difference": {
+      "bootstrap_mean": 0.190136,
+      "ci_high": 0.33,
+      "ci_low": 0.04,
+      "definition": "ODC exact agreement - Phase 1 family exact agreement",
+      "point_estimate": 0.19,
+      "valid_replicates": 10000
+    },
+    "ci_method": "percentile bootstrap (95%), 2.5th and 97.5th",
+    "confidence": 0.95,
+    "kappa_difference": {
+      "bootstrap_mean": 0.27072215946221445,
+      "ci_high": 0.425543329769635,
+      "ci_low": 0.11180145178516294,
+      "definition": "ODC Cohen's kappa - Phase 1 family Cohen's kappa",
+      "point_estimate": 0.27111013929154354,
+      "undefined_replicates": 0,
+      "undefined_replicates_odc_side": 0,
+      "undefined_replicates_phase1_side": 0,
+      "undefined_rule": "a replicate whose kappa is undefined on either side (expected agreement exactly 1.0) is counted here and excluded from the interval; it is never replaced by zero",
+      "valid_replicates": 10000
+    },
+    "n_cases": 100,
+    "replicates": 10000,
+    "resampling": "case ids resampled with replacement; all four labels of a case (Phase 1 claude, Phase 1 codex, ODC claude, ODC codex) preserved together, so the comparison stays paired",
+    "seed": 20260906
+  },
+  "per_case_indicators": {
+    "case_ids": [
+      "SWESMITH_001",
+      "SWESMITH_002",
+      "SWESMITH_003",
+      "SWESMITH_004",
+      "SWESMITH_005",
+      "SWESMITH_006",
+      "SWESMITH_007",
+      "SWESMITH_008",
+      "SWESMITH_009",
+      "SWESMITH_010",
+      "SWESMITH_011",
+      "SWESMITH_012",
+      "SWESMITH_013",
+      "SWESMITH_014",
+      "SWESMITH_015",
+      "SWESMITH_016",
+      "SWESMITH_017",
+      "SWESMITH_018",
+      "SWESMITH_019",
+      "SWESMITH_020",
+      "SWESMITH_021",
+      "SWESMITH_022",
+      "SWESMITH_023",
+      "SWESMITH_024",
+      "SWESMITH_025",
+      "SWESMITH_026",
+      "SWESMITH_027",
+      "SWESMITH_028",
+      "SWESMITH_029",
+      "SWESMITH_030",
+      "SWESMITH_031",
+      "SWESMITH_032",
+      "SWESMITH_033",
+      "SWESMITH_034",
+      "SWESMITH_035",
+      "SWESMITH_036",
+      "SWESMITH_037",
+      "SWESMITH_038",
+      "SWESMITH_039",
+      "SWESMITH_040",
+      "SWESMITH_041",
+      "SWESMITH_042",
+      "SWESMITH_043",
+      "SWESMITH_044",
+      "SWESMITH_045",
+      "SWESMITH_046",
+      "SWESMITH_047",
+      "SWESMITH_048",
+      "SWESMITH_049",
+      "SWESMITH_050",
+      "SWESMITH_051",
+      "SWESMITH_052",
+      "SWESMITH_053",
+      "SWESMITH_054",
+      "SWESMITH_055",
+      "SWESMITH_056",
+      "SWESMITH_057",
+      "SWESMITH_058",
+      "SWESMITH_059",
+      "SWESMITH_060",
+      "SWESMITH_061",
+      "SWESMITH_062",
+      "SWESMITH_063",
+      "SWESMITH_064",
+      "SWESMITH_065",
+      "SWESMITH_066",
+      "SWESMITH_067",
+      "SWESMITH_068",
+      "SWESMITH_069",
+      "SWESMITH_070",
+      "SWESMITH_071",
+      "SWESMITH_072",
+      "SWESMITH_073",
+      "SWESMITH_074",
+      "SWESMITH_075",
+      "SWESMITH_076",
+      "SWESMITH_077",
+      "SWESMITH_078",
+      "SWESMITH_079",
+      "SWESMITH_080",
+      "SWESMITH_081",
+      "SWESMITH_082",
+      "SWESMITH_083",
+      "SWESMITH_084",
+      "SWESMITH_085",
+      "SWESMITH_086",
+      "SWESMITH_087",
+      "SWESMITH_088",
+      "SWESMITH_089",
+      "SWESMITH_090",
+      "SWESMITH_091",
+      "SWESMITH_092",
+      "SWESMITH_093",
+      "SWESMITH_094",
+      "SWESMITH_095",
+      "SWESMITH_096",
+      "SWESMITH_097",
+      "SWESMITH_098",
+      "SWESMITH_099",
+      "SWESMITH_100"
+    ],
+    "note": "1 = the two reviewers chose the same label for that case under that taxonomy. Emitted so the paired table can be rebuilt.",
+    "odc_agree": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "phase1_family_agree": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "phase1_fine_agree": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ]
+  },
+  "phase": "phase2_odc_control",
+  "phase1": {
+    "family": {
+      "agreement_rate": 0.41,
+      "agreement_rate_4dp": 0.41,
+      "cohens_kappa": 0.24203494347379234,
+      "cohens_kappa_4dp": 0.242,
+      "exact_agreements": 41,
+      "n": 100
+    },
+    "fine": {
+      "agreement_rate": 0.41,
+      "agreement_rate_4dp": 0.41,
+      "cohens_kappa": 0.25354251012145745,
+      "cohens_kappa_4dp": 0.2535,
+      "exact_agreements": 41,
+      "n": 100
+    },
+    "source": "the sealed Phase 1 SWE-smith reviewer labels, mapped through the frozen family mapping; recomputed here, never copied"
+  },
+  "phase1_crosscheck": {
+    "agrees": true,
+    "checkpoint_file": "headline_results.json",
+    "checkpoint_file_sha256": "11f0bc45cd954a5f92e5cecd2b9298d8796ed7527022424e7232b831b6983f5b",
+    "checks": [
+      {
+        "checkpoint_key": "swesmith.family",
+        "exact_agreements_agree": true,
+        "kappa_agrees_within_tolerance": true,
+        "level": "family",
+        "n_agrees": true,
+        "recomputed_agreement_rate": 0.41,
+        "recomputed_cohens_kappa": 0.24203494347379234,
+        "recomputed_exact_agreements": 41,
+        "recomputed_n": 100
+      },
+      {
+        "checkpoint_key": "swesmith.fine_grained",
+        "exact_agreements_agree": true,
+        "kappa_agrees_within_tolerance": true,
+        "level": "fine",
+        "n_agrees": true,
+        "recomputed_agreement_rate": 0.41,
+        "recomputed_cohens_kappa": 0.25354251012145745,
+        "recomputed_exact_agreements": 41,
+        "recomputed_n": 100
+      }
+    ],
+    "kappa_tolerance": 0.0005,
+    "note": "The frozen Phase 1 aggregate file is a validation checkpoint only. Its recorded values are compared against the recomputation and are not copied into any Phase 2 artifact; every Phase 1 number reported below is recomputed from the sealed per-case labels.",
+    "performed": true,
+    "problems": []
+  },
+  "phase1_unmodified": "No Phase 1 reviewer classification was modified during Phase 2.",
+  "procedural": [
+    {
+      "comparison": "procedural vs nonprocedural",
+      "fisher_exact": {
+        "alternative": "two-sided",
+        "implementation": "scipy.stats.fisher_exact",
+        "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test",
+        "odds_ratio": 0.18979591836734694,
+        "p_value": 0.0006323199514432076
+      },
+      "gap_group_b_minus_group_a": 0.3538324420677361,
+      "group_a": "procedural",
+      "group_a_agreements": 6,
+      "group_a_rate": 0.17647058823529413,
+      "group_a_wilson_ci": [
+        0.0834896904537232,
+        0.33513737399842747
+      ],
+      "group_b": "nonprocedural",
+      "group_b_agreements": 35,
+      "group_b_definition": "method_family in {llm, mirror, combine} (the frozen Phase 1B grouping)",
+      "group_b_rate": 0.5303030303030303,
+      "group_b_wilson_ci": [
+        0.41157685726598636,
+        0.6456957150362233
+      ],
+      "n_group_a": 34,
+      "n_group_b": 66,
+      "odds_ratio": {
+        "ci_high": 0.5187852780474497,
+        "ci_low": 0.06943622371953645,
+        "ci_method": "Woolf log odds ratio interval",
+        "odds_ratio": 0.18979591836734694
+      },
+      "risk_difference": {
+        "ci_high": -0.15566318847771488,
+        "ci_low": -0.5020246113689546,
+        "ci_method": "Newcombe hybrid score interval (Wilson-based)",
+        "risk_difference": -0.3538324420677361
+      },
+      "risk_ratio": {
+        "ci_high": 0.7121277092831437,
+        "ci_low": 0.15550292565808327,
+        "ci_method": "log risk ratio Wald (Katz) interval",
+        "risk_ratio": 0.3327731092436975
+      },
+      "table": {
+        "nonprocedural_agree": 35,
+        "nonprocedural_disagree": 31,
+        "procedural_agree": 6,
+        "procedural_disagree": 28
+      },
+      "table_2x2_row_major": [
+        [
+          6,
+          28
+        ],
+        [
+          35,
+          31
+        ]
+      ],
+      "taxonomy": "Phase 1 AIDev-derived family"
+    },
+    {
+      "comparison": "procedural vs llm+mirror (sensitivity)",
+      "fisher_exact": {
+        "alternative": "two-sided",
+        "implementation": "scipy.stats.fisher_exact",
+        "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test",
+        "odds_ratio": 0.17755102040816326,
+        "p_value": 0.0004979354689799124
+      },
+      "gap_group_b_minus_group_a": 0.37040441176470584,
+      "group_a": "procedural",
+      "group_a_agreements": 6,
+      "group_a_rate": 0.17647058823529413,
+      "group_a_wilson_ci": [
+        0.0834896904537232,
+        0.33513737399842747
+      ],
+      "group_b": "llm_mirror",
+      "group_b_agreements": 35,
+      "group_b_definition": "method_family in {llm, mirror}; the pre-registered sensitivity contrast",
+      "group_b_rate": 0.546875,
+      "group_b_wilson_ci": [
+        0.4257359722005412,
+        0.6627055221938833
+      ],
+      "n_group_a": 34,
+      "n_group_b": 64,
+      "odds_ratio": {
+        "ci_high": 0.48737763280289925,
+        "ci_low": 0.06468159949541383,
+        "ci_method": "Woolf log odds ratio interval",
+        "odds_ratio": 0.17755102040816326
+      },
+      "risk_difference": {
+        "ci_high": -0.17078023246619978,
+        "ci_low": -0.5189377656754509,
+        "ci_method": "Newcombe hybrid score interval (Wilson-based)",
+        "risk_difference": -0.37040441176470584
+      },
+      "risk_ratio": {
+        "ci_high": 0.6897224628642546,
+        "ci_low": 0.15097121688437773,
+        "ci_method": "log risk ratio Wald (Katz) interval",
+        "risk_ratio": 0.3226890756302521
+      },
+      "table": {
+        "llm_mirror_agree": 35,
+        "llm_mirror_disagree": 29,
+        "procedural_agree": 6,
+        "procedural_disagree": 28
+      },
+      "table_2x2_row_major": [
+        [
+          6,
+          28
+        ],
+        [
+          35,
+          29
+        ]
+      ],
+      "taxonomy": "Phase 1 AIDev-derived family"
+    },
+    {
+      "comparison": "procedural vs nonprocedural",
+      "fisher_exact": {
+        "alternative": "two-sided",
+        "implementation": "scipy.stats.fisher_exact",
+        "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test",
+        "odds_ratio": 3.0588235294117645,
+        "p_value": 0.0185367284652103
+      },
+      "gap_group_b_minus_group_a": -0.249554367201426,
+      "group_a": "procedural",
+      "group_a_agreements": 26,
+      "group_a_rate": 0.7647058823529411,
+      "group_a_wilson_ci": [
+        0.6000386207746361,
+        0.8756301446736042
+      ],
+      "group_b": "nonprocedural",
+      "group_b_agreements": 34,
+      "group_b_definition": "method_family in {llm, mirror, combine} (the frozen Phase 1B grouping)",
+      "group_b_rate": 0.5151515151515151,
+      "group_b_wilson_ci": [
+        0.39710591285717234,
+        0.6315303732939324
+      ],
+      "n_group_a": 34,
+      "n_group_b": 66,
+      "odds_ratio": {
+        "ci_high": 7.736194608511074,
+        "ci_low": 1.209432008572985,
+        "ci_method": "Woolf log odds ratio interval",
+        "odds_ratio": 3.0588235294117645
+      },
+      "risk_difference": {
+        "ci_high": 0.41153879914603425,
+        "ci_low": 0.047912740402218656,
+        "ci_method": "Newcombe hybrid score interval (Wilson-based)",
+        "risk_difference": 0.249554367201426
+      },
+      "risk_ratio": {
+        "ci_high": 2.002247084727965,
+        "ci_low": 1.1005283354051292,
+        "ci_method": "log risk ratio Wald (Katz) interval",
+        "risk_ratio": 1.4844290657439445
+      },
+      "table": {
+        "nonprocedural_agree": 34,
+        "nonprocedural_disagree": 32,
+        "procedural_agree": 26,
+        "procedural_disagree": 8
+      },
+      "table_2x2_row_major": [
+        [
+          26,
+          8
+        ],
+        [
+          34,
+          32
+        ]
+      ],
+      "taxonomy": "Phase 2 ODC Defect Type"
+    },
+    {
+      "comparison": "procedural vs llm+mirror (sensitivity)",
+      "fisher_exact": {
+        "alternative": "two-sided",
+        "implementation": "scipy.stats.fisher_exact",
+        "interpretation": "exploratory association test; not causal evidence and not a confirmatory hypothesis test",
+        "odds_ratio": 2.8676470588235294,
+        "p_value": 0.02992488823056886
+      },
+      "gap_group_b_minus_group_a": -0.23345588235294112,
+      "group_a": "procedural",
+      "group_a_agreements": 26,
+      "group_a_rate": 0.7647058823529411,
+      "group_a_wilson_ci": [
+        0.6000386207746361,
+        0.8756301446736042
+      ],
+      "group_b": "llm_mirror",
+      "group_b_agreements": 34,
+      "group_b_definition": "method_family in {llm, mirror}; the pre-registered sensitivity contrast",
+      "group_b_rate": 0.53125,
+      "group_b_wilson_ci": [
+        0.41072087051471007,
+        0.6482401257482395
+      ],
+      "n_group_a": 34,
+      "n_group_b": 64,
+      "odds_ratio": {
+        "ci_high": 7.283954822615967,
+        "ci_low": 1.1289745549280987,
+        "ci_method": "Woolf log odds ratio interval",
+        "odds_ratio": 2.8676470588235294
+      },
+      "risk_difference": {
+        "ci_high": 0.39725900511275014,
+        "ci_low": 0.031460841427954994,
+        "ci_method": "Newcombe hybrid score interval (Wilson-based)",
+        "risk_difference": 0.23345588235294112
+      },
+      "risk_ratio": {
+        "ci_high": 1.9356509665791546,
+        "ci_low": 1.0704439377847872,
+        "ci_method": "log risk ratio Wald (Katz) interval",
+        "risk_ratio": 1.4394463667820068
+      },
+      "table": {
+        "llm_mirror_agree": 34,
+        "llm_mirror_disagree": 30,
+        "procedural_agree": 26,
+        "procedural_disagree": 8
+      },
+      "table_2x2_row_major": [
+        [
+          26,
+          8
+        ],
+        [
+          34,
+          30
+        ]
+      ],
+      "taxonomy": "Phase 2 ODC Defect Type"
+    }
+  ],
+  "procedural_gap_bootstrap": {
+    "ci_high": -0.3124540441176477,
+    "ci_low": -0.8761543976502695,
+    "ci_method": "percentile bootstrap (95%)",
+    "definition": "(ODC nonprocedural agreement - ODC procedural agreement) minus (Phase 1 nonprocedural agreement - Phase 1 procedural agreement)",
+    "interpretation": "descriptive only. A change in a difference of two agreement rates between two measuring instruments; no causal claim follows",
+    "odc_gap": -0.249554367201426,
+    "phase1_gap": 0.3538324420677361,
+    "point_estimate": -0.6033868092691621,
+    "replicates": 10000,
+    "seed": [
+      20260906,
+      2
+    ],
+    "undefined_replicates": 0,
+    "undefined_rule": "a replicate in which either group is empty has no gap; it is counted here and excluded from the interval, never zeroed",
+    "valid_replicates": 10000
+  },
+  "procedural_gaps": [
+    {
+      "gap": 0.3538324420677361,
+      "n_nonprocedural": 66,
+      "n_procedural": 34,
+      "nonprocedural_rate": 0.5303030303030303,
+      "procedural_rate": 0.17647058823529413,
+      "taxonomy": "Phase 1 AIDev-derived family"
+    },
+    {
+      "gap": -0.249554367201426,
+      "n_nonprocedural": 66,
+      "n_procedural": 34,
+      "nonprocedural_rate": 0.5151515151515151,
+      "procedural_rate": 0.7647058823529411,
+      "taxonomy": "Phase 2 ODC Defect Type"
+    }
+  ],
+  "procedural_grouping": {
+    "llm_mirror": "method_family in {llm, mirror}",
+    "nonprocedural": "method_family in {llm, mirror, combine}",
+    "note": "the frozen Phase 1B grouping, reused unchanged; the same estimators are applied to both taxonomies through one code path",
+    "procedural": "method_family == procedural"
+  },
+  "provenance": {
+    "block_label": "PROVENANCE. Every value below is read from a file at run time; none is hard-coded. No timestamp is recorded anywhere in these artifacts: identity is the hashes below, never a clock.",
+    "complete_marker_sha256": {
+      "claude": "3ce97eb477e1669180d85a45768d4a708e70e9c3f160c1a894cc0bcb4528113e",
+      "codex": "98c93c4a85f97c44a60f7ec451795d680da51029913049d4c4f5b46c7bd2383f"
+    },
+    "freeze_manifest_sha256": "03e588aea367e8590410ec033dc88ade1dced9e1a087f1c7f4d1e049b8498c41",
+    "note": "The two source repositories are read-only scientific provenance and were not modified by this analysis. No Phase 1 reviewer classification was modified during Phase 2.",
+    "phase1_source_commit_sha": "0345139bf449f1fe9401f2a708d0d3b5961d14b2",
+    "phase1_source_repository": "https://github.com/MachineLearningAmateur/SWE-Smith-Bug-Analysis",
+    "phase1_source_sha256": {
+      "phase1_claude_review_results": "433638b95abcc5d1ef31575a62171081bf3468191a6427015ffb66c8b8e1441b",
+      "phase1_codex_review_results": "2a42458ad4bc3b727ca9c373c6e917ae12dc35a155088ad0d51619724e8912c2",
+      "phase1_family_mapping": "1ce7232047437f87e7116d84b369e4f820e854481cbc744faf3b1d4c1af60985",
+      "phase1_generation_crosswalk": "0ef1a5720f9f2a24caefb5abf7076fbf636d027a1dfe54d90f3307180fde84a1",
+      "phase1_headline_results": "11f0bc45cd954a5f92e5cecd2b9298d8796ed7527022424e7232b831b6983f5b",
+      "phase1_source_manifest": "b31cb41ef584568dcd1527228cea315aedeb6023c063d455b44498b4eb5b4632"
+    },
+    "phase2_root": "phase2_odc_control",
+    "repository_commit_sha": "f2fa59187571350d93ea5d82e6a5bef80bc82ccf",
+    "repository_commit_source": ".git/HEAD, resolved through refs/packed-refs",
+    "review_manifest_sha256": "64e607800de2a08e4321b371d616841bbd4fbe6deaddb1321dfd355333caebfa",
+    "review_result_schema_sha256": "6f8bfef620a91d9f024703c7197a4d4288e74302f775f40193c25cc38528cb8e",
+    "review_results_sha256": {
+      "claude": "e727179f3fd444994a6726c5d7c098a9b13d27baa3589ffc08fceeb67803de6f",
+      "codex": "7281fab5a2c44e0c79cc625372817db70bbd6d87849ccbed696fa2318d23fd4a"
+    },
+    "snapshot_manifest_sha256": "981694c07ffcc9ee9bcf00527d71a0c94b15884ebfc7d8aa537363b3f646a6de",
+    "software": {
+      "numpy": "2.4.6",
+      "python": "3.11.16",
+      "scipy": "1.17.1"
+    },
+    "taxonomy_fingerprint": "4fb66187d3aa949e70d65251404b00373cbe3529a14e901086026d7e998b2e96",
+    "taxonomy_fingerprint_algorithm": "sha256(utf8( sha256(taxonomy/odc_defect_type_v1.yaml) + ':' + sha256(schemas/odc_review_result.schema.json) ))",
+    "taxonomy_yaml_sha256": "41c2eca14aa461587863f5d428323893d22f30bad6df2b689369035d12511c8a"
+  },
+  "settings": {
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260906,
+    "confidence": 0.95,
+    "confusion_matrix_orientation": "rows = claude, columns = codex",
+    "determinism_note": "No timestamp is written. Every collection is emitted in a declared order and every random draw is seeded, so two runs on unchanged input produce byte-identical artifacts.",
+    "fisher_alternative": "two-sided",
+    "fisher_implementation": "scipy.stats.fisher_exact",
+    "kappa_ci_method": "percentile bootstrap",
+    "label_order": [
+      "FUNCTION",
+      "INTERFACE",
+      "CHECKING",
+      "ASSIGNMENT",
+      "TIMING_SERIALIZATION",
+      "BUILD_PACKAGE_MERGE",
+      "DOCUMENTATION",
+      "ALGORITHM",
+      "UNCLASSIFIABLE"
+    ],
+    "mcnemar_method": "exact two-sided binomial on the discordant pairs",
+    "mcnemar_reference_method": "continuity-corrected chi-square (reference only)",
+    "phase1_checkpoint_tolerance": 0.0005,
+    "procedural_gap_bootstrap_seed": [
+      20260906,
+      2
+    ],
+    "proportion_ci_method": "Wilson score interval"
+  }
+}
