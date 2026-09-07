@@ -57,8 +57,13 @@ experiment inside *this* repository, never a change to a source.
 ## Phase status
 
 **Phase 1A — reproduction: COMPLETE.** **Phase 1B — robustness: COMPLETE.**
-**Phase 2 — ODC external-taxonomy control: FROZEN_PRE_REVIEW** — the protocol is frozen, tagged `phase2-odc-pre-review-frozen` and pre-registered,
-no review has been run, no reviewer bundle has been generated, and no Phase 2 result exists.
+**Phase 2 — ODC external-taxonomy control: COMPLETE (workflow state `ANALYZED`)** — the protocol
+was frozen, tagged `phase2-odc-pre-review-frozen` and pre-registered before review; both blind ODC
+reviews are sealed and imported; the pre-registered analysis has been run and written to
+`experiments/phase2_odc_control/analysis/`.
+
+Current stage: **MANUSCRIPT SYNTHESIS / OPTIONAL HUMAN VALIDATION**. See
+[`current_research_findings.md`](current_research_findings.md).
 
 ## Pipeline: import → validate → reproduce → robustness
 
@@ -241,8 +246,15 @@ inputs and on 200 random non-degenerate inputs.
 
 ## Phase 2: external-taxonomy control
 
-**Status: FROZEN_PRE_REVIEW.** Protocol frozen and tagged; no review run. Everything below describes a design, not a
-result. The full pre-registered protocol is in
+**Status: COMPLETE (workflow state `ANALYZED`).** The protocol was frozen and tagged before any
+case was reviewed; both blind ODC reviews are now sealed and imported and the pre-registered
+analysis has been run. Everything below describes the design as it was pre-registered and
+executed; the results are in
+[`../experiments/phase2_odc_control/analysis/odc_agreement.md`](../experiments/phase2_odc_control/analysis/odc_agreement.md)
+and
+[`../experiments/phase2_odc_control/analysis/taxonomy_comparison.md`](../experiments/phase2_odc_control/analysis/taxonomy_comparison.md),
+and their interpretation and limits in
+[`current_research_findings.md`](current_research_findings.md). The full pre-registered protocol is in
 [`../experiments/phase2_odc_control/protocol/phase2_protocol.md`](../experiments/phase2_odc_control/protocol/phase2_protocol.md).
 
 Phase 1 measured taxonomy transfer with one instrument: `aidev_failure_taxonomy_v1`, derived from
@@ -291,7 +303,7 @@ and are run **only after both ODC reviews are sealed**, exactly as RQ2's crosswa
 ### Workflow states
 
 `SETUP` → `FROZEN_PRE_REVIEW` → `CLAUDE_COMPLETE` / `CODEX_COMPLETE` (independent, either order)
-→ `BOTH_COMPLETE` → `ANALYZED`.
+→ `BOTH_COMPLETE` → `ANALYZED`. The experiment is now in the final state, `ANALYZED`.
 
 Bundles may not be generated before `FROZEN_PRE_REVIEW`, no review may start without explicit
 authorization, and the analysis refuses to run before `BOTH_COMPLETE`. The freeze records SHA-256

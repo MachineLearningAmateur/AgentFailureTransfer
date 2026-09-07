@@ -1,11 +1,15 @@
 # Research questions
 
 RQ1 and RQ2 are answered by Phase 1. RQ3 and RQ4 are the two questions of the Phase 2
-external-taxonomy control; its protocol is drafted and pre-registered, and **no Phase 2 review
-has been run**.
+external-taxonomy control; both ODC reviews are sealed, the pre-registered analysis has been run,
+and both questions are **answered with caveats**.
 
 Phase status: **Phase 1A (reproduction) — COMPLETE**, **Phase 1B (robustness) — COMPLETE**,
-**Phase 2 (ODC external-taxonomy control) — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run)**.
+**Phase 2 (ODC external-taxonomy control) — COMPLETE (workflow state `ANALYZED`)**.
+
+Current stage: **MANUSCRIPT SYNTHESIS / OPTIONAL HUMAN VALIDATION**. The current scientific
+state, with interpretations and the claims that must not be made, is in
+[`current_research_findings.md`](current_research_findings.md).
 
 ## RQ1 — Taxonomy transfer
 
@@ -64,12 +68,23 @@ that the AIDev-derived taxonomy is the wrong instrument for static synthetic bug
 (a measurement mismatch), or that SWE-smith bugs are hard to classify reproducibly under any
 defect taxonomy.
 
-**Status: Phase 2 — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run).** The pre-registered protocol,
-the frozen ODC rubric and the reviewer prompts are in
-[`../experiments/phase2_odc_control/`](../experiments/phase2_odc_control/README.md). Nothing has
-been labelled, no reviewer bundle has been generated, and no result exists. Higher agreement
-under ODC would not mean ODC is correct, and would not mean SWE-smith is realistic; see
-[`threats_to_validity.md`](threats_to_validity.md).
+**Status: answered with caveats (Phase 2 — COMPLETE, workflow state `ANALYZED`).** On the same
+100 frozen cases, ODC agreement is 60/100 (60.0%, κ 0.5131) against the Phase 1 broad-family
+41/100 (41.0%, κ 0.2420): a paired difference of +19 percentage points, exact two-sided McNemar
+p = 0.0183, paired bootstrap agreement difference +0.190 (95% CI [0.040, 0.330]) and κ difference
++0.2711 (95% CI [0.1118, 0.4255]). Read against the pre-registered interpretation matrix and its
+pre-stated thresholds, this is Outcome A. The full reports are
+[`../experiments/phase2_odc_control/analysis/odc_agreement.md`](../experiments/phase2_odc_control/analysis/odc_agreement.md)
+and
+[`../experiments/phase2_odc_control/analysis/taxonomy_comparison.md`](../experiments/phase2_odc_control/analysis/taxonomy_comparison.md);
+the pre-registered protocol and the frozen ODC rubric remain in
+[`../experiments/phase2_odc_control/`](../experiments/phase2_odc_control/README.md).
+
+The caveats are not softened by the result: higher agreement under ODC does not mean ODC is
+correct, and does not mean SWE-smith is realistic. ODC agreement of 60% is also far from
+perfect, and the `taxonomy_fit` endpoint agrees on only 56 of 100 cases (κ 0.1861). See
+[`threats_to_validity.md`](threats_to_validity.md) and
+[`current_research_findings.md`](current_research_findings.md).
 
 ## RQ4 — Generation mechanism under the external taxonomy
 
@@ -82,7 +97,18 @@ the frozen `procedural` vs `nonprocedural` (`llm + mirror + combine`) contrast, 
 `llm + mirror` sensitivity contrast beside it. RQ2's finding was an association, and so is
 anything RQ4 produces.
 
-**Status: Phase 2 — FROZEN_PRE_REVIEW (protocol frozen and tagged; no review run).**
+**Status: answered with caveats (Phase 2 — COMPLETE, workflow state `ANALYZED`).** Under ODC,
+agreement still varies by generation family — llm 23/36 (63.9%, κ 0.5320), mirror 11/28 (39.3%,
+κ 0.2145), procedural 26/34 (76.5%, κ 0.6304), `combine` 0/2 and not interpretable — but the
+direction of the procedural contrast is not the Phase 1 direction: 26/34 (76.5%) procedural
+against 34/66 (51.5%) nonprocedural, against Phase 1's 6/34 (17.6%) against 35/66 (53.0%). The
+Phase 1 procedural deficit disappeared and reversed direction under ODC; the pre-registered
+decision rule words the same observation as the procedural agreement gap having substantially
+narrowed, and that frozen wording is unchanged. The paired bootstrap of the change in the gap is
+−0.6034 (95% interval [−0.8762, −0.3125]). It remains an association, not a causal claim about
+the generation mechanism. Report:
+[`../experiments/phase2_odc_control/analysis/taxonomy_comparison.md`](../experiments/phase2_odc_control/analysis/taxonomy_comparison.md)
+§11–§12.
 
 RQ3 and RQ4 are the only new scientific questions in Phase 2. It is not a coverage study, not a
 taxonomy v2, and not an adjudication.
@@ -95,5 +121,8 @@ new synthetic bugs, no model training, no causal claims, and no comparison of fa
 distributions as though the current taxonomy were mechanism-neutral.
 
 The Phase 2 ODC control is the one external taxonomy in scope, it is an explicitly versioned
-experiment with its own directory and its own write-up, and it is in FROZEN_PRE_REVIEW: its labels do not
-exist yet. No BugPilot taxonomy classification is planned.
+experiment with its own directory and its own write-up, and it is COMPLETE (workflow state
+`ANALYZED`): its labels and its analysis outputs are now frozen research artifacts and must not
+be edited. No BugPilot taxonomy classification is planned. The optional human-validation study
+described in [`current_research_findings.md`](current_research_findings.md) has not been started
+and is not numbered as a phase.

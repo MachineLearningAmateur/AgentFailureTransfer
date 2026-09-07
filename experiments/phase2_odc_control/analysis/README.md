@@ -1,7 +1,11 @@
 # Phase 2 analysis outputs
 
-**This directory is deliberately empty.** No Phase 2 result exists: no ODC review has been run,
-so there is nothing to analyse and nothing has been computed.
+**This directory holds the Phase 2 result.** Both blind ODC reviews are sealed and imported, and
+`scripts/analyze_phase2_odc.py` has been run; the six files listed below are frozen research
+outputs and must not be edited, hand-corrected, or regenerated from altered inputs. The
+provenance block in each report records the repository commit that held the sealed inputs
+(`f2fa59187571350d93ea5d82e6a5bef80bc82ccf`). Their interpretation and the claims that must not
+be made from them are in [`../../../docs/current_research_findings.md`](../../../docs/current_research_findings.md).
 
 `scripts/analyze_phase2_odc.py` writes here, and only here, and only once the Phase 2 workflow
 state reaches `BOTH_COMPLETE` — a verified freeze manifest plus two sealed reviews, each bound

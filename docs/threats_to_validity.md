@@ -155,9 +155,15 @@ that unification rather than in the data.
 
 ## The Phase 2 ODC control: what a second taxonomy can and cannot settle
 
-Phase 2 is in FROZEN_PRE_REVIEW — the protocol is frozen and tagged and no review has been run — so nothing below is a
-caveat about a result. These are the limits the design carries in advance, recorded now so that
-they cannot be softened once numbers exist.
+Phase 2 is COMPLETE (workflow state `ANALYZED`): both blind ODC reviews are sealed and the
+pre-registered analysis has been run, so **the result now exists and every caveat below applies
+to it**. They were written down in advance, before any Phase 2 label existed, precisely so that
+they could not be softened once numbers appeared — and they have not been. The result is in
+[`../experiments/phase2_odc_control/analysis/odc_agreement.md`](../experiments/phase2_odc_control/analysis/odc_agreement.md)
+and
+[`../experiments/phase2_odc_control/analysis/taxonomy_comparison.md`](../experiments/phase2_odc_control/analysis/taxonomy_comparison.md);
+what may and may not be concluded from it is set out in
+[`current_research_findings.md`](current_research_findings.md).
 
 **ODC is not ground truth.** Orthogonal Defect Classification is an independent, pre-existing,
 mechanism-neutral scheme, which is what a control requires. It is not a correct answer key for
@@ -166,12 +172,26 @@ and the Phase 2 endpoints are agreement statistics: they measure how reproducibl
 apply one instrument, not whether either reviewer was right. A high ODC κ could equally be two
 reviewers sharing a misreading of a category.
 
-**Higher agreement would not mean greater realism.** Reproducibility of classification and
-fidelity to real coding-agent failures are different properties. If ODC agreement comes out well
-above the Phase 1 figure, that is evidence about the instruments, not evidence that SWE-smith
-bugs resemble real agent failures — and if it comes out no better, that is not evidence that
-SWE-smith is "bad". The pre-registered interpretation matrix in the Phase 2 protocol states each
-reading conditionally and blocks both of those inferences explicitly.
+**Higher agreement does not mean greater realism.** Reproducibility of classification and
+fidelity to real coding-agent failures are different properties. ODC agreement did come out well
+above the Phase 1 figure; that is evidence about the instruments, not evidence that SWE-smith
+bugs resemble real agent failures — and had it come out no better, that would not have been
+evidence that SWE-smith is "bad". The pre-registered interpretation matrix in the Phase 2
+protocol states each reading conditionally and blocks both of those inferences explicitly. Three
+inequalities follow from this and hold for every figure in either phase:
+
+- higher agreement != greater realism;
+- higher agreement != better training data;
+- higher agreement != greater downstream utility.
+
+Nothing in this project establishes whether SWE-smith improves coding agents more or less than
+any other training data. No agreement statistic here bears on that question at all.
+
+**The improvement did not remove the ambiguity.** ODC agreement is 60/100 with κ 0.5131 — much
+better than Phase 1 and still far from a settled instrument. The `taxonomy_fit` endpoint agrees
+on only 56 of 100 cases (κ 0.1861), and one reviewer recorded `AMBIGUOUS` on 57 cases against
+the other's 21. ODC did not solve the classification problem, and must not be described as
+having done so.
 
 **Only one ODC dimension is used.** Defect Type only. Defect trigger, development activity,
 impact, source, age and the other ODC process attributes are excluded, deliberately, because they
@@ -206,8 +226,9 @@ their own experiment directory.
 
 ## Scope
 
-Nothing here has been adjudicated or re-labelled, and no Phase 1 number has been subjected to a
-second taxonomy: the Phase 2 ODC control is drafted but unrun, so every figure in `analysis/`
-still rests on the single AIDev-derived taxonomy. No causal claim is supported. In particular, family-frequency distributions
+Nothing here has been adjudicated or re-labelled. Every figure in `analysis/` rests on the single
+AIDev-derived taxonomy; the second instrument's figures live in
+`experiments/phase2_odc_control/analysis/` and are the only ones that do not. No causal claim is
+supported by either. In particular, family-frequency distributions
 must not be compared across the two corpora as though the current taxonomy were
 mechanism-neutral — it is not, and that comparison is explicitly out of scope for this phase.

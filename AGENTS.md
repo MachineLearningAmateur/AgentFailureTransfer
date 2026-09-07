@@ -84,17 +84,31 @@ is never parsed. Do not add a parquet reader to read it.
 ## Scope discipline
 
 Phases 1A (reproduction) and 1B (robustness) are complete. **Phase 2 — the ODC
-external-taxonomy control — is now an explicitly versioned experiment under
-`experiments/phase2_odc_control/`, in the `FROZEN_PRE_REVIEW` state**: its protocol, frozen ODC Defect Type
-rubric and reviewer prompts are hashed into `FREEZE_MANIFEST.json` and tagged
-`phase2-odc-pre-review-frozen`; reviewer bundles are exported outside the repository by
-`scripts/prepare_phase2_bundles.sh`; no review has been run and no Phase 2 result exists. Its rules are in
+external-taxonomy control — is complete and analysed**: it is an explicitly versioned experiment
+under `experiments/phase2_odc_control/`, now in the `ANALYZED` state. Its protocol, frozen ODC
+Defect Type rubric and reviewer prompts were hashed into `FREEZE_MANIFEST.json` and tagged
+`phase2-odc-pre-review-frozen` before any case was reviewed; reviewer bundles were exported
+outside the repository by `scripts/prepare_phase2_bundles.sh`; both blind reviews are sealed and
+imported and the pre-registered analysis has been run.
+
+**The Phase 2 sealed reviews (`experiments/phase2_odc_control/reviews/**`) and the generated
+Phase 2 analysis artifacts (`experiments/phase2_odc_control/analysis/**`) are now frozen research
+outputs.** Treat them exactly as the imported Phase 1 labels and the `analysis/` outputs are
+treated: never edit them, never hand-correct a number in them, never regenerate them from altered
+inputs. A correction is a new, explicitly versioned experiment, not an edit.
+
+The current stage is **manuscript synthesis / optional human validation**. The scientific state is
+summarised in `docs/current_research_findings.md`; the optional human-validation study described
+there has not been started, is not authorized, and is not numbered as a phase.
+
+Its rules are in
 `experiments/phase2_odc_control/protocol/phase2_protocol.md` and
 `.../blinding_protocol.md`, and they bind anyone touching that directory:
 
-- **Never launch a Phase 2 review without explicit authorization** from the study owner. Writing
-  protocol, tooling or tests is setup work; running the Claude or Codex ODC review is not, and it
-  may not begin until the setup report has been reviewed and the review is separately authorized.
+- **Never launch a Phase 2 review without explicit authorization** from the study owner. The two
+  Phase 2 reviews were authorized and are complete; re-running either one, or running any further
+  review, needs its own explicit authorization and would be a new versioned experiment rather than
+  a repeat of this one.
 - **Never inspect Phase 1 case-level labels while designing or editing the ODC rubric.** The
   rubric must not be tuned around either reviewer's old labels, `OTHER` cases, false-premise
   disagreements, or procedural cases known to disagree. Aggregate Phase 1 findings are already
@@ -113,8 +127,9 @@ under a new taxonomy; the Phase 1 labels stay sealed.
 Beyond that, do not, without an explicit new instruction:
 
 - create a taxonomy v2, adjudicate disagreements, or relabel any Phase 1 case;
-- run any external taxonomy other than the pre-registered Phase 2 ODC control, or a BugPilot
+- run any external taxonomy other than the completed Phase 2 ODC control, or a BugPilot
   taxonomy;
+- run the optional human-validation study described in `docs/current_research_findings.md`;
 - run statistical significance tests beyond the exploratory association tests
   Phase 1B was explicitly commissioned to run (`scripts/run_phase1b_robustness.py`:
   procedural vs nonprocedural Fisher's exact test, effect sizes, and a permutation

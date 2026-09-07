@@ -42,9 +42,16 @@ uv pip install -e ".[dev]"
 - **Scope**: Phase 1 is reproduction only. No taxonomy v2, no adjudication, no relabelling of
   Phase 1 cases, no BugPilot taxonomy, no confirmatory significance tests, no new synthetic bugs,
   no models, no causal claims, no family-frequency comparison. The one external taxonomy in scope
-  is the pre-registered Phase 2 ODC control under `experiments/phase2_odc_control/` (state:
-  FROZEN_PRE_REVIEW: protocol frozen and tagged, no review run). **Never launch a Phase 2 review without explicit authorization**, never inspect Phase 1
-  case-level labels while editing the ODC rubric, and never run a reviewer inside this checkout —
-  bundles are exported outside the repository.
+  is the Phase 2 ODC control under `experiments/phase2_odc_control/`, which is **complete and
+  analysed** (state: `ANALYZED`). Current stage: manuscript synthesis / optional human validation
+  — see `docs/current_research_findings.md`; the optional human-validation study there has not
+  been started and is not authorized. **Never launch a Phase 2 review without explicit
+  authorization**, never inspect Phase 1 case-level labels while editing the ODC rubric, and never
+  run a reviewer inside this checkout — bundles are exported outside the repository.
+- **The Phase 2 sealed reviews and generated analysis artifacts are frozen research outputs.**
+  `experiments/phase2_odc_control/reviews/**` and
+  `experiments/phase2_odc_control/analysis/**` are read-only in the same sense as the imported
+  Phase 1 labels and the `analysis/` outputs: no edits, no hand-corrected numbers, no regeneration
+  from altered inputs.
 - **Do not claim specific model identities for the SWE-smith reviewers.** Their metadata names
   none; "Codex" and "Claude" are directory names there.

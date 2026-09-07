@@ -1,9 +1,30 @@
 # Phase 2 — ODC external-taxonomy control
 
-**Status: FROZEN_PRE_REVIEW.** The protocol, rubric, schema, reviewer prompts and all 100 packets
-are hashed into `FREEZE_MANIFEST.json` and tagged `phase2-odc-pre-review-frozen`; one bundle per
-reviewer has been exported outside the repository. **No Phase 2 review has been run** and no
-Phase 2 analysis exists. The study owner authorized the reviews on 2026-09-06.
+**Status: COMPLETE — workflow state `ANALYZED`.** The protocol, rubric, schema, reviewer prompts
+and all 100 packets were hashed into `FREEZE_MANIFEST.json` and tagged
+`phase2-odc-pre-review-frozen` before any case was seen; the study owner authorized the reviews on
+2026-09-06; one bundle per reviewer was exported outside the repository; both reviews are sealed
+and imported; and the pre-registered analysis has been run and written to `analysis/`.
+
+**Headline result.** On the same 100 frozen cases, ODC agreement is 60/100 (60.0%, κ 0.5131)
+against the Phase 1 broad-family 41/100 (41.0%, κ 0.2420): a paired difference of +19 percentage
+points, exact two-sided McNemar p = 0.0183, paired bootstrap agreement difference +0.190
+(95% CI [0.040, 0.330]) and κ difference +0.2711 (95% CI [0.1118, 0.4255]). By generation family
+under ODC: llm 23/36 (63.9%, κ 0.5320), mirror 11/28 (39.3%, κ 0.2145), procedural 26/34 (76.5%,
+κ 0.6304), `combine` 0/2 (n = 2, not interpretable). Procedural 26/34 (76.5%) against
+nonprocedural 34/66 (51.5%) reverses the Phase 1 direction (6/34, 17.6% against 35/66, 53.0%);
+the paired bootstrap of the change in the gap is −0.6034 (95% interval [−0.8762, −0.3125]). Read
+against the pre-registered interpretation matrix and its pre-stated thresholds, this is
+Outcome A. ODC agreement of 60% is a large improvement and still far from perfect: the
+`taxonomy_fit` endpoint agrees on 56/100 (κ 0.1861).
+
+Reports: [`analysis/odc_agreement.md`](analysis/odc_agreement.md) and
+[`analysis/taxonomy_comparison.md`](analysis/taxonomy_comparison.md). Interpretation, limits and
+the claims that must not be made from these numbers:
+[`../../docs/current_research_findings.md`](../../docs/current_research_findings.md).
+
+The sealed reviews under `reviews/` and the generated artifacts under `analysis/` are now frozen
+research outputs. They must not be edited, re-run against edited inputs, or hand-corrected.
 
 ## What this experiment is
 
@@ -93,11 +114,11 @@ experiments/phase2_odc_control/
 | State | Meaning |
 | --- | --- |
 | `SETUP` | protocol, rubric, schema, scripts and tests being written |
-| `FROZEN_PRE_REVIEW` | every protocol-critical artifact hashed into the freeze manifest; pre-review commit made and tagged `phase2-odc-pre-review-frozen` — **current state** |
+| `FROZEN_PRE_REVIEW` | every protocol-critical artifact hashed into the freeze manifest; pre-review commit made and tagged `phase2-odc-pre-review-frozen` |
 | `CLAUDE_COMPLETE` | Claude's 100 records validate, are finalised and are sealed |
 | `CODEX_COMPLETE` | Codex's 100 records validate, are finalised and are sealed |
 | `BOTH_COMPLETE` | both `COMPLETE` markers exist |
-| `ANALYZED` | the Phase 2 analysis has run and written `analysis/` |
+| `ANALYZED` | the Phase 2 analysis has run and written `analysis/` — **current state** |
 
 `CLAUDE_COMPLETE` and `CODEX_COMPLETE` are independent and may happen in either order. Neither
 reviewer's output becomes visible to the other before that other reviewer is complete. **The
