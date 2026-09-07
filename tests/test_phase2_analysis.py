@@ -38,6 +38,7 @@ from agentfailuretransfer.phase2.state import (
     ANALYZED,
     BOTH_COMPLETE,
     CLAUDE_COMPLETE,
+    STATE_RANK,
     compute_state,
     finalize,
     save_case,
@@ -986,7 +987,7 @@ def test_no_recorded_checkpoint_number_reaches_an_artifact(sealed, phase1_inputs
 # ===========================================================================
 def test_the_real_analysis_refuses_while_no_review_exists():
     real = Phase2Paths(repo_paths.PHASE2_DIR)
-    if compute_state(real) == BOTH_COMPLETE:
+    if STATE_RANK[compute_state(real)] >= STATE_RANK[BOTH_COMPLETE]:
         pytest.skip("both Phase 2 reviews are sealed; this guard no longer applies")
     before = sorted(
         path.name for path in real.analysis_dir.iterdir()

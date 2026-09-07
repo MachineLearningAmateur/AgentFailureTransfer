@@ -250,13 +250,36 @@ def test_import_provenance_records_the_pinned_commit_and_the_digest_rule(importe
 
 
 def test_the_reviews_directory_holds_no_review_output():
-    """Phase 2 reviews/ must stay empty until a review is authorized and run."""
+    """Phase 2 reviews/ holds either nothing or a sealed review, never a partial one.
+
+    Before a reviewer seals, its directory must be empty: no review may be run
+    inside the repository. Once a reviewer's COMPLETE marker exists, the
+    directory must hold exactly the sealed import -- the per-case files, the
+    JSONL, the metadata and the marker -- and nothing else (no progress file,
+    no stray).
+    """
+    from agentfailuretransfer.phase2.paths import REVIEWERS, Phase2Paths
+    from agentfailuretransfer.phase2.review_records import extension_for_reviewer
+    from agentfailuretransfer.phase2.state import reviewer_status
+
     reviews = repo_paths.PHASE2_REVIEWS_DIR
     if not reviews.is_dir():
         pytest.skip("the Phase 2 reviews directory has not been created")
-    stray = [
-        path.relative_to(reviews).as_posix()
-        for path in reviews.rglob("*")
-        if path.is_file() and path.name != ".gitkeep"
-    ]
-    assert stray == [], f"unexpected Phase 2 review output: {stray}"
+    paths = Phase2Paths(repo_paths.PHASE2_DIR)
+    for reviewer in REVIEWERS:
+        directory = reviews / reviewer
+        present = sorted(
+            path.relative_to(directory).as_posix()
+            for path in directory.rglob("*")
+            if path.is_file() and path.name != ".gitkeep"
+        ) if directory.is_dir() else []
+        status = reviewer_status(paths, reviewer)
+        if not status.complete_marker:
+            assert present == [], f"unsealed Phase 2 review output for {reviewer}: {present}"
+            continue
+        assert status.sealed, f"{reviewer}: COMPLETE marker present but the seal does not verify: {status.problems}"
+        expected = sorted(
+            ["COMPLETE", "review_metadata.json", "review_results.jsonl"]
+            + [f"cases/{case_id}{extension_for_reviewer(reviewer)}" for case_id in study_case_ids()]
+        )
+        assert present == expected, f"{reviewer}: sealed review directory holds unexpected files"
