@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_002",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The buggy SVG path uses font_style after deleting every assignment to it, while also removing optional font embedding; the missing local initialization is the first applicable primary correction under the tie-break rules."
+}

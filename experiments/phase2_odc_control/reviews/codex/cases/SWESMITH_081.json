@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_081",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The chunked-body parser omits the explicit non-empty check before converting the hexadecimal chunk size, allowing a malformed empty field to bypass the intended protocol diagnostic. The repair restores the missing input validation guard."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_057",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_04", "TEST_FAILURE_11"],
+  "reasoning_summary": "The spatial plane changes grid coordinates and iteration order and removes the non-overlap exit, corrupting its indexing behavior; the repair restores the grid-range algorithm."
+}

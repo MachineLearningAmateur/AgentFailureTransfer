@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_021",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02"],
+  "reasoning_summary": "The buggy Maintainability Index implementation changes the comments scaling, normalization, and edge-case formula, and the repair restores the expected mathematical algorithm."
+}

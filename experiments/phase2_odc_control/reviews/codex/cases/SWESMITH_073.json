@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_073",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The worksheet method changes the payload passed to HTTPClient.values_batch_update by splitting request options into a separate params argument and rebuilding only part of each data mapping. That violates the client-call contract and triggers the batch update failure; the repair restores the expected body shape and call signature."
+}

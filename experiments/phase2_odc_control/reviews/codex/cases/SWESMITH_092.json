@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_092",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The defect replaces the dataclass-wide dictionary conversion with a return value containing only children and nonexistent role_map/class_map attributes, violating to_dict's output contract by omitting the element's actual fields. INTERFACE wins the tie-break over a plausible local ALGORITHM interpretation, so the fit is ambiguous."
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "SWESMITH_080",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The MOD 11-2 checksum branches are reversed: a zero remainder produces 11 while nonzero remainders produce zero. The repair restores the correct checksum calculation for Finnish business IDs."
+}

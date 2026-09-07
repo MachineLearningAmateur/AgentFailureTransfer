@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_098",
+  "odc_defect_type": "DOCUMENTATION",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The generated explanatory docstring is attached to the inner wrapped callback rather than to the decorator returned by pass_meta_key, and the default text also drops its documented Context.meta cross-reference. The observed defect is directly incorrect and missing API documentation."
+}

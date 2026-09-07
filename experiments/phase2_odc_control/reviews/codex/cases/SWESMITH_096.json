@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_096",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_06",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The change removes TypeVar from the typing imports while the shipped EC2 utility module still evaluates FILTER_TYPE = TypeVar(\"FILTER_TYPE\"). This missing module dependency makes the EC2 component fail during loading with NameError, directly fitting a build/package integration defect."
+}

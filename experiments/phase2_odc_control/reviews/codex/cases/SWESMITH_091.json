@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_091",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The defect changes the CTE reference-counting algorithm to count every scope source and retain zero-count entries instead of counting only selected sources. This gives the optimizer incorrect CTE usage counts and prevents valid CTE elimination, making ALGORITHM the direct fit."
+}

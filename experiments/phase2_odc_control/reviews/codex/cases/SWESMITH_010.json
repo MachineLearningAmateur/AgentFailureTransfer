@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_010",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02", "TEST_FAILURE_03"],
+  "reasoning_summary": "The buggy into method no longer assigns the _select_into state flag when selections already exist; the repair restores that assignment and a repeat-call guard, with assignment taking precedence under the tie-break rules."
+}

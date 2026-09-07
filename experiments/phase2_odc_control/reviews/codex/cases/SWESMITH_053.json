@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_053",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The backend module imports entry-point support from a nonexistent compatibility package and changes the shipped dispatch constructor contract; package/module integration takes precedence over the backend-interface aspect."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_006",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The buggy class drops its SyntaxRule base and therefore loses the inherited rule interface used by its methods; the repair restores that class-boundary contract."
+}

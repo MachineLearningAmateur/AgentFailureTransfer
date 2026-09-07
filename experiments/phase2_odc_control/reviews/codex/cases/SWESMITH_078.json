@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_078",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "X509Extension.__str__ changes its externally visible representation by prefixing critical values and substituting a new fallback instead of preserving the established OpenSSL text or error behavior. The repair restores the public string-format contract."
+}

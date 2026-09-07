@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_035",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The buggy branch assigns no scale to EPOCH_NANOSECOND and assigns the nanosecond scale to every unmatched extract name; the repair restores the correct branch-specific values."
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_089",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The source-slicing routine omits the final unpatched interval after the last patch, causing trailing source text to disappear from the reconstructed file. The repair restores the tail-slice step in the slicing algorithm."
+}

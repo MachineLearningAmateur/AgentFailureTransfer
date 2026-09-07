@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_017",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "wide_to_long passes a compiled regex object to the string-accessor boundary even though the pyarrow-backed implementation requires a string; the repair restores the compatible argument type."
+}

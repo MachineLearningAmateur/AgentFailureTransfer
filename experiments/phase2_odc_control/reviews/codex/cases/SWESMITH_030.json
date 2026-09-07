@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_030",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_03"],
+  "reasoning_summary": "The implicit-response parser uses fragment without assigning it and no longer assigns the integer-converted expires_in value; the repair restores both missing local/value assignments."
+}

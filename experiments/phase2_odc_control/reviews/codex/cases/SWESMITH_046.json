@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_046",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "CODE_CONTEXT_03", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02"],
+  "reasoning_summary": "The administrator-account API route, response handler, and backend method are all removed, so callers can no longer access that endpoint; the repair restores the complete cross-layer interface."
+}

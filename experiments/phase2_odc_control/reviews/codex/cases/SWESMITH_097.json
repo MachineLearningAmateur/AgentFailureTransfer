@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_097",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The rewritten slice path catches only errors from slice inference and no longer catches ValueError raised when the inferred slice has a zero step. The missing error-handling guard lets an implementation exception escape instead of translating it to the astroid error behavior, directly fitting CHECKING."
+}

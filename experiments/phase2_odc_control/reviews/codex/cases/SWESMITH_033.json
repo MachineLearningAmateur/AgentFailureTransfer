@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_033",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "DVC stage synchronization passes the wrong jobs value and omits output-state handling for no_download, breaking remote dependency import state; build and change-management semantics take precedence over the call-interface aspect."
+}

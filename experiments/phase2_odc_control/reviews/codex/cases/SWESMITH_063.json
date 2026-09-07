@@ -1,0 +1,13 @@
+{
+  "case_id": "SWESMITH_063",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The version branches call traceback.FrameSummary with the wrong parameter sets: Python 3.11 loses its enhanced location arguments while older versions receive the incompatible signature. The repair restores the correct standard-library API call for each runtime branch."
+}

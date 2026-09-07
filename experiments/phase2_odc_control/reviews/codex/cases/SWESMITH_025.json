@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_025",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "Both WebSocket consumers check only for key presence and therefore treat a null text value as a valid text frame; the repair restores the non-null value check before dispatch."
+}

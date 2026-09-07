@@ -1,0 +1,16 @@
+{
+  "case_id": "SWESMITH_090",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_03",
+    "TEST_FAILURE_04",
+    "TEST_FAILURE_05"
+  ],
+  "reasoning_summary": "The tokenizer removes the loop that advances through the keyword trie, normalizes spaces, and tracks the longest matching token. It therefore falls through to variable scanning without recognizing compound keywords or maintaining cursor state; the repair restores the scan algorithm."
+}

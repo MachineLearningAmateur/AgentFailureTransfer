@@ -1,0 +1,17 @@
+{
+  "case_id": "SWESMITH_084",
+  "odc_defect_type": "TIMING_SERIALIZATION",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_02",
+    "TEST_FAILURE_03",
+    "TEST_FAILURE_04",
+    "TEST_FAILURE_05",
+    "TEST_FAILURE_06"
+  ],
+  "reasoning_summary": "The access-token validation stages are reordered across their dependencies and an early return, so values are consumed before validation and the deliberately near-constant-time credential checks and dummy substitutions no longer execute in the required sequence. The repair restores the security-sensitive validation ordering."
+}

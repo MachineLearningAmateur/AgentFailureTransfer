@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_034",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02", "TEST_FAILURE_03"],
+  "reasoning_summary": "The public Ok and Err objects no longer expose the inspect and inspect_err methods expected by callers; the repair restores those API methods and their value/error callback contracts."
+}

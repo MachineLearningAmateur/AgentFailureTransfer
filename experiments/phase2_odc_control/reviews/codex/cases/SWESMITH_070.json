@@ -1,0 +1,16 @@
+{
+  "case_id": "SWESMITH_070",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02",
+    "TEST_FAILURE_03"
+  ],
+  "reasoning_summary": "The time-difference computation changes from an order-independent elapsed interval to a signed subtraction, yielding negative durations for one point order and corrupting speed calculations. The repair restores the absolute-difference algorithm."
+}

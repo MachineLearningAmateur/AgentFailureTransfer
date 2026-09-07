@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_093",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The parameter/header resolution boundary no longer traverses OpenAPI v3 content media types, so a schema name supplied through that supported representation is left as a string rather than converted to the required reference object. This is a direct interface and data-contract handling defect."
+}

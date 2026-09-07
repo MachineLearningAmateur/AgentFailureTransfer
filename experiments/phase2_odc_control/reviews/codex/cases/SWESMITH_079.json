@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_079",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_02",
+    "TEST_FAILURE_04"
+  ],
+  "reasoning_summary": "The var method calls _apply with var_func before that local function is defined, so variance and dependent standard-deviation operations fail before initialization. The repair restores the helper definition and configuration before its use."
+}

@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_094",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_03",
+    "TEST_FAILURE_04"
+  ],
+  "reasoning_summary": "The reader forwards fixed keyword arguments separately from user engine_kwargs, so supported overrides such as data_only and read_only collide at the load_workbook call instead of replacing defaults. This is directly a parameter-passing and API-boundary interface defect."
+}

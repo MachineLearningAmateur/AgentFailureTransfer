@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_019",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The decorated entry point reads the wrong parsed-argument field and calls _run_hydra without its args_parser contract, breaking coordination between the CLI parser, rerun path, and runner; the repair restores those interfaces."
+}

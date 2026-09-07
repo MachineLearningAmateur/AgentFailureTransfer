@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_082",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The IoT Data response class loses its setup override that tells the shared HTTP layer to preserve the request body as raw bytes. Binary publish payloads are therefore decoded through the wrong boundary contract; the repair reinstates raw-body handling."
+}

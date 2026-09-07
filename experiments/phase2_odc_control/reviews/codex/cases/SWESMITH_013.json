@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_013",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_03"],
+  "reasoning_summary": "The buggy state replaces the Group representation expected by response serialization and removes the backend/response describe_group path; the repair primarily restores contracts across those component boundaries."
+}

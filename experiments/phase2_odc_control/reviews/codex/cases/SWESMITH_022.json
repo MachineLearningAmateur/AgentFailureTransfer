@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_022",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The defect is confined to the test's validation logic: it replaces accepted timestamp checks with incompatible expected-value assertions and invalid cases, and the repair restores the intended checks."
+}

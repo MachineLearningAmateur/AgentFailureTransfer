@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_001",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The buggy state removes the string-distance implementation entirely, and the repair restores its local dynamic-programming algorithm; the correction is algorithmic implementation logic."
+}

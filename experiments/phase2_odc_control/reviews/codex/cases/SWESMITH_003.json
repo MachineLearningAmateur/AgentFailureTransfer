@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_003",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "Astroid no longer recognizes the bare-annotation semantics exposed by the newer attrs decorators; although the repair changes conditional recognition logic, it primarily restores compatibility across the attrs component boundary."
+}

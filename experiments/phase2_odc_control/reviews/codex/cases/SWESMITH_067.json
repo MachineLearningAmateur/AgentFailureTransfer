@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_067",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The legacy public StyleGuide.excluded API no longer applies its configured filename, stdin-name, and parent-path semantics through expand_paths, so callers receive incorrect exclusion results. The repair restores the legacy boundary contract for both filename forms. An internal filtering-algorithm interpretation is also plausible."
+}

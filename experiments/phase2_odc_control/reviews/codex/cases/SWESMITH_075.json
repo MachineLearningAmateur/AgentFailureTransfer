@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_075",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "CSS class generation is reduced to one derived class and no longer walks the token-type ancestry, so custom token types omit the parent classes required for hierarchical styling. The repair restores the ancestor traversal and class accumulation algorithm."
+}

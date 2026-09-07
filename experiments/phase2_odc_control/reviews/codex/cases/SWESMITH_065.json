@@ -1,0 +1,16 @@
+{
+  "case_id": "SWESMITH_065",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "CODE_CONTEXT_02",
+    "CODE_CONTEXT_03",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The defect removes a large set of module-level UID definitions and changes exported UID names while internal handlers and public consumers still depend on them, causing import-time name failures. The repair restores the complete constant surface and its established names. This is primarily an interface break, though the large generated registry replacement also resembles a package-content defect."
+}

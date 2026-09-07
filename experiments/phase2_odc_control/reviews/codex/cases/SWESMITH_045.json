@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_045",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "A lexer-module consolidation deletes most generated registry entries, removes the dedicated Lean module, and leaves the merged theorem module without a required symbol import; the repair restores package registry and module integration state."
+}

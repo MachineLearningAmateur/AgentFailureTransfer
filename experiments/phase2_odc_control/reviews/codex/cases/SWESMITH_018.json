@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_018",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02"],
+  "reasoning_summary": "The build helper no longer normalizes Windows path separators and changes anchored pattern matching, so build-file selection fails; build-related state takes precedence over the local matching algorithm."
+}

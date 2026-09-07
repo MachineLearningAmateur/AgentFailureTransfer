@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_088",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "CODE_CONTEXT_02",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_07"
+  ],
+  "reasoning_summary": "The metadata layer is changed to call a replacement validator lookup and an unavailable JSON-schema update helper while the validator module drops supported decimal constraint functions and lookup entries. This breaks the contract between schema metadata and validation components during collection. The correction is also substantially about restoring validation checks, so the fit is ambiguous."
+}

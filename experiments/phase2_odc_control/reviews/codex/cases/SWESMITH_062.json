@@ -1,0 +1,13 @@
+{
+  "case_id": "SWESMITH_062",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The tokenizer's delimiter scan uses off-by-one cursor advances and slice bounds, causing it to consume or include the wrong characters while scanning Jinja tokens. The repair restores the correct index arithmetic in the scanning algorithm."
+}

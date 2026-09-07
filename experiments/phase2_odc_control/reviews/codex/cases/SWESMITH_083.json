@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_083",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The package download utility stops resolving its SSL verification setting from Conan configuration, so the configured build/source-download policy is ignored. The repair restores the configuration override before invoking the caching downloader."
+}

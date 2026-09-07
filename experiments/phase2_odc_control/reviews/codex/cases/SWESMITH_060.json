@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_060",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The equality method's accepted interoperability contract is narrowed to Path instances, dropping the supported TType comparison path. The repair restores handling of the alternate public operand type, making this an object-interface compatibility defect."
+}

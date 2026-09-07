@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_068",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The package-creation command loses the --test-missing option, its incompatible-option check, and the binary-build-state condition that suppresses test_package for an existing package. The repair restores the intended package build and test-stage behavior."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_014",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_04", "TEST_FAILURE_06", "TEST_FAILURE_11"],
+  "reasoning_summary": "Several CLI boundary contracts are inverted or changed, including text input, output ordering, option semantics, status reporting, and command presence; although local checks are involved, the primary defect is user-interface behavior."
+}

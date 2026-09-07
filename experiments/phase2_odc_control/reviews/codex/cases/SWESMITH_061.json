@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_061",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02",
+    "TEST_FAILURE_03"
+  ],
+  "reasoning_summary": "The defect deletes the local assignments that select the expression sequence and compute each expression's comment, while later control flow still reads both values. The repair restores these required value assignments in the SQL-expression formatter."
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_077",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_09"
+  ],
+  "reasoning_summary": "The path parser loses essential state initialization and character accumulation, no longer strips the root prefix, tracks quotes and brackets, or advances prev_char. The repair restores the parser state machine and element construction algorithm."
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "SWESMITH_074",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_03",
+    "TEST_FAILURE_04"
+  ],
+  "reasoning_summary": "The spawn path mishandles the descriptor ranges retained across the child-process boundary and corrupts exception formatting exposed back to the parent. The repair restores the correct OS descriptor interaction and error propagation. The range-pair construction is also a local algorithm defect, making the taxonomy fit ambiguous."
+}

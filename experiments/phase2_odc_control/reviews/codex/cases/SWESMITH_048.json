@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_048",
+  "odc_defect_type": "TIMING_SERIALIZATION",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_02"],
+  "reasoning_summary": "seed_instance continues mutating the shared global random object instead of detaching per-instance state; shared-resource management takes precedence over the plausible missing-assignment classification."
+}

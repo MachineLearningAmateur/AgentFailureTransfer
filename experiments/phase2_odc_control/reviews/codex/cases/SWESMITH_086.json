@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_086",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "Dependency discovery checks nonexistent or incorrect file-type members and routes supported requirement, lock, and project files through the wrong parsers, causing package dependencies to be omitted. The repair restores the supported package-file mapping. This also reflects an enum/interface mismatch, so the fit is ambiguous."
+}

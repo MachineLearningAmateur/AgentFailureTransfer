@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_069",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The WSGI header mapping returns header values using the wrong byte/text conversion at the request boundary, corrupting UTF-8 values exposed to callers. The repair restores the established WSGI-to-application decoding contract."
+}

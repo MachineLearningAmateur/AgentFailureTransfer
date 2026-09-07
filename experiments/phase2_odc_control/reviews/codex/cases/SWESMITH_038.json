@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_038",
+  "odc_defect_type": "ASSIGNMENT",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_03", "TEST_FAILURE_05"],
+  "reasoning_summary": "The recursive extractor assigns entries to its result only when parsed metrics are empty or unsupported, instead of when they are valid; the misplaced value assignment is primary over the associated condition."
+}

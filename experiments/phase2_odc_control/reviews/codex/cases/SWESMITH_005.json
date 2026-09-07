@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_005",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02"],
+  "reasoning_summary": "The buggy function changes how nested hashes are sorted, delimited, encoded, and combined with the prefix, and the repair restores the expected hash-combination algorithm."
+}

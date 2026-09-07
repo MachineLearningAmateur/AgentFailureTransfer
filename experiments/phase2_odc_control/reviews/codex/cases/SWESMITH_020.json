@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_020",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02"],
+  "reasoning_summary": "Conan remote/package configuration loses the force option and stops passing force and insertion index atomically to the remote API; the repair restores package-remote management behavior."
+}

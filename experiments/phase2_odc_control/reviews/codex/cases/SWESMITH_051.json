@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_051",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The shortcode extractor uses an end slice of j minus one instead of including the matched closing token through j plus one; the repair corrects the local slicing algorithm."
+}

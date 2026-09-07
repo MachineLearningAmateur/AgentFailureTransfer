@@ -1,0 +1,15 @@
+{
+  "case_id": "SWESMITH_100",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The frame walk no longer checks whether a candidate frame filename exists before using it as a filesystem starting point. Non-filesystem filenames produced by zip imports are therefore accepted and later rejected by the path walk, directly reflecting a missing validity check."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_049",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "REFERENCE_REPAIR", "TEST_FAILURE_02", "TEST_FAILURE_14"],
+  "reasoning_summary": "ImportFrom drops its Import base class and therefore no longer satisfies the inherited parser-node interface used for import analysis; the repair restores the class contract."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_050",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01"],
+  "reasoning_summary": "The Conan export command stops building and returning the package-list artifact and removes its formatter, breaking package export/upload workflows; the repair restores package-management output state."
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_011",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02", "TEST_FAILURE_03"],
+  "reasoning_summary": "Schema generation no longer consumes nested routes exposed by the Host routing component, and the repair restores Host import and boundary-specific route traversal."
+}

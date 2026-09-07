@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_039",
+  "odc_defect_type": "TIMING_SERIALIZATION",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02", "TEST_FAILURE_06", "TEST_FAILURE_07"],
+  "reasoning_summary": "The MIDI byte decoder reverses bit fields, slices the serialized frame incorrectly, and inverts frame validation; serialization takes precedence over the plausible local-algorithm classification."
+}

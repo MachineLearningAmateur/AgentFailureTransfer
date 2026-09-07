@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_072",
+  "odc_defect_type": "CHECKING",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01"
+  ],
+  "reasoning_summary": "The semantic analyzer adds a redundant special-case validity check for an empty tuple lvalue, emitting an incorrect extra diagnostic before the normal tuple assignment analysis. The repair removes that improper check."
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_076",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_07"
+  ],
+  "reasoning_summary": "An unconditional return is moved ahead of the f-string stack scan, making all close-quote detection and stack cleanup unreachable. The repair restores that return as the no-match result after the scan, reinstating the tokenizer algorithm."
+}

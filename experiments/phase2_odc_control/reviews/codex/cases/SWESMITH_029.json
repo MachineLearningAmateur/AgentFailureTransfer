@@ -1,0 +1,8 @@
+{
+  "case_id": "SWESMITH_029",
+  "odc_defect_type": "INTERFACE",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": ["BUG_DIFF", "CODE_CONTEXT_01", "CODE_CONTEXT_02", "SPECIFICATION", "REFERENCE_REPAIR", "TEST_FAILURE_01", "TEST_FAILURE_02", "TEST_FAILURE_03"],
+  "reasoning_summary": "The response layer fabricates request IDs that the backend does not retain and the status endpoints are removed, breaking the API contract for tracking creation and deletion operations; the repair restores consistent cross-layer IDs and handlers."
+}

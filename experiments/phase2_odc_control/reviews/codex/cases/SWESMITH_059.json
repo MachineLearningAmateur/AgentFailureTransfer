@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_059",
+  "odc_defect_type": "ALGORITHM",
+  "taxonomy_fit": "DIRECT",
+  "pattern_confidence": "HIGH",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "CODE_CONTEXT_01",
+    "REFERENCE_REPAIR",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The defect attaches the recursive patch-generation body to the no-children branch and moves the raw-segment early return to the branch for segments that do have children. This reverses the traversal logic, so nested changed segments are not processed correctly; the repair restores the intended branching algorithm."
+}

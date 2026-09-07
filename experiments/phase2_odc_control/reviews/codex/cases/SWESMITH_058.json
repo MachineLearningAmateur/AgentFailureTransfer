@@ -1,0 +1,14 @@
+{
+  "case_id": "SWESMITH_058",
+  "odc_defect_type": "BUILD_PACKAGE_MERGE",
+  "taxonomy_fit": "AMBIGUOUS",
+  "pattern_confidence": "MEDIUM",
+  "supporting_evidence_ids": [
+    "BUG_DIFF",
+    "REFERENCE_REPAIR",
+    "SPECIFICATION",
+    "TEST_FAILURE_01",
+    "TEST_FAILURE_02"
+  ],
+  "reasoning_summary": "The defect changes typing dependency imports, removes required type-parameter declarations, and adds an incompatible wrapper in a way that breaks the module's documented examples. The repair restores the package-compatible typing imports and declarations and removes the wrapper. This is primarily build/package integration, though the wrapper and annotations also make an interface interpretation plausible."
+}
